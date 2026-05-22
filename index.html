@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Neobag · Kit do Consultor · FISPAL 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --azul:#008afa;
+  --azul-neon:#28a0ff;
+  --amarelo:#ffc72c;
+  --bg:#03070f;
+  --bg2:#061328;
+  --txt:#eaf2ff;
+  --muted:#9fb6d4;
+  --glass:rgba(255,255,255,.06);
+  --glass-bd:rgba(120,180,255,.18);
+  --ok:#4ade80;
+  --warn:#ffb547;
+  --err:#ff6b6b;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Sora',-apple-system,sans-serif;background:var(--bg);color:var(--txt);overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.55}
+h1,h2,h3,h4,.display{font-family:'Space Grotesk',sans-serif;letter-spacing:-.02em;line-height:1.05}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+.amar{color:var(--amarelo)}
+.azul{color:var(--azul-neon)}
+
+/* fundo */
+.bg-fx{position:fixed;inset:0;z-index:-2;background:
+  radial-gradient(1200px 700px at 70% -10%,rgba(0,138,250,.28),transparent 60%),
+  radial-gradient(900px 600px at 0% 100%,rgba(0,90,200,.20),transparent 55%),
+  var(--bg)}
+.bg-grid{position:fixed;inset:0;z-index:-1;opacity:.35;background-image:
+  linear-gradient(rgba(120,180,255,.06) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(120,180,255,.06) 1px,transparent 1px);
+  background-size:54px 54px;mask-image:radial-gradient(circle at 50% 30%,#000,transparent 80%)}
+
+/* nav */
+nav{position:fixed;top:0;left:0;width:100%;z-index:50;display:flex;align-items:center;justify-content:space-between;
+  padding:14px 28px;backdrop-filter:blur(12px);background:linear-gradient(180deg,rgba(3,7,15,.92),rgba(3,7,15,.7));border-bottom:1px solid var(--glass-bd)}
+nav .brand{font-family:'Space Grotesk';font-weight:700;font-size:20px;letter-spacing:-.01em}
+nav .brand .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--amarelo);box-shadow:0 0 10px var(--amarelo);margin-right:10px;vertical-align:middle;animation:pulse 1.8s infinite}
+nav .links{display:flex;gap:6px;flex-wrap:wrap}
+nav .links a{font-family:'Space Grotesk';font-weight:500;font-size:13px;color:var(--muted);text-decoration:none;padding:7px 12px;border-radius:8px;transition:.15s}
+nav .links a:hover{color:var(--txt);background:var(--glass)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+@media(max-width:760px){nav{flex-direction:column;gap:8px;padding:10px 16px}nav .links{justify-content:center}}
+
+/* hero */
+.hero{padding:140px 0 60px;position:relative;isolation:isolate}
+.hero .kick{display:inline-flex;align-items:center;gap:9px;font-family:'Space Grotesk';font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--azul-neon);border:1px solid var(--glass-bd);background:var(--glass);padding:8px 16px;border-radius:999px;margin-bottom:24px}
+.hero .kick .dt{width:8px;height:8px;border-radius:50%;background:var(--amarelo);box-shadow:0 0 12px var(--amarelo);animation:pulse 1.8s infinite}
+.hero h1{font-size:clamp(40px,5.5vw,72px);font-weight:700;line-height:.95;margin-bottom:18px}
+.hero h1 .big{display:block;font-size:clamp(60px,9vw,120px);font-weight:700;background:linear-gradient(180deg,#fff,#7fc0ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{font-size:clamp(17px,1.5vw,20px);color:var(--muted);max-width:580px;margin-bottom:30px}
+.hero-meta{display:flex;gap:36px;flex-wrap:wrap;padding-top:24px;border-top:1px solid var(--glass-bd);margin-top:30px}
+.hero-meta .item .lab{font-family:'Space Grotesk';font-size:11px;text-transform:uppercase;letter-spacing:.18em;color:var(--muted)}
+.hero-meta .item .val{font-family:'Space Grotesk';font-weight:700;font-size:24px;margin-top:6px}
+.hero-meta .item .val.amar{color:var(--amarelo)}
+
+/* seções */
+section.blk{padding:80px 0;scroll-margin-top:80px}
+.eyebrow{font-family:'Space Grotesk';font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--azul-neon);margin-bottom:14px}
+.blk h2{font-size:clamp(30px,4vw,52px);font-weight:700;line-height:1.02;margin-bottom:14px}
+.blk p.sub{font-size:17px;color:var(--muted);max-width:680px;line-height:1.6}
+
+/* glass card */
+.glass{background:var(--glass);border:1px solid var(--glass-bd);border-radius:22px;backdrop-filter:blur(14px)}
+
+/* price hero card · destaque flat */
+.flat-card{margin-top:36px;padding:42px;background:linear-gradient(135deg,rgba(0,138,250,.22),rgba(255,199,44,.10));border:1px solid var(--glass-bd);border-radius:24px;position:relative;overflow:hidden}
+.flat-card::before{content:"";position:absolute;top:-50%;right:-20%;width:500px;height:500px;background:radial-gradient(circle,rgba(255,199,44,.18),transparent 60%);pointer-events:none}
+.flat-card .price{font-family:'Space Grotesk';font-weight:700;font-size:clamp(72px,11vw,140px);line-height:.95;color:var(--amarelo);text-shadow:0 0 50px rgba(255,199,44,.4);margin-bottom:6px}
+.flat-card .price .un{font-size:.35em;color:var(--txt);font-weight:500;margin-left:8px}
+.flat-card .price-label{font-family:'Space Grotesk';font-weight:600;font-size:18px;color:var(--azul-neon);text-transform:uppercase;letter-spacing:.14em;margin-bottom:8px}
+.flat-card .models{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:30px}
+@media(max-width:760px){.flat-card .models{grid-template-columns:repeat(2,1fr)}}
+.flat-card .model{padding:18px;background:rgba(3,7,15,.5);border:1px solid var(--glass-bd);border-radius:14px;text-align:center}
+.flat-card .model .icn{font-size:32px;margin-bottom:8px}
+.flat-card .model .nm{font-family:'Space Grotesk';font-weight:600;font-size:14px}
+.flat-card .model .dim{font-size:11px;color:var(--muted);margin-top:2px}
+.flat-card .obs{margin-top:24px;padding:16px 20px;background:rgba(255,199,44,.08);border-left:3px solid var(--amarelo);border-radius:10px;font-size:15px;color:var(--txt)}
+.flat-card .obs b{color:var(--amarelo)}
+
+/* combo hambúrguer */
+.combo-card{margin-top:30px;padding:38px;display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center}
+@media(max-width:760px){.combo-card{grid-template-columns:1fr;text-align:center}}
+.combo-card .price-big{font-family:'Space Grotesk';font-weight:700;font-size:clamp(80px,12vw,160px);line-height:.9;background:linear-gradient(180deg,#fff,#7fc0ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.combo-card .price-big .un{display:block;font-size:.18em;color:var(--muted);font-weight:500;margin-top:6px;letter-spacing:.04em}
+.combo-card h3{font-size:32px;margin-bottom:8px}
+.combo-card .desc{color:var(--muted);font-size:16px;margin-bottom:18px}
+.combo-card .items{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:18px}
+.combo-card .item{display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(3,7,15,.5);border:1px solid var(--glass-bd);border-radius:12px;font-size:14px}
+.combo-card .item .icn{font-size:22px}
+.combo-card .pitch{padding:16px 20px;background:rgba(0,138,250,.08);border-left:3px solid var(--azul-neon);border-radius:10px;font-size:15px;font-style:italic;color:#bfe0ff}
+
+/* silk add-on */
+.silk-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:30px}
+@media(max-width:760px){.silk-grid{grid-template-columns:1fr}}
+.silk-card{padding:32px}
+.silk-card .pre{font-family:'Space Grotesk';font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--azul-neon);margin-bottom:10px}
+.silk-card h3{font-size:22px;margin-bottom:12px}
+.silk-card .ex{margin-top:16px;padding:14px 18px;background:rgba(3,7,15,.5);border:1px solid var(--glass-bd);border-radius:10px;font-family:'Space Grotesk';font-size:14px}
+.silk-card .ex .num{font-size:28px;color:var(--amarelo);font-weight:700;margin:6px 0}
+.silk-card ul{list-style:none;padding:0;margin-top:14px}
+.silk-card li{padding:8px 0;color:var(--muted);font-size:14px;display:flex;gap:10px;align-items:flex-start}
+.silk-card li::before{content:"→";color:var(--azul-neon);font-weight:700;flex-shrink:0}
+
+/* tabela grande */
+.tabela-grande{margin-top:30px;padding:28px;overflow-x:auto}
+.tabela-grande table{width:100%;border-collapse:collapse;font-family:'Sora';font-size:14px;min-width:560px}
+.tabela-grande th{font-family:'Space Grotesk';font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-weight:600;text-align:right;padding:14px 12px;border-bottom:1px solid var(--glass-bd)}
+.tabela-grande th:first-child{text-align:left}
+.tabela-grande td{padding:14px 12px;text-align:right;border-bottom:1px solid rgba(120,180,255,.08);font-variant-numeric:tabular-nums}
+.tabela-grande td:first-child{text-align:left;font-family:'Space Grotesk';font-weight:600}
+.tabela-grande td .dim{display:block;font-size:11px;color:var(--muted);font-weight:400;margin-top:2px}
+.tabela-grande tr:hover td{background:rgba(255,255,255,.02)}
+.tabela-grande .preco{color:var(--amarelo);font-family:'Space Grotesk';font-weight:700}
+
+/* Smart cards */
+.smart-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:30px}
+@media(max-width:760px){.smart-grid{grid-template-columns:1fr}}
+.smart-card{padding:32px;text-align:center;position:relative}
+.smart-card .badge{display:inline-block;font-family:'Space Grotesk';font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--azul-neon);background:rgba(0,138,250,.12);border:1px solid var(--glass-bd);padding:6px 14px;border-radius:999px;margin-bottom:14px}
+.smart-card h3{font-size:24px;margin-bottom:8px}
+.smart-card .old{color:var(--muted);text-decoration:line-through;font-size:15px;margin-bottom:6px}
+.smart-card .new{font-family:'Space Grotesk';font-weight:700;font-size:48px;color:var(--amarelo);text-shadow:0 0 40px rgba(255,199,44,.3)}
+.smart-card .new .un{font-size:.35em;font-weight:500;color:var(--muted);margin-left:6px}
+
+/* pagamento por segmento */
+.pag-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:30px}
+@media(max-width:860px){.pag-grid{grid-template-columns:1fr}}
+.pag-card{padding:28px;position:relative;overflow:hidden}
+.pag-card .icn{font-size:42px;margin-bottom:10px}
+.pag-card h3{font-size:22px;margin-bottom:14px}
+.pag-card .tag{display:inline-block;font-family:'Space Grotesk';font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:5px 12px;border-radius:999px;margin-bottom:14px;font-weight:600}
+.pag-card .tag.ok{background:rgba(74,222,128,.12);color:var(--ok);border:1px solid rgba(74,222,128,.3)}
+.pag-card .tag.warn{background:rgba(255,181,71,.12);color:var(--warn);border:1px solid rgba(255,181,71,.3)}
+.pag-card .tag.err{background:rgba(255,107,107,.12);color:var(--err);border:1px solid rgba(255,107,107,.3)}
+.pag-card .rule{margin:14px 0;padding:14px 16px;background:rgba(3,7,15,.5);border:1px solid var(--glass-bd);border-radius:10px;font-family:'Space Grotesk';font-weight:600;font-size:15px}
+.pag-card p{color:var(--muted);font-size:14px;line-height:1.6}
+
+/* mec 5 + bonificação */
+.gam-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:30px}
+@media(max-width:760px){.gam-grid{grid-template-columns:1fr}}
+.gam-card{padding:32px;position:relative;overflow:hidden}
+.gam-card .icn-big{font-size:56px;margin-bottom:14px;display:block}
+.gam-card h3{font-size:24px;margin-bottom:10px}
+.gam-card .meta{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0}
+.gam-card .meta span{font-family:'Space Grotesk';font-size:12px;padding:5px 10px;border-radius:8px;background:rgba(3,7,15,.5);border:1px solid var(--glass-bd);color:var(--azul-neon)}
+.gam-card p{color:var(--muted);font-size:14px;line-height:1.6}
+.gam-card.copa{background:linear-gradient(135deg,rgba(74,222,128,.08),rgba(255,199,44,.08))}
+.gam-card.mec5{background:linear-gradient(135deg,rgba(0,138,250,.10),rgba(40,160,255,.05))}
+
+/* regras gerais */
+.regras-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:30px}
+@media(max-width:760px){.regras-grid{grid-template-columns:1fr}}
+.regra{display:flex;gap:16px;padding:22px;align-items:flex-start}
+.regra .ic{width:42px;height:42px;border-radius:12px;background:rgba(0,138,250,.16);border:1px solid var(--glass-bd);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.regra b{font-family:'Space Grotesk';display:block;margin-bottom:4px;font-size:16px}
+.regra span{color:var(--muted);font-size:14px}
+
+/* cheat sheet */
+.cheat{margin-top:30px;padding:38px;background:#000;border:2px dashed var(--amarelo);border-radius:22px;font-family:'Space Grotesk';position:relative}
+.cheat::before{content:"📋 PRA IMPRIMIR";position:absolute;top:-14px;left:24px;background:var(--amarelo);color:#000;padding:4px 14px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.14em}
+.cheat h3{color:var(--amarelo);font-size:20px;margin-bottom:18px;text-align:center;letter-spacing:.1em;text-transform:uppercase}
+.cheat-row{display:grid;grid-template-columns:1fr auto;gap:18px;padding:10px 0;border-bottom:1px dashed rgba(255,199,44,.15);font-size:15px}
+.cheat-row:last-child{border:none}
+.cheat-row b{color:var(--amarelo);font-weight:700;font-family:'Space Grotesk'}
+.cheat-row span{color:var(--muted);font-family:'Sora';font-size:13px}
+.print-btn{display:inline-flex;align-items:center;gap:10px;margin-top:20px;padding:12px 24px;background:var(--amarelo);color:#000;border:none;border-radius:12px;font-family:'Space Grotesk';font-weight:700;font-size:14px;cursor:pointer;text-decoration:none}
+.print-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,199,44,.4)}
+
+/* footer */
+footer{padding:60px 0 50px;text-align:center;color:var(--muted);border-top:1px solid var(--glass-bd);margin-top:80px;font-size:13px}
+footer .ftr-brand{font-family:'Space Grotesk';font-weight:700;font-size:18px;color:var(--txt);margin-bottom:12px}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* print */
+@media print{
+  .bg-fx,.bg-grid,nav{display:none}
+  body{background:#fff;color:#000}
+  .glass,.flat-card,.combo-card,.silk-card,.tabela-grande,.smart-card,.pag-card,.gam-card{background:#fff!important;border:1px solid #ccc!important;color:#000!important;break-inside:avoid;page-break-inside:avoid}
+  .amar,.azul,.flat-card .price,.combo-card .price-big,.smart-card .new,.cheat h3,.cheat-row b{color:#000!important;-webkit-text-fill-color:#000!important}
+  .cheat{background:#fff;border:2px solid #000}
+  .hero{padding-top:20px}
+  .hero h1{color:#000}
+  section.blk{padding:30px 0;page-break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="bg-fx"></div>
+<div class="bg-grid"></div>
+
+<nav>
+  <div class="brand"><span class="dot"></span>NEOBAG · KIT CONSULTOR</div>
+  <div class="links">
+    <a href="#flat">R$ 2,00</a>
+    <a href="#combo">Combo</a>
+    <a href="#silk">Silk add-on</a>
+    <a href="#tabela">Grande+</a>
+    <a href="#smart">Smart</a>
+    <a href="#pag">Pagamento</a>
+    <a href="#gam">Copa + Mec 5</a>
+    <a href="#regras">Regras</a>
+    <a href="#cheat">Cheat sheet</a>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <div class="reveal in">
+    <span class="kick"><span class="dt"></span>FISPAL FOOD SERVICE · 26 a 29 de maio · K50</span>
+    <h1>Kit do <span class="azul">Consultor</span><span class="big">FISPAL.</span></h1>
+    <p class="lead">Toda condição comercial, tabela e regra de pagamento que vai rodar no estande. Pra você não perder tempo com cliente na frente buscando preço — está tudo aqui.</p>
+    <div class="hero-meta">
+      <div class="item"><div class="lab">Vigência</div><div class="val">26–29 / 05</div></div>
+      <div class="item"><div class="lab">Estande</div><div class="val amar">K50</div></div>
+      <div class="item"><div class="lab">Base</div><div class="val">Tabela APAS −10%</div></div>
+      <div class="item"><div class="lab">Atualizado</div><div class="val">22 / 05</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ FLAT R$ 2,00 ============ -->
+<section class="blk wrap" id="flat">
+  <div class="reveal">
+    <div class="eyebrow">A grande arma do estande</div>
+    <h2>Médio pra baixo: <span class="amar">flat de R$ 2,00</span></h2>
+    <p class="sub">Pequena Nova, Vinho, Burguer e Médio. Qualquer quantidade dentro do mínimo, qualquer forma de pagamento. Argumento de fechamento mais simples e poderoso da feira.</p>
+  </div>
+
+  <div class="flat-card reveal">
+    <div class="price-label">Linha 360 · médio pra baixo</div>
+    <div class="price">R$ 2,00<span class="un">/ un</span></div>
+    <div class="models">
+      <div class="model"><div class="icn">📦</div><div class="nm">Pequena Nova</div><div class="dim">12×24×11 cm</div></div>
+      <div class="model"><div class="icn">🍷</div><div class="nm">Vinho</div><div class="dim">12×40×8,5 cm</div></div>
+      <div class="model"><div class="icn">🍔</div><div class="nm">Burguer</div><div class="dim">22×24×12 cm</div></div>
+      <div class="model"><div class="icn">📋</div><div class="nm">Médio</div><div class="dim">24×30×16 cm</div></div>
+    </div>
+    <div class="obs"><b>Preço único.</b> Não muda com volume, não muda com forma de pagamento. Vendedor não precisa pensar — fala R$ 2,00 e fecha.</div>
+  </div>
+</section>
+
+<!-- ============ COMBO HAMBÚRGUER ============ -->
+<section class="blk wrap" id="combo">
+  <div class="reveal">
+    <div class="eyebrow">Cross-sell PP de bebida</div>
+    <h2>Combo Hambúrguer · <span class="amar">R$ 3,00</span></h2>
+    <p class="sub">Quando o cliente é hamburgueria, a venda dele é hambúrguer + bebida. Esse combo casa as duas bags num único pedido com preço único.</p>
+  </div>
+
+  <div class="combo-card glass reveal">
+    <div class="price-big">R$3<span class="un">por unidade · cada uma das duas bags</span></div>
+    <div>
+      <h3>Bag Burguer + Pequena Nova (PP bebida)</h3>
+      <div class="desc">10.000 unidades de CADA, no mesmo pedido. 20k unidades combinadas.</div>
+      <div class="items">
+        <div class="item"><span class="icn">🍔</span><span><b>Burguer</b> · 10.000 un · 22×24×12</span></div>
+        <div class="item"><span class="icn">🥤</span><span><b>Pequena Nova</b> · 10.000 un · 12×24×11</span></div>
+      </div>
+      <div class="pitch">"Leva o combo completo da hamburgueria — valor único por bag pra qualquer um dos dois itens. Fecha em 20k unidades."</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SILK ADD-ON ============ -->
+<section class="blk wrap" id="silk">
+  <div class="reveal">
+    <div class="eyebrow">Adicionar Silk dentro do pedido</div>
+    <h2>Silk em pedido R$ 2 / R$ 3: <span class="azul">preço de 360</span></h2>
+    <p class="sub">Cliente já está fechando 360 com você. Quer levar Silk junto? Em vez do preço Silk de tabela, cobra o preço do 360 com 10% de desconto — até 1.000 un.</p>
+  </div>
+
+  <div class="silk-grid">
+    <div class="silk-card glass reveal">
+      <div class="pre">Como aplicar</div>
+      <h3>Regra do bolso</h3>
+      <ul>
+        <li>Cliente já está fechando combo R$ 2 ou R$ 3</li>
+        <li>Quer adicionar Silk · qualquer modelo</li>
+        <li>Até <b>1.000 un de Silk</b> no mesmo pedido</li>
+        <li>Cobra preço da tabela <b>360 com 10% off</b> (mesma faixa de qtd da tabela APAS)</li>
+        <li>Mais que 1.000 un: cobra Silk normal (tabela 1 cor)</li>
+      </ul>
+    </div>
+    <div class="silk-card glass reveal">
+      <div class="pre">Exemplo prático</div>
+      <h3>500 un Pequena Silk</h3>
+      <div class="ex">
+        <div>Tabela Silk 500un:</div>
+        <div class="num" style="color:var(--muted);font-size:18px;text-decoration:line-through">R$ 4,31</div>
+        <div>Preço FISPAL (= 360 −10%):</div>
+        <div class="num">R$ 2,15 <span style="font-size:14px;color:var(--ok)">economia 50%</span></div>
+      </div>
+      <p style="color:var(--muted);font-size:13px;margin-top:14px">Cliente sente que o Silk virou acessível, vendedor adiciona um item no ticket. Win-win.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TABELA GRANDE+ ============ -->
+<section class="blk wrap" id="tabela">
+  <div class="reveal">
+    <div class="eyebrow">Linha 360 · Grande / GG / Extra G</div>
+    <h2>Grande pra cima: <span class="azul">tabela com 10%</span></h2>
+    <p class="sub">Pra modelos Grande, GG e Extra G, mantém a tabela APAS com o desconto de 10% já aplicado. Sem flat, sem exceção — preço por faixa de quantidade.</p>
+  </div>
+
+  <div class="tabela-grande glass reveal">
+    <table>
+      <thead>
+        <tr>
+          <th>Modelo</th>
+          <th>5.000 un</th>
+          <th>10.000 un</th>
+          <th>20.000 un</th>
+          <th>30.000 un</th>
+          <th>50.000 un</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Confeitaria<div class="dim">24,5×28×23,5 cm</div></td>
+          <td><span class="preco">R$ 3,78</span></td>
+          <td><span class="preco">R$ 3,67</span></td>
+          <td><span class="preco">R$ 3,56</span></td>
+          <td><span class="preco">R$ 3,47</span></td>
+          <td><span class="preco">R$ 3,40</span></td>
+        </tr>
+        <tr>
+          <td>Grande<div class="dim">30×36×20 cm</div></td>
+          <td><span class="preco">R$ 3,86</span></td>
+          <td><span class="preco">R$ 3,74</span></td>
+          <td><span class="preco">R$ 3,63</span></td>
+          <td><span class="preco">R$ 3,55</span></td>
+          <td><span class="preco">R$ 3,47</span></td>
+        </tr>
+        <tr>
+          <td>GG<div class="dim">30×34×29 cm</div></td>
+          <td><span class="preco">R$ 5,04</span></td>
+          <td><span class="preco">R$ 4,91</span></td>
+          <td><span class="preco">R$ 4,73</span></td>
+          <td><span class="preco">R$ 4,64</span></td>
+          <td><span class="preco">R$ 4,54</span></td>
+        </tr>
+        <tr>
+          <td>Extra G.<div class="dim">30×42×28 cm</div></td>
+          <td><span class="preco">R$ 5,52</span></td>
+          <td><span class="preco">R$ 5,35</span></td>
+          <td><span class="preco">R$ 5,18</span></td>
+          <td><span class="preco">R$ 5,06</span></td>
+          <td><span class="preco">R$ 4,96</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top:18px;padding:14px 18px;background:rgba(0,138,250,.08);border-left:3px solid var(--azul-neon);border-radius:10px;font-size:14px;color:var(--muted)">
+      <b style="color:var(--azul-neon)">Verso 1 cor:</b> + R$ 0,72/un &nbsp;·&nbsp; <b style="color:var(--azul-neon)">Verso UV:</b> + R$ 1,26/un &nbsp;·&nbsp; <b style="color:var(--azul-neon)">360°</b> não aceita verso
+    </div>
+  </div>
+</section>
+
+<!-- ============ SMART ============ -->
+<section class="blk wrap" id="smart">
+  <div class="reveal">
+    <div class="eyebrow">Linha Smart e Smart 360</div>
+    <h2>Smart: <span class="amar">preço de feira fixo</span></h2>
+    <p class="sub">Produtos prontos pra venda direta. Preço único, sem negociação.</p>
+  </div>
+
+  <div class="smart-grid">
+    <div class="smart-card glass reveal">
+      <span class="badge">Linha Smart</span>
+      <h3>Smart padrão</h3>
+      <div class="old">R$ 2,79</div>
+      <div class="new">R$ 2,59<span class="un">/ un</span></div>
+    </div>
+    <div class="smart-card glass reveal">
+      <span class="badge">Smart 360 · 10% off aplicado</span>
+      <h3>Smart 360</h3>
+      <div class="old">R$ 4,29</div>
+      <div class="new">R$ 3,86<span class="un">/ un</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PAGAMENTO ============ -->
+<section class="blk wrap" id="pag">
+  <div class="reveal">
+    <div class="eyebrow">Política por segmento de cliente</div>
+    <h2>Pagamento: <span class="azul">cada segmento, uma regra</span></h2>
+    <p class="sub">Os preços de feira valem dentro da forma de pagamento certa pra cada perfil. Hamburgueria, restaurante e os demais segmentos têm playbook próprio.</p>
+  </div>
+
+  <div class="pag-grid">
+    <div class="pag-card glass reveal">
+      <div class="icn">🍔</div>
+      <span class="tag err">Hamburgueria · evita boleto</span>
+      <h3>100% cartão</h3>
+      <div class="rule">Cartão (à vista ou parcelado) <span style="color:var(--muted);font-weight:400">ou</span> Pix integral</div>
+      <p>Boleto pra hamburgueria é evitado. Se cliente insistir, explica que a tabela FISPAL com flat R$ 2 / R$ 3 vale pra cartão e Pix — boleto fica fora dessa condição especial.</p>
+    </div>
+    <div class="pag-card glass reveal">
+      <div class="icn">🍽️</div>
+      <span class="tag warn">Restaurante · boleto com regra</span>
+      <h3>Entrada + 4×</h3>
+      <div class="rule">R$ 2.000 entrada + 4× R$ 2.000</div>
+      <p>Se restaurante pede boleto: estrutura mínima R$ 10k total — entrada R$ 2k à vista + 4 boletos iguais de R$ 2k. Acima disso, mantém proporção (entrada = ⅕ do total).</p>
+    </div>
+    <div class="pag-card glass reveal">
+      <div class="icn">🏪</div>
+      <span class="tag ok">Demais segmentos</span>
+      <h3>Padrão Neobag</h3>
+      <div class="rule">Pix · Cartão · 50%+3x · 30%+3x · Híbrido</div>
+      <p>Modalidades padrão da Neobag, sem restrição. Híbrido (componentes que podem não fechar 100%) aceito. Boleto sob análise de crédito.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COPA + MEC 5 ============ -->
+<section class="blk wrap" id="gam">
+  <div class="reveal">
+    <div class="eyebrow">Programa Copa + acelerador 360 + Silk</div>
+    <h2>O combo que <span class="amar">vale mais pontos</span></h2>
+    <p class="sub">Duas mecânicas casadas: bonificação grátis pra fechar 360, e acelerador 1,2× quando você costura Silk paga no mesmo pedido. Cross-sell premiado.</p>
+  </div>
+
+  <div class="gam-grid">
+    <div class="gam-card glass copa reveal">
+      <span class="icn-big">⚽</span>
+      <h3>Bonificação Silk · Copa do Mundo</h3>
+      <div class="meta">
+        <span>até 200 un grátis</span>
+        <span>pedido 360</span>
+        <span>entrega 10 dias</span>
+      </div>
+      <p>Em pedidos que contenham linha 360, você pode bonificar até 200 un de Silk de graça pro cliente (alçada própria, sem aprovação). Argumento de fechamento direto: <i>"leva o brinde Copa, ativa sua loja no Mundial"</i>. Não conta em valor faturado nem comissão — mas casa lindo com a Mec 5 abaixo.</p>
+    </div>
+    <div class="gam-card glass mec5 reveal">
+      <span class="icn-big">⚡</span>
+      <h3>Mec 5 · Acelerador 360 + Silk</h3>
+      <div class="meta">
+        <span>×1,2 pontos</span>
+        <span>automático</span>
+        <span>vale na gamificação</span>
+      </div>
+      <p>Pedido que tem 360 <strong>+</strong> Silk juntos ganha multiplicador 1,2× sobre os pontos do pedido na gamificação. Detecção automática. Combina com a bonificação acima: <i>"leva o brinde Copa de Silk + carregue Silk paga em cores temáticas no mesmo pedido"</i>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REGRAS GERAIS ============ -->
+<section class="blk wrap" id="regras">
+  <div class="reveal">
+    <div class="eyebrow">Regras gerais · valem o tempo todo</div>
+    <h2>Política da casa</h2>
+    <p class="sub">Regras que valem pra qualquer pedido, qualquer segmento, qualquer momento da feira.</p>
+  </div>
+  <div class="regras-grid">
+    <div class="regra glass reveal"><div class="ic">🚫</div><div><b>Sem desconto extra fora dessa tabela</b><span>Qualquer desconto fora do combinado: passa pela alçada de exceção (Murillo / Malu). Se &gt;10% de desconto, alinha com Henrique antes via WhatsApp.</span></div></div>
+    <div class="regra glass reveal"><div class="ic">⚠️</div><div><b>Anti-fraude CNPJ duplicado</b><span>Se outro vendedor já registrou esse CNPJ no estande, o sistema bloqueia o segundo registro. Combine com o colega antes de tentar.</span></div></div>
+    <div class="regra glass reveal"><div class="ic">📏</div><div><b>Mínimos por linha</b><span>Linha 360: 5.000 un mín. Outras linhas: respeitar mínimo da tabela. Pedido abaixo do mínimo não é aceito.</span></div></div>
+    <div class="regra glass reveal"><div class="ic">🎨</div><div><b>Verso</b><span>1 cor: +R$ 0,72/un · UV: +R$ 1,26/un · 360 não aceita verso. Adicionar verso muda o preço por unidade — calcule antes de fechar.</span></div></div>
+    <div class="regra glass reveal"><div class="ic">⏰</div><div><b>Hora Neobag · 28/05 14h–17h</b><span>3 horas com vendas valendo 2× pontos na gamificação. Marque um cliente bom pra fechar nesse intervalo.</span></div></div>
+    <div class="regra glass reveal"><div class="ic">🎯</div><div><b>Boss Fight</b><span>Lista de CNPJs-alvo no verso do crachá. Se o cliente que chegou está na lista, +200 pontos extras se fechar.</span></div></div>
+  </div>
+</section>
+
+<!-- ============ CHEAT SHEET ============ -->
+<section class="blk wrap" id="cheat">
+  <div class="reveal">
+    <div class="eyebrow">Pro bolso · plastificar e levar</div>
+    <h2>Cheat sheet</h2>
+    <p class="sub">Versão condensada que cabe num cartão. Imprime, plastifica e cola no crachá.</p>
+  </div>
+
+  <div class="cheat reveal">
+    <h3>Preços FISPAL · cheat sheet</h3>
+    <div class="cheat-row"><div>Pequena Nova / Vinho / Burguer / Médio</div><b>R$ 2,00 / un</b></div>
+    <div class="cheat-row"><div>Combo Hambúrguer (Burguer 10k + Pequena Nova 10k)</div><b>R$ 3,00 / un</b></div>
+    <div class="cheat-row"><div>Silk até 1.000 un dentro de pedido R$2/R$3</div><b>preço 360 −10%</b></div>
+    <div class="cheat-row"><div>Grande / GG / Extra G</div><b>tabela APAS −10%</b></div>
+    <div class="cheat-row"><div>Smart</div><b>R$ 2,59</b></div>
+    <div class="cheat-row"><div>Smart 360</div><b>R$ 3,86</b></div>
+    <div class="cheat-row"><div>Verso 1 cor / UV</div><b>+R$ 0,72 / +R$ 1,26</b></div>
+    <div class="cheat-row"><div>360° aceita verso?</div><b>NÃO</b></div>
+    <div style="border-top:1px dashed rgba(255,199,44,.3);margin:18px 0 14px"></div>
+    <div class="cheat-row"><div>Hamburgueria</div><b>100% cartão</b></div>
+    <div class="cheat-row"><div>Restaurante boleto</div><b>R$ 2k entrada + 4× R$ 2k</b></div>
+    <div class="cheat-row"><div>Outros</div><b>padrão Neobag</b></div>
+    <div style="border-top:1px dashed rgba(255,199,44,.3);margin:18px 0 14px"></div>
+    <div class="cheat-row"><div>Bonificação Silk Copa (pedido 360)</div><b>até 200 un grátis · 10 dias</b></div>
+    <div class="cheat-row"><div>Mec 5 · 360 + Silk juntos</div><b>×1,2 pontos</b></div>
+    <div class="cheat-row"><div>Desconto extra ou exceção</div><b>Murillo / Malu (&gt;10%: Henrique)</b></div>
+    <div style="text-align:center;margin-top:24px">
+      <button class="print-btn" onclick="window.print()">🖨️ Imprimir esta página</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ftr-brand">NEOBAG · Kit do Consultor FISPAL 2026</div>
+  <div>Documento operacional · vigência 26 a 29 de maio · estande K50 · atualizado em 22/05/2026</div>
+  <div style="margin-top:8px">Dúvidas de exceção: Murillo Lima · Malu Fernandes · &gt;10% Henrique</div>
+</footer>
+
+<script>
+const els=[...document.querySelectorAll('.reveal')];
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+els.forEach(el=>io.observe(el));
+addEventListener('load',()=>setTimeout(()=>els.forEach(el=>{if(el.getBoundingClientRect().top<innerHeight*1.1)el.classList.add('in')}),250));
+</script>
+</body>
+</html>
