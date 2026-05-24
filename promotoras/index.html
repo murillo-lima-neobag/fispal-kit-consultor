@@ -125,6 +125,16 @@ section.s h2{font-size:22px;margin-bottom:14px}
 .dif .ch .tx b{font-family:'Space Grotesk';display:block;font-size:14px;margin-bottom:1px}
 .dif .ch .tx span{color:var(--muted)}
 
+/* GRID DE LOGOS DE CLIENTES · prova social */
+.clientes-block{margin-top:16px;padding:18px;background:var(--glass);border:1px solid var(--glass-bd);border-radius:14px}
+.cli-title{font-family:'Space Grotesk';font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--azul-neon);font-weight:600;margin-bottom:12px;text-align:center}
+.clientes-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:760px){.clientes-grid{grid-template-columns:repeat(2,1fr)}}
+.cli-logo{background:#fff;border-radius:10px;height:62px;display:flex;align-items:center;justify-content:center;padding:8px;transition:transform .2s}
+.cli-logo:hover{transform:translateY(-2px)}
+.cli-logo img{max-width:100%;max-height:46px;object-fit:contain}
+.cli-foot{margin-top:12px;font-size:12px;color:var(--muted);text-align:center;font-style:italic}
+
 /* QUANDO PASSAR — DESTAQUE */
 .passar-box{padding:22px;background:linear-gradient(135deg,rgba(255,199,44,.14),rgba(0,138,250,.06));border:1px solid var(--amarelo);border-radius:16px;margin-top:8px}
 .passar-box .sub{font-family:'Space Grotesk';font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--amarelo);font-weight:700;margin-bottom:10px}
@@ -171,7 +181,7 @@ footer{padding:24px 0 36px;text-align:center;color:var(--muted);border-top:1px s
 <header class="head">
   <div class="wrap">
     <div class="top">
-      <div class="brand"><span class="dt"></span><img src="https://site-neobag.vercel.app/img/logo-branco.png" alt="Neobag" style="height:20px;vertical-align:middle;margin-right:6px"> · KIT PROMOTORA</div>
+      <div class="brand"><span class="dt"></span><img src="https://neobagstore.com.br/wp-content/uploads/logo-new-neobag.svg" alt="Neobag" style="height:22px;vertical-align:middle;margin-right:6px;filter:brightness(0) invert(1)"> · KIT PROMOTORA</div>
       <div class="meta">FISPAL · 26–29/05 · <b>K50</b></div>
     </div>
     <div class="nav">
@@ -198,7 +208,7 @@ footer{padding:24px 0 36px;text-align:center;color:var(--muted);border-top:1px s
       <h1>Você é a porta de entrada da<span class="big">Neobag.</span></h1>
       <p class="lead">Seu papel: abordar visitante → <b>bipar o crachá</b> → fazer ele entender o produto em 60 segundos → passar pro consultor fechar. Sem vender, sem detalhar condições. <b>Encantar e passar.</b></p>
     </div>
-    <img class="hero-img" src="https://site-neobag.vercel.app/img/bag-velinha-1.png" alt="Bag Neobag" loading="lazy">
+    <img class="hero-img" src="https://neobagstore.com.br/wp-content/uploads/neobag-sacola-termica-ze-delivery-scaled-e1770125731385.webp" alt="Bag Neobag personalizada · Zé Delivery" loading="lazy">
   </div>
   <div class="stats">
     <div class="stat"><div class="lb">Onde</div><div class="vl amar">K50</div></div>
@@ -222,7 +232,7 @@ footer{padding:24px 0 36px;text-align:center;color:var(--muted);border-top:1px s
         <p>Cliente: hamburgueria, restaurante, padaria, mercado, atacarejo, sorveteria, açaiteria. Tudo que faz delivery e quer o pedido chegar do jeito certo.</p>
         <div class="quote">"Bag térmica versátil · personalização 360° que coloca sua marca em toda a peça."</div>
       </div>
-      <img class="about-img" src="https://site-neobag.vercel.app/img/bag-velinha-1.png" alt="Bag Neobag" loading="lazy">
+      <img class="about-img" src="https://neobagstore.com.br/wp-content/uploads/neobag-sacola-termica-bom-beef-scaled-e1770125772809.webp" alt="Bag Neobag personalizada · Bom Beef Burgers" loading="lazy">
     </div>
   </div>
 </section>
@@ -281,13 +291,13 @@ footer{padding:24px 0 36px;text-align:center;color:var(--muted);border-top:1px s
   <div class="demo">
     <div class="mov">
       <div class="n">Movimento 1</div>
-      <img class="mov-img" src="https://site-neobag.vercel.app/img/hero-3d-1.png" alt="Bag térmica Neobag" loading="lazy">
+      <img class="mov-img" src="https://neobagstore.com.br/wp-content/uploads/neobag-sacola-termica-mercato-sadia-scaled-e1770125832940.webp" alt="Bag térmica Neobag · Mercato/Sadia" loading="lazy">
       <div class="tt">Bag térmica versátil</div>
       <div class="ds">"A mesma bag térmica serve pra quente OU pra frio — depende do segmento. Hambúrguer chega crocante, refrigerante chega gelado, açaí chega firme."</div>
     </div>
     <div class="mov">
       <div class="n">Movimento 2</div>
-      <img class="mov-img" src="https://site-neobag.vercel.app/img/hero-3d-2.png" alt="Modelos Neobag" loading="lazy">
+      <img class="mov-img" src="https://neobagstore.com.br/wp-content/uploads/neobag-sacola-termica-seara-e1770125860582.webp" alt="Bag térmica Neobag · Seara" loading="lazy">
       <div class="tt">Vários tamanhos</div>
       <div class="ds">"Tem desde a Pequena (pra bebida e sobremesa) até a Extra G (pra pedido grande). Você escolhe pelo seu produto e volume."</div>
     </div>
@@ -323,7 +333,23 @@ footer{padding:24px 0 36px;text-align:center;color:var(--muted);border-top:1px s
     <div class="ch"><div class="ic">🎁</div><div class="tx"><b>Clichê e arte por nossa conta</b><span>Linha 360 · sem cobrar arte nem cores</span></div></div>
     <div class="ch"><div class="ic">♻️</div><div class="tx"><b>Supercola até 100 usos</b><span>Fechamento reutilizável muitas vezes</span></div></div>
     <div class="ch"><div class="ic">🏭</div><div class="tx"><b>Produção própria</b><span>Não é revenda · controle total</span></div></div>
-    <div class="ch"><div class="ic">⭐</div><div class="tx"><b>Clientes grandes</b><span>Swift · Zé Delivery · Bacio · Seara</span></div></div>
+    <div class="ch"><div class="ic">⭐</div><div class="tx"><b>Clientes grandes</b><span>Zé Delivery · iFood · Bacio · Sadia · Seara · +</span></div></div>
+  </div>
+
+  <!-- Grid visual de logos · prova social pra mostrar pro visitante -->
+  <div class="clientes-block">
+    <div class="cli-title">Marcas que já estão com a Neobag</div>
+    <div class="clientes-grid">
+      <div class="cli-logo"><img src="https://neobagstore.com.br/wp-content/uploads/logo-ze-delivery-new.webp" alt="Zé Delivery" loading="lazy"></div>
+      <div class="cli-logo"><img src="https://neobagstore.com.br/wp-content/uploads/logo-ifood-new.webp" alt="iFood" loading="lazy"></div>
+      <div class="cli-logo"><img src="https://neobagstore.com.br/wp-content/uploads/logo-bacio-di-latte-new.webp" alt="Bacio di Latte" loading="lazy"></div>
+      <div class="cli-logo"><img src="https://neobagstore.com.br/wp-content/uploads/logo-sadia-new.webp" alt="Sadia" loading="lazy"></div>
+      <div class="cli-logo"><img src="https://neobagstore.com.br/wp-content/uploads/logo-bom-beed-burgers-new.webp" alt="Bom Beef Burgers" loading="lazy"></div>
+      <div class="cli-logo"><img src="https://neobagstore.com.br/wp-content/uploads/logo-mambo-new.webp" alt="Mambo" loading="lazy"></div>
+      <div class="cli-logo"><img src="https://neobagstore.com.br/wp-content/uploads/logo-trilhas-do-acai-new.webp" alt="Trilhas do Açaí" loading="lazy"></div>
+      <div class="cli-logo"><img src="https://neobagstore.com.br/wp-content/uploads/logo-1008-new.webp" alt="1008" loading="lazy"></div>
+    </div>
+    <div class="cli-foot">Use essas marcas no discurso: <i>"essas redes confiaram na Neobag, faz sentido você também conhecer."</i></div>
   </div>
 </section>
 
