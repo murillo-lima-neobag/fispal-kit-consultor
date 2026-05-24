@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Neobag · Briefing 9h · Promotoras FISPAL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Sora:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --azul:#008afa;--azul-neon:#28a0ff;--amarelo:#ffc72c;
+  --bg:#03070f;--bg2:#061328;--txt:#eaf2ff;--muted:#9fb6d4;
+  --glass:rgba(255,255,255,.06);--glass-bd:rgba(120,180,255,.18);
+  --ok:#4ade80;--warn:#ffb547;--err:#ff6b6b;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Sora',-apple-system,sans-serif;background:var(--bg);color:var(--txt);line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-.02em;line-height:1.05;font-weight:700}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px}
+.amar{color:var(--amarelo)}.azul{color:var(--azul-neon)}
+
+.bg-fx{position:fixed;inset:0;z-index:-2;background:
+  radial-gradient(900px 500px at 80% -10%,rgba(0,138,250,.22),transparent 60%),
+  radial-gradient(700px 400px at 0% 100%,rgba(0,90,200,.16),transparent 55%),var(--bg)}
+
+/* HEADER */
+.head{padding:14px 0;border-bottom:1px solid var(--glass-bd);position:sticky;top:0;z-index:10;backdrop-filter:blur(14px);background:rgba(3,7,15,.9)}
+.head .top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.head .brand{font-family:'Space Grotesk';font-weight:700;font-size:16px;display:flex;align-items:center;gap:8px}
+.head .brand img{height:20px;filter:brightness(0) invert(1);vertical-align:middle}
+.head .brand .dt{width:8px;height:8px;border-radius:50%;background:var(--amarelo);box-shadow:0 0 8px var(--amarelo);animation:p 1.8s infinite}
+@keyframes p{0%,100%{opacity:1}50%{opacity:.4}}
+.head .meta{font-family:'Space Grotesk';font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.head .meta b{color:var(--amarelo)}
+.head .print{padding:6px 14px;background:var(--amarelo);color:#000;border:none;border-radius:8px;font-family:'Space Grotesk';font-weight:700;font-size:12px;cursor:pointer}
+
+/* HERO */
+.hero{padding:32px 0 18px}
+.hero .kick{display:inline-flex;align-items:center;gap:8px;font-family:'Space Grotesk';font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--azul-neon);border:1px solid var(--glass-bd);background:var(--glass);padding:6px 12px;border-radius:999px;margin-bottom:14px}
+.hero h1{font-size:clamp(32px,5vw,52px);margin-bottom:10px}
+.hero .lead{font-size:16px;color:var(--muted);max-width:680px}
+.hero .stats{display:flex;gap:28px;margin-top:18px;padding-top:14px;border-top:1px solid var(--glass-bd);flex-wrap:wrap}
+.hero .stat .lb{font-family:'Space Grotesk';font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.hero .stat .vl{font-family:'Space Grotesk';font-weight:700;font-size:20px;margin-top:2px}
+.hero .stat .vl.amar{color:var(--amarelo)}
+
+/* CHECKLIST DE MATERIAIS */
+.mat{margin-top:20px;padding:20px;background:linear-gradient(135deg,rgba(0,138,250,.10),rgba(255,199,44,.04));border:1px solid var(--glass-bd);border-radius:14px}
+.mat h3{font-size:16px;margin-bottom:14px;color:var(--azul-neon)}
+.mat-list{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+@media(max-width:680px){.mat-list{grid-template-columns:1fr}}
+.mat-item{display:flex;gap:10px;align-items:flex-start;padding:8px 12px;background:rgba(3,7,15,.45);border:1px solid var(--glass-bd);border-radius:8px;font-size:13px}
+.mat-item input{width:18px;height:18px;accent-color:var(--azul-neon);flex-shrink:0;margin-top:2px}
+.mat-item b{font-family:'Space Grotesk';display:block;font-size:13px}
+.mat-item span{font-size:11px;color:var(--muted)}
+
+/* BLOCOS DA PAUTA */
+section.bl{margin-top:24px;padding:22px 24px;background:var(--glass);border:1px solid var(--glass-bd);border-radius:14px;position:relative;scroll-margin-top:90px}
+section.bl .bl-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:14px}
+section.bl .bl-num{font-family:'Space Grotesk';font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--azul-neon);font-weight:600}
+section.bl .bl-title{font-size:22px;margin-top:4px}
+section.bl .time{font-family:'Space Grotesk';font-weight:700;font-size:13px;padding:6px 12px;background:var(--amarelo);color:#000;border-radius:999px;white-space:nowrap;flex-shrink:0}
+section.bl .objetivo{padding:10px 14px;background:rgba(0,138,250,.08);border-left:3px solid var(--azul-neon);border-radius:8px;font-size:13px;margin-bottom:14px}
+section.bl .objetivo b{font-family:'Space Grotesk';color:var(--azul-neon);text-transform:uppercase;letter-spacing:.1em;font-size:11px;display:block;margin-bottom:2px}
+
+section.bl .pista{margin-top:10px;padding:12px 14px;background:rgba(3,7,15,.4);border-radius:8px;font-size:14px;line-height:1.55}
+section.bl .pista b{font-family:'Space Grotesk';display:inline-block;color:var(--amarelo);font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px}
+
+/* FRASES PRONTAS */
+.fala{margin-top:10px;padding:14px 18px;background:linear-gradient(90deg,rgba(255,199,44,.10),transparent);border-left:3px solid var(--amarelo);border-radius:8px}
+.fala .lab{font-family:'Space Grotesk';font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--amarelo);font-weight:600;margin-bottom:4px}
+.fala .txt{font-family:'Space Grotesk';font-weight:600;font-size:15px;font-style:italic;line-height:1.5;color:#fff7d6}
+
+/* CHECK · o que precisa ficar fixado */
+.check{margin-top:12px;padding:10px 14px;background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.3);border-radius:8px;font-size:13px;display:flex;gap:10px;align-items:flex-start}
+.check::before{content:"✅";flex-shrink:0}
+.check b{font-family:'Space Grotesk';color:var(--ok)}
+
+/* ATENÇÃO · vermelho */
+.atencao{margin-top:10px;padding:10px 14px;background:rgba(255,107,107,.06);border:1px solid rgba(255,107,107,.3);border-radius:8px;font-size:13px;display:flex;gap:10px;align-items:flex-start}
+.atencao::before{content:"⚠️";flex-shrink:0}
+.atencao b{color:var(--err)}
+
+/* DICA */
+.dica{margin-top:10px;padding:10px 14px;background:rgba(40,160,255,.06);border:1px solid rgba(40,160,255,.3);border-radius:8px;font-size:13px;display:flex;gap:10px;align-items:flex-start;font-style:italic}
+.dica::before{content:"💡";flex-shrink:0}
+
+/* ROLE-PLAY · cenários */
+.cenario{margin-top:10px;padding:14px;background:rgba(3,7,15,.45);border:1px solid var(--glass-bd);border-radius:10px}
+.cenario .tg{font-family:'Space Grotesk';font-size:11px;color:var(--azul-neon);text-transform:uppercase;letter-spacing:.14em;font-weight:700;margin-bottom:6px}
+.cenario .ds{font-size:13px;color:var(--muted);margin-bottom:8px}
+.cenario .esperado{font-family:'Space Grotesk';font-size:12px;color:var(--ok);font-weight:600}
+
+/* LISTAS */
+ul.li{padding-left:0;list-style:none;margin-top:8px}
+ul.li li{padding:6px 0 6px 26px;position:relative;font-size:14px;line-height:1.55}
+ul.li li::before{content:"→";color:var(--azul-neon);position:absolute;left:6px;font-weight:700}
+
+/* NAV ÂNCORAS NO RODAPÉ DE CADA BLOCO */
+.next-btn{display:inline-block;margin-top:14px;padding:6px 12px;background:var(--glass);border:1px solid var(--glass-bd);border-radius:8px;color:var(--azul-neon);font-family:'Space Grotesk';font-size:11px;font-weight:600;text-decoration:none;letter-spacing:.1em;text-transform:uppercase}
+.next-btn:hover{background:rgba(0,138,250,.1)}
+
+footer{padding:30px 0 50px;text-align:center;color:var(--muted);border-top:1px solid var(--glass-bd);margin-top:40px;font-size:12px}
+
+/* PRINT */
+@media print{
+  .bg-fx,.head .print{display:none}
+  body{background:#fff;color:#000;font-size:11pt}
+  .head{position:static;border-bottom:1px solid #000}
+  .head .brand img{filter:none}
+  section.bl,.mat,.fala,.check,.atencao,.dica,.cenario{background:#fff!important;border:1px solid #999!important;color:#000!important;break-inside:avoid;page-break-inside:avoid}
+  .amar,.azul,section.bl .time,.fala .txt,.objetivo b,.fala .lab,.cenario .tg{color:#000!important;background:#eee!important}
+  section.bl .time{background:#000!important;color:#fff!important}
+  .hero h1,h2,h3{color:#000}
+  .hero .lead,section.bl .pista,ul.li li{color:#000}
+  .next-btn{display:none}
+}
+</style>
+</head>
+<body>
+<div class="bg-fx"></div>
+
+<header class="head">
+  <div class="wrap top">
+    <div class="brand"><span class="dt"></span><img src="https://neobagstore.com.br/wp-content/uploads/logo-new-neobag.svg" alt="Neobag"> · BRIEFING 9H</div>
+    <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+      <div class="meta">D1 · 26/05 · <b>K50</b> · 45 min total</div>
+      <button class="print" onclick="window.print()">🖨️ Imprimir</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section class="hero">
+  <span class="kick">⚡ Roteiro pra você (Murillo) conduzir</span>
+  <h1>Briefing das promotoras <span class="azul">· D1 FISPAL</span></h1>
+  <p class="lead">Pauta de 45 minutos antes da feira abrir. Cada bloco tem <b>tempo · objetivo · frases prontas · check do que precisa ficar fixado</b>. Projete na TV/notebook ou lê do celular. Versão imprimível disponível no botão acima.</p>
+  <div class="stats">
+    <div class="stat"><div class="lb">Quando</div><div class="vl">9h–9h45</div></div>
+    <div class="stat"><div class="lb">Onde</div><div class="vl amar">estande K50</div></div>
+    <div class="stat"><div class="lb">Público</div><div class="vl">promotoras terceiras</div></div>
+    <div class="stat"><div class="lb">Objetivo</div><div class="vl">5 passos decorados + role-play</div></div>
+  </div>
+</section>
+
+<!-- MATERIAIS PRÉ-BRIEFING -->
+<div class="mat">
+  <h3>📦 Checklist de materiais · separar antes das 8h45</h3>
+  <div class="mat-list">
+    <label class="mat-item"><input type="checkbox"><div><b>Kit Promotora aberto</b><span>Numa TV/notebook do estande · <a href="https://murillo-lima-neobag.github.io/fispal-kit-consultor/promotoras/" style="color:var(--azul-neon)">link</a></span></div></label>
+    <label class="mat-item"><input type="checkbox"><div><b>Bag física pra demo</b><span>1 modelo (Burguer ou Médio) pra abrir, fechar, mostrar alça e supercola</span></div></label>
+    <label class="mat-item"><input type="checkbox"><div><b>Crachá modelo + leitor</b><span>Pra demonstrar o gesto de bipar · garantir que o leitor está sincronizado</span></div></label>
+    <label class="mat-item"><input type="checkbox"><div><b>Lista dos 6 consultores</b><span>Foto · nome · time · onde fica no estande · entrega impressa pra elas</span></div></label>
+    <label class="mat-item"><input type="checkbox"><div><b>Bag a R$ 2,00 em destaque</b><span>Plaquinha/cartaz com "BAGS A R$ 2,00 NESSA FEIRA" visível</span></div></label>
+    <label class="mat-item"><input type="checkbox"><div><b>Água · café · pequeno brinde</b><span>Marca cuidado · cria conexão pré-feira</span></div></label>
+  </div>
+</div>
+
+<!-- BLOCO 1 -->
+<section class="bl" id="b1">
+  <div class="bl-head"><div><div class="bl-num">Bloco 1</div><h2 class="bl-title">Boas-vindas</h2></div><div class="time">0–5 min</div></div>
+  <div class="objetivo"><b>Objetivo</b>Baixar a ansiedade, criar conexão, mostrar que você confia nelas. Sorri muito nessa parte.</div>
+
+  <div class="fala">
+    <div class="lab">Frase de abertura sugerida</div>
+    <div class="txt">"Bom dia! Vocês são parte importante do nosso dia hoje. Antes da feira abrir, queria 40 minutos pra alinhar tudo direitinho. Vai ser objetivo, sem enrolação. No fim vocês vão saber exatamente o que fazer."</div>
+  </div>
+
+  <div class="pista"><b>O que fazer</b>
+    <ul class="li">
+      <li>Cumprimenta cada uma pelo nome (peça crachá ou apresentação rápida)</li>
+      <li>Diga em 30 segundos o que é a Neobag (use o que está na seção "Neobag em 30s" do kit)</li>
+      <li>Mostre fisicamente onde elas vão ficar no estande</li>
+      <li>Diga que a coordenação (você + Willian + Leilliany) está disponível o dia todo</li>
+    </ul>
+  </div>
+
+  <div class="check"><div><b>Check antes de avançar:</b> todas estão atentas? Alguma parece travada? Faça uma piada leve pra soltar antes de seguir.</div></div>
+</section>
+
+<!-- BLOCO 2 -->
+<section class="bl" id="b2">
+  <div class="bl-head"><div><div class="bl-num">Bloco 2</div><h2 class="bl-title">Seu papel · 5 passos</h2></div><div class="time">5–13 min</div></div>
+  <div class="objetivo"><b>Objetivo</b>Clareza absoluta sobre o que elas FAZEM e o que NÃO fazem. Sem ambiguidade nesse ponto.</div>
+
+  <div class="pista"><b>O que fazer</b>
+    <ul class="li">
+      <li>Projete a seção "Seu papel · 5 passos" do kit promotora</li>
+      <li>Leia em voz alta os 5 passos: <b>Abordar → Bipar crachá → Qualificar → Demo → Passar</b></li>
+      <li>Explique cada passo em 1 frase</li>
+      <li>Enfatize o que NÃO é papel delas: vender, dar preço, fechar, prometer prazo</li>
+    </ul>
+  </div>
+
+  <div class="fala">
+    <div class="lab">Frase pra fixar</div>
+    <div class="txt">"Vocês não vendem. Vocês não dão preço. Vocês não fecham. Vocês ABORDAM, BIPAM, QUALIFICAM, FAZEM A DEMO e PASSAM pro consultor. Cinco passos. Decoraram?"</div>
+  </div>
+
+  <div class="atencao"><div><b>BIPAR CRACHÁ é obrigatório de TODO abordado</b> — mesmo se o visitante não para pra demo, mesmo se não fica pra passar pro consultor. <b>Sempre bipa.</b> Esses contatos vão ser trabalhados pelo time pós-feira.</div></div>
+
+  <div class="check"><div><b>Check:</b> peça pra cada promotora repetir os 5 passos em ordem, de cabeça. Não avance enquanto todas não souberem.</div></div>
+</section>
+
+<!-- BLOCO 3 -->
+<section class="bl" id="b3">
+  <div class="bl-head"><div><div class="bl-num">Bloco 3</div><h2 class="bl-title">O produto em mãos</h2></div><div class="time">13–23 min</div></div>
+  <div class="objetivo"><b>Objetivo</b>Cada promotora precisa pegar a bag, abrir, fechar, mostrar a alça e a supercola. Só assim ela consegue demonstrar com naturalidade pro visitante.</div>
+
+  <div class="pista"><b>O que fazer · sequência demonstrativa</b>
+    <ul class="li">
+      <li><b>Pegue a bag física na mão.</b> "Essa é uma bag térmica versátil. <b>Mesma bag</b> serve pra produto quente OU frio — depende do segmento do cliente."</li>
+      <li>Abra e feche pra mostrar a <b>supercola</b>: "Não é zíper, não é velcro. É uma supercola que aguenta até 100 aberturas. Cliente reutiliza muito."</li>
+      <li>Mostre a <b>alça</b>: "Aguenta 12 kg. O movimento natural é puxar pra cima — gesto normal de carregar."</li>
+      <li>Mencione as <b>linhas</b> (só nomes): 360 (estrela · personalização total) · Silk (1 cor · econômica) · UV (qualidade) · Smart (pronta · também pode ser 360°)</li>
+      <li>Destaque a <b>cortesia da linha 360</b>: "clichê, arte e cores são por nossa conta. Cliente não paga."</li>
+      <li>Mostre o <b>grid de clientes</b> no kit: Zé Delivery, iFood, Bacio, Sadia, Bom Beef, Mambo, Trilhas do Açaí, 1008</li>
+    </ul>
+  </div>
+
+  <div class="atencao"><div><b>Sobre a alça · ponto crítico:</b> a alça é desenhada pra ser <b>puxada pra CIMA</b> (carregar normalmente). <b>NUNCA forçar pra baixo</b> — fora do movimento natural, ela rompe com facilidade. Ensine isso pra elas e peça pra elas reforçarem com o cliente se perguntarem.</div></div>
+
+  <div class="fala">
+    <div class="lab">Frase pra fixar sobre o produto</div>
+    <div class="txt">"Bag térmica versátil, personalizada 360°, com clichê e arte por nossa conta. Marcas como Zé Delivery e iFood já estão com a gente."</div>
+  </div>
+
+  <div class="check"><div><b>Check:</b> passa a bag pra cada promotora. Cada uma faz 1 demo de 30 segundos pra você. Você corrige na hora se errar algo.</div></div>
+</section>
+
+<!-- BLOCO 4 -->
+<section class="bl" id="b4">
+  <div class="bl-head"><div><div class="bl-num">Bloco 4</div><h2 class="bl-title">Abordagem + qualificação</h2></div><div class="time">23–30 min</div></div>
+  <div class="objetivo"><b>Objetivo</b>Cada promotora tem 1 frase de abordagem favorita decorada + sabe as 4 perguntas-chave em ordem.</div>
+
+  <div class="pista"><b>3 frases de abordagem (escolhe a sua favorita)</b>
+    <ul class="li">
+      <li>"Oi! Tudo bem? Já conhece a Neobag?"</li>
+      <li>"Posso te mostrar a bag que tá mudando o delivery aqui na feira?"</li>
+      <li>"Você tem 60 segundos pra ver a bag que mudou o delivery?"</li>
+    </ul>
+  </div>
+
+  <div class="pista"><b>4 perguntas-chave · sempre nessa ordem</b>
+    <ul class="li">
+      <li><b>"Qual seu nome?"</b> · personaliza a conversa e ajuda na apresentação pro consultor</li>
+      <li><b>"Qual seu segmento?"</b> · hambúrguer, restaurante, mercado, padaria, sorveteria · direciona o pitch</li>
+      <li><b>"Você já trabalha com delivery?"</b> · descobre se é cliente novo ou troca de fornecedor</li>
+      <li><b>"Quer conhecer mais do produto e das condições?"</b> · se sim → demo e passar pro consultor</li>
+    </ul>
+  </div>
+
+  <div class="dica"><div>Lembre as promotoras: tom <b>casual, animado, sem pressão</b>. Sorrir. Se a pessoa não quer parar, deixa ir — não força. Mas <b>bipa o crachá antes dela sair</b>.</div></div>
+
+  <div class="check"><div><b>Check:</b> cada promotora repete sua frase de abordagem favorita + as 4 perguntas em ordem. Quem travar, repete até sair fluido.</div></div>
+</section>
+
+<!-- BLOCO 5 -->
+<section class="bl" id="b5">
+  <div class="bl-head"><div><div class="bl-num">Bloco 5</div><h2 class="bl-title">Quando passar pro consultor</h2></div><div class="time">30–35 min</div></div>
+  <div class="objetivo"><b>Objetivo</b>Zero erro na transferência. Cada promotora sabe os sinais, a frase de transferência e quem são os 6 consultores.</div>
+
+  <div class="pista"><b>Sinais pra passar imediatamente</b>
+    <ul class="li">
+      <li>"Quanto custa?" · "Qual o prazo?" · "Como faço pra pedir?" · "Tem orçamento?" · "Trabalha com qual quantidade?" · "Aceita parcelar?"</li>
+    </ul>
+  </div>
+
+  <div class="fala">
+    <div class="lab">Frase pronta de transferência</div>
+    <div class="txt">"Que ótimo! Vou te apresentar nosso consultor que vai te mostrar valores e condições. Vem comigo, é aqui."</div>
+  </div>
+
+  <div class="atencao"><div><b>EXCEÇÃO · pode falar das bags R$ 2,00:</b> a feira tem essa comunicação oficial. Promotora pode usar como gancho: <i>"aqui a gente tem bags a partir de R$ 2,00 — quer falar com o consultor pra ver as condições?"</i> e direcionar imediatamente.</div></div>
+
+  <div class="pista"><b>Apresentar os 6 consultores</b>
+    <ul class="li">
+      <li><b>Máfia Azul:</b> Paulo Guilherme (PG) · Luiz Nascimento · Luiz Felipe</li>
+      <li><b>Cartel de Fogo:</b> Nayara Gadelha · Eugênia Costa · Pablo Ramos</li>
+      <li>Mostre fisicamente onde cada um vai ficar no estande</li>
+      <li>Entregue a lista impressa com foto + nome</li>
+    </ul>
+  </div>
+
+  <div class="check"><div><b>Check:</b> cada promotora diz o nome dos 6 consultores e aponta onde cada um fica. Coordenação (você + Willian + Leilliany) cobre se consultor estiver ocupado.</div></div>
+</section>
+
+<!-- BLOCO 6 -->
+<section class="bl" id="b6">
+  <div class="bl-head"><div><div class="bl-num">Bloco 6</div><h2 class="bl-title">Nunca · em hipótese alguma</h2></div><div class="time">35–38 min</div></div>
+  <div class="objetivo"><b>Objetivo</b>Blindagem contra os 6 erros mais caros. Leitura rápida, em voz firme.</div>
+
+  <div class="pista"><b>Leia em voz alta</b>
+    <ul class="li">
+      <li>Não detalhar preço (exceto a comunicação oficial R$ 2,00)</li>
+      <li>Não prometer prazo de entrega</li>
+      <li>Não falar de desconto</li>
+      <li>Não falar mal de concorrente</li>
+      <li>Não sair do estande</li>
+      <li>Não inventar resposta</li>
+    </ul>
+  </div>
+
+  <div class="fala">
+    <div class="lab">Resposta-padrão pra qualquer dúvida que travar</div>
+    <div class="txt">"Ótima pergunta. Vou chamar nosso consultor pra te responder com mais precisão."</div>
+  </div>
+</section>
+
+<!-- BLOCO 7 -->
+<section class="bl" id="b7">
+  <div class="bl-head"><div><div class="bl-num">Bloco 7</div><h2 class="bl-title">Role-play · 3 cenários</h2></div><div class="time">38–43 min</div></div>
+  <div class="objetivo"><b>Objetivo</b>Praticar pra ganhar confiança. Cada promotora faz pelo menos 1 cenário como abordadora.</div>
+
+  <div class="pista"><b>Como conduzir</b>
+    <ul class="li">
+      <li>Divida em duplas: uma faz de "cliente", outra é a promotora</li>
+      <li>Você narra o cenário e observa</li>
+      <li>30 segundos por cenário · feedback rápido (1 coisa boa + 1 coisa pra melhorar)</li>
+      <li>Troca de papéis se der tempo</li>
+    </ul>
+  </div>
+
+  <div class="cenario">
+    <div class="tg">Cenário 1 · cliente quente</div>
+    <div class="ds">Visitante chega olhando a bag. "Sou da hamburgueria X em São Paulo, faço 200 entregas por dia." Está claramente interessado.</div>
+    <div class="esperado">Esperado: aborda → bipa → qualifica (nome/segmento/delivery/quer mais) → faz demo → passa pro consultor da Máfia Azul ou Cartel de Fogo</div>
+  </div>
+
+  <div class="cenario">
+    <div class="tg">Cenário 2 · cliente que pergunta preço de cara</div>
+    <div class="ds">Visitante: "Oi, quanto custa essa bag?"</div>
+    <div class="esperado">Esperado: NÃO dar preço de cabeça · mencionar exceção R$ 2,00 ("aqui a gente tem bags a partir de R$ 2,00") · bipar · passar imediatamente pro consultor</div>
+  </div>
+
+  <div class="cenario">
+    <div class="tg">Cenário 3 · cliente que só está passando</div>
+    <div class="ds">Visitante: "Tô só passando, não tô comprando nada hoje." Quer ir embora.</div>
+    <div class="esperado">Esperado: respeita · NÃO força · agradece · <b>bipa o crachá antes de soltar</b> (vai pro pipeline pós-feira)</div>
+  </div>
+</section>
+
+<!-- BLOCO 8 -->
+<section class="bl" id="b8">
+  <div class="bl-head"><div><div class="bl-num">Bloco 8</div><h2 class="bl-title">Logística + ânimo final</h2></div><div class="time">43–45 min</div></div>
+  <div class="objetivo"><b>Objetivo</b>Encerrar com energia e clareza operacional.</div>
+
+  <div class="pista"><b>O que comunicar</b>
+    <ul class="li">
+      <li>Horário da feira: 13h–20h (ter/qua/qui) · 13h–19h (sex)</li>
+      <li>Intervalo de almoço/descanso · quem cobre quando uma sai</li>
+      <li>Água, café, banheiro: onde fica</li>
+      <li>Coordenação acionável: <b>Murillo · Willian · Leilliany</b> (gesto ou WhatsApp)</li>
+      <li>Pós-briefing: você passa de 2h em 2h pra ver como tá</li>
+    </ul>
+  </div>
+
+  <div class="fala">
+    <div class="lab">Encerramento</div>
+    <div class="txt">"Vocês têm tudo pra fazer um dia incrível. A gente está aqui pra apoiar. Bora começar — vai dar muito certo."</div>
+  </div>
+
+  <div class="dica"><div>Considere um pequeno gesto: aplaudir, dar um aperto de mão coletivo, ou até um grito coletivo "Bora Neobag!" — marca o início do dia e energiza.</div></div>
+</section>
+
+<!-- BÔNUS · PÓS-BRIEFING -->
+<section class="bl" id="bonus" style="border-color:var(--ok)">
+  <div class="bl-head"><div><div class="bl-num" style="color:var(--ok)">Bônus</div><h2 class="bl-title">Pós-briefing · durante o dia</h2></div><div class="time" style="background:var(--ok);color:#001a0a">Contínuo</div></div>
+  <div class="pista"><b>O que você (coordenação) faz durante a feira</b>
+    <ul class="li">
+      <li><b>Check de 2h em 2h:</b> passa em cada promotora · "como tá indo?" · ajuste rápido se algo travou</li>
+      <li><b>Anota dúvidas que surgirem:</b> usa pra ajustar o briefing do D2 (mais curto, foca no que precisou)</li>
+      <li><b>Reconhece bons fechamentos:</b> quando uma promotora gera uma transferência boa, comenta na hora pra ela ("sua abordagem do cara da hamburgueria foi 10")</li>
+      <li><b>Quando alguém errar:</b> não constranja. Chama no canto, ajusta, manda voltar pro posto</li>
+    </ul>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div>NEOBAG · Briefing 9h Promotoras · FISPAL D1 · 26/05/2026 · K50</div>
+  <div style="margin-top:6px">Roteiro de Murillo Lima · Coord. Comercial</div>
+</footer>
+</body>
+</html>
