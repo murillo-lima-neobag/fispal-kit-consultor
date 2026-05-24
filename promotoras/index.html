@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Neobag · Kit Promotora · FISPAL 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Sora:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --azul:#008afa;--azul-neon:#28a0ff;--amarelo:#ffc72c;
+  --bg:#03070f;--bg2:#061328;--txt:#eaf2ff;--muted:#9fb6d4;
+  --glass:rgba(255,255,255,.06);--glass-bd:rgba(120,180,255,.18);
+  --ok:#4ade80;--warn:#ffb547;--err:#ff6b6b;--purple:#c084fc;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Sora',-apple-system,sans-serif;background:var(--bg);color:var(--txt);line-height:1.5;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif;letter-spacing:-.02em;line-height:1.05;font-weight:700}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+.amar{color:var(--amarelo)}.azul{color:var(--azul-neon)}
+
+.bg-fx{position:fixed;inset:0;z-index:-2;background:
+  radial-gradient(900px 500px at 80% -10%,rgba(0,138,250,.22),transparent 60%),
+  radial-gradient(700px 400px at 0% 100%,rgba(0,90,200,.16),transparent 55%),var(--bg)}
+
+/* HEADER */
+.head{padding:18px 0 8px;border-bottom:1px solid var(--glass-bd);position:sticky;top:0;z-index:10;backdrop-filter:blur(14px);background:rgba(3,7,15,.85)}
+.head .top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.head .brand{font-family:'Space Grotesk';font-weight:700;font-size:17px;display:flex;align-items:center;gap:8px}
+.head .brand .dt{width:8px;height:8px;border-radius:50%;background:var(--amarelo);box-shadow:0 0 8px var(--amarelo);animation:p 1.8s infinite}
+@keyframes p{0%,100%{opacity:1}50%{opacity:.4}}
+.head .meta{font-family:'Space Grotesk';font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.head .meta b{color:var(--amarelo)}
+.head .nav{display:flex;gap:4px;margin-top:8px;flex-wrap:wrap}
+.head .nav a{font-family:'Space Grotesk';font-size:12px;color:var(--muted);text-decoration:none;padding:5px 10px;border-radius:6px;font-weight:500}
+.head .nav a:hover{color:var(--txt);background:var(--glass)}
+.head .nav a.act{color:var(--amarelo);background:rgba(255,199,44,.08)}
+
+/* HERO */
+.hero{padding:24px 0 16px}
+.hero .kick{display:inline-flex;align-items:center;gap:9px;font-family:'Space Grotesk';font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--azul-neon);border:1px solid var(--glass-bd);background:var(--glass);padding:6px 12px;border-radius:999px;margin-bottom:14px}
+.hero h1{font-size:clamp(28px,4.5vw,44px);margin-bottom:8px}
+.hero h1 .big{display:block;font-size:clamp(48px,7vw,82px);background:linear-gradient(180deg,#fff,#7fc0ff);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:.95}
+.hero .lead{font-size:15px;color:var(--muted);max-width:560px;margin-top:8px}
+.hero .stats{display:flex;gap:24px;margin-top:18px;padding-top:14px;border-top:1px solid var(--glass-bd);flex-wrap:wrap}
+.hero .stat .lb{font-family:'Space Grotesk';font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.hero .stat .vl{font-family:'Space Grotesk';font-weight:700;font-size:20px;margin-top:2px}
+.hero .stat .vl.amar{color:var(--amarelo)}
+
+/* SEÇÃO base */
+section.s{padding:22px 0;border-top:1px solid var(--glass-bd);margin-top:16px;scroll-margin-top:90px}
+section.s .eyebrow{font-family:'Space Grotesk';font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--azul-neon);font-weight:600;margin-bottom:6px}
+section.s h2{font-size:22px;margin-bottom:14px}
+
+/* CARD GLASS GENÉRICO */
+.gc{background:var(--glass);border:1px solid var(--glass-bd);border-radius:14px;padding:18px 20px}
+
+/* NEOBAG EM 30S */
+.about{padding:24px;background:linear-gradient(135deg,rgba(0,138,250,.14),rgba(255,199,44,.06));border:1px solid var(--glass-bd);border-radius:16px}
+.about .pill{display:inline-block;font-family:'Space Grotesk';font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--amarelo);background:rgba(255,199,44,.1);padding:4px 10px;border-radius:999px;margin-bottom:10px}
+.about h3{font-size:24px;margin-bottom:8px;line-height:1.1}
+.about p{color:var(--txt);font-size:15px;line-height:1.55;margin-bottom:8px}
+.about .quote{margin-top:12px;font-family:'Space Grotesk';font-weight:600;font-style:italic;font-size:17px;color:var(--azul-neon);padding-left:14px;border-left:3px solid var(--azul-neon)}
+
+/* PAPEL EM 4 PASSOS */
+.papel{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:8px}
+@media(max-width:760px){.papel{grid-template-columns:repeat(2,1fr)}}
+.papel .step{padding:18px 14px;background:var(--glass);border:1px solid var(--glass-bd);border-radius:12px;text-align:center;position:relative}
+.papel .step .nm{font-family:'Space Grotesk';font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--azul-neon);font-weight:600}
+.papel .step .ic{font-size:36px;margin:6px 0 8px}
+.papel .step .tt{font-family:'Space Grotesk';font-weight:700;font-size:15px;margin-bottom:4px}
+.papel .step .ds{font-size:12px;color:var(--muted);line-height:1.4}
+
+/* FRASES PRONTAS */
+.frases{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}
+@media(max-width:760px){.frases{grid-template-columns:1fr}}
+.frase{padding:14px 16px;background:var(--glass);border-left:3px solid var(--amarelo);border-radius:8px}
+.frase .ctx{font-family:'Space Grotesk';font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:6px}
+.frase .txt{font-family:'Space Grotesk';font-weight:600;font-size:15px;color:var(--amarelo);line-height:1.4}
+
+/* PERGUNTAS QUALIFICADORAS */
+.perg{counter-reset:p;margin-top:8px}
+.perg .item{display:grid;grid-template-columns:36px 1fr;gap:14px;padding:12px 14px;background:var(--glass);border:1px solid var(--glass-bd);border-radius:10px;margin-bottom:8px;align-items:flex-start}
+.perg .item::before{counter-increment:p;content:counter(p);width:30px;height:30px;border-radius:50%;background:var(--azul);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk';font-weight:700;font-size:14px;flex-shrink:0}
+.perg .item .q{font-family:'Space Grotesk';font-weight:700;font-size:15px;margin-bottom:2px}
+.perg .item .why{font-size:12px;color:var(--muted)}
+
+/* DEMO EM 3 MOVIMENTOS */
+.demo{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}
+@media(max-width:760px){.demo{grid-template-columns:1fr}}
+.demo .mov{padding:18px;background:var(--glass);border:1px solid var(--glass-bd);border-radius:12px;text-align:center}
+.demo .mov .n{font-family:'Space Grotesk';font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--azul-neon);font-weight:600;margin-bottom:6px}
+.demo .mov .ic{font-size:42px;margin-bottom:8px}
+.demo .mov .tt{font-family:'Space Grotesk';font-weight:700;font-size:16px;margin-bottom:6px}
+.demo .mov .ds{font-size:13px;color:var(--muted)}
+
+/* LINHAS DE PRODUTO */
+.linhas{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:8px}
+@media(max-width:760px){.linhas{grid-template-columns:1fr}}
+.linha{padding:14px 16px;background:var(--glass);border:1px solid var(--glass-bd);border-radius:10px}
+.linha .h{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.linha .h .nm{font-family:'Space Grotesk';font-weight:700;font-size:16px}
+.linha .h .tg{font-family:'Space Grotesk';font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--amarelo);background:rgba(255,199,44,.1);padding:2px 8px;border-radius:6px;margin-left:auto}
+.linha .h .tg.azul{color:var(--azul-neon);background:rgba(0,138,250,.1)}
+.linha .ds{font-size:13px;color:var(--muted);line-height:1.45}
+
+/* DIFERENCIAIS */
+.dif{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+@media(max-width:760px){.dif{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.dif{grid-template-columns:1fr}}
+.dif .ch{padding:12px 14px;background:var(--glass);border:1px solid var(--glass-bd);border-radius:10px;display:flex;gap:10px;align-items:flex-start}
+.dif .ch .ic{font-size:20px;flex-shrink:0}
+.dif .ch .tx{font-size:13px;line-height:1.4}
+.dif .ch .tx b{font-family:'Space Grotesk';display:block;font-size:14px;margin-bottom:1px}
+.dif .ch .tx span{color:var(--muted)}
+
+/* QUANDO PASSAR — DESTAQUE */
+.passar-box{padding:22px;background:linear-gradient(135deg,rgba(255,199,44,.14),rgba(0,138,250,.06));border:1px solid var(--amarelo);border-radius:16px;margin-top:8px}
+.passar-box .sub{font-family:'Space Grotesk';font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--amarelo);font-weight:700;margin-bottom:10px}
+.passar-box h3{font-size:18px;margin-bottom:14px}
+.sinais{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:14px}
+@media(max-width:760px){.sinais{grid-template-columns:1fr}}
+.sinal{padding:10px 14px;background:rgba(3,7,15,.5);border:1px solid var(--glass-bd);border-radius:8px;font-family:'Space Grotesk';font-weight:600;font-size:14px;font-style:italic;color:var(--azul-neon)}
+.sinal::before{content:"💬 "}
+.passar-frase{margin-top:14px;padding:16px;background:rgba(3,7,15,.6);border:1px dashed var(--amarelo);border-radius:10px}
+.passar-frase .lb{font-family:'Space Grotesk';font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:6px}
+.passar-frase .txt{font-family:'Space Grotesk';font-weight:600;font-size:16px;color:var(--amarelo);font-style:italic;line-height:1.4}
+
+/* NÃO FAÇA */
+.nope{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:8px}
+@media(max-width:760px){.nope{grid-template-columns:1fr}}
+.nope .it{padding:10px 14px;background:rgba(255,107,107,.06);border:1px solid rgba(255,107,107,.3);border-radius:10px;display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.45}
+.nope .it .ic{font-size:16px;flex-shrink:0;margin-top:1px}
+.nope .it b{color:var(--err);font-family:'Space Grotesk'}
+.nope .it span{color:var(--muted)}
+
+/* CONSULTORES (PRA QUEM PASSAR) */
+.cons{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+@media(max-width:760px){.cons{grid-template-columns:1fr 1fr}}
+.cons .c{padding:10px;background:var(--glass);border:1px solid var(--glass-bd);border-radius:10px;text-align:center}
+.cons .c .av{width:38px;height:38px;border-radius:50%;background:var(--azul);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk';font-weight:700;margin:0 auto 6px;font-size:13px}
+.cons .c .nm{font-family:'Space Grotesk';font-weight:600;font-size:13px}
+.cons .c .tm{font-size:10px;color:var(--muted);margin-top:2px}
+
+/* CHEAT SHEET */
+.cheat{margin-top:18px;padding:18px 20px;background:#000;border:2px dashed var(--amarelo);border-radius:14px;font-family:'Space Grotesk'}
+.cheat h3{color:var(--amarelo);font-size:13px;letter-spacing:.16em;text-transform:uppercase;text-align:center;margin-bottom:14px;font-weight:700}
+.cheat-row{display:grid;grid-template-columns:1fr auto;gap:14px;padding:6px 0;border-bottom:1px dashed rgba(255,199,44,.15);font-size:13px}
+.cheat-row:last-of-type{border-bottom:none}
+.cheat-row b{color:var(--amarelo);font-weight:700}
+.cheat-row span{color:#ccc;font-family:'Sora'}
+.cheat .sp{border-top:1px dashed rgba(255,199,44,.3);margin:10px 0}
+
+footer{padding:24px 0 36px;text-align:center;color:var(--muted);border-top:1px solid var(--glass-bd);margin-top:30px;font-size:11px}
+</style>
+</head>
+<body>
+<div class="bg-fx"></div>
+
+<header class="head">
+  <div class="wrap">
+    <div class="top">
+      <div class="brand"><span class="dt"></span>NEOBAG · KIT PROMOTORA</div>
+      <div class="meta">FISPAL · 26–29/05 · <b>K50</b></div>
+    </div>
+    <div class="nav">
+      <a href="#sobre" class="act">Neobag</a>
+      <a href="#papel">Seu papel</a>
+      <a href="#abordar">Abordar</a>
+      <a href="#perguntar">Perguntar</a>
+      <a href="#demo">Demo</a>
+      <a href="#produto">Produto</a>
+      <a href="#passar">Quando passar</a>
+      <a href="#nope">Nunca</a>
+      <a href="#cheat">Cheat</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section class="hero">
+  <span class="kick">⚡ Treinamento express · D1 antes da abertura</span>
+  <h1>Você é a porta de entrada da<span class="big">Neobag.</span></h1>
+  <p class="lead">Seu papel: abordar visitante → fazer ele entender o produto em 60 segundos → passar pro consultor fechar. Sem vender, sem dar preço. <b>Encantar e passar.</b></p>
+  <div class="stats">
+    <div class="stat"><div class="lb">Onde</div><div class="vl amar">K50</div></div>
+    <div class="stat"><div class="lb">Quando</div><div class="vl">26 a 29 / 05</div></div>
+    <div class="stat"><div class="lb">Seu objetivo</div><div class="vl">qualificar leads</div></div>
+    <div class="stat"><div class="lb">Você NÃO</div><div class="vl">fala preço · fecha venda</div></div>
+  </div>
+</section>
+
+<!-- ============ NEOBAG EM 30s ============ -->
+<section class="s" id="sobre">
+  <div class="eyebrow">Neobag em 30 segundos</div>
+  <h2>O que é a Neobag</h2>
+  <div class="about">
+    <span class="pill">2 anos · estande K50</span>
+    <h3>Bags térmicas personalizadas pro delivery do food service</h3>
+    <p>A Neobag fabrica bags térmicas que mantêm <b>quente o que precisa estar quente, e gelado o que precisa estar gelado</b>. A linha 360 permite <b>personalização em TODA a bag</b> (não só uma face) — algo que ninguém mais entrega no Brasil.</p>
+    <p>Cliente: hamburgueria, restaurante, padaria, mercado, atacarejo. Tudo que faz delivery e quer o pedido chegar do jeito certo.</p>
+    <div class="quote">"Quente de um lado, gelado do outro. O delivery que ninguém mais faz."</div>
+  </div>
+</section>
+
+<!-- ============ SEU PAPEL EM 4 PASSOS ============ -->
+<section class="s" id="papel">
+  <div class="eyebrow">Seu papel no estande</div>
+  <h2>4 passos · você faz 1 → 2 → 3, consultor fecha</h2>
+  <div class="papel">
+    <div class="step"><div class="nm">1 · Você</div><div class="ic">👋</div><div class="tt">Abordar</div><div class="ds">Recebe o visitante na frente do estande</div></div>
+    <div class="step"><div class="nm">2 · Você</div><div class="ic">🎯</div><div class="tt">Qualificar</div><div class="ds">3-4 perguntas rápidas pra entender o cliente</div></div>
+    <div class="step"><div class="nm">3 · Você</div><div class="ic">🎬</div><div class="tt">Demo</div><div class="ds">Mostra a bag em 60 segundos, encanta</div></div>
+    <div class="step" style="border-color:var(--amarelo);background:linear-gradient(135deg,rgba(255,199,44,.10),transparent)"><div class="nm" style="color:var(--amarelo)">4 · Consultor</div><div class="ic">🤝</div><div class="tt">Passar</div><div class="ds">Apresenta o vendedor, fecha o ciclo</div></div>
+  </div>
+</section>
+
+<!-- ============ COMO ABORDAR ============ -->
+<section class="s" id="abordar">
+  <div class="eyebrow">Frases prontas · use à vontade</div>
+  <h2>Como abordar</h2>
+  <div class="frases">
+    <div class="frase">
+      <div class="ctx">Visitante passando</div>
+      <div class="txt">"Oi! Tudo bem? Já conhece a Neobag?"</div>
+    </div>
+    <div class="frase">
+      <div class="ctx">Visitante olhando a bag</div>
+      <div class="txt">"Posso te mostrar uma coisa que ninguém mais faz no Brasil?"</div>
+    </div>
+    <div class="frase">
+      <div class="ctx">Visitante curioso</div>
+      <div class="txt">"Você tem 60 segundos pra ver a bag que mudou o delivery?"</div>
+    </div>
+  </div>
+  <p style="font-size:13px;color:var(--muted);margin-top:10px"><b style="color:var(--amarelo)">Tom:</b> casual, animado, sem pressão. Sorri. Se a pessoa não quer parar, deixa ir — não força.</p>
+</section>
+
+<!-- ============ PERGUNTAS QUALIFICADORAS ============ -->
+<section class="s" id="perguntar">
+  <div class="eyebrow">3 perguntas-chave · em ordem</div>
+  <h2>Qualificar em 30 segundos</h2>
+  <div class="perg">
+    <div class="item"><div></div><div><div class="q">"Qual seu segmento? Restaurante, hambúrguer, mercado, padaria?"</div><div class="why">Saber se é food service, varejo, ou outro · direciona o pitch certo</div></div></div>
+    <div class="item"><div></div><div><div class="q">"Você já usa bag personalizada hoje? Como tá funcionando?"</div><div class="why">Descobre se é cliente novo (oportunidade) ou troca de fornecedor (dor)</div></div></div>
+    <div class="item"><div></div><div><div class="q">"Manda muito delivery? Tem ideia de volume mensal de bags?"</div><div class="why">Pra ver se o ticket é grande o suficiente pra valer a pena passar pro consultor</div></div></div>
+  </div>
+</section>
+
+<!-- ============ DEMO EM 3 MOVIMENTOS ============ -->
+<section class="s" id="demo">
+  <div class="eyebrow">Demonstração · 60 segundos</div>
+  <h2>Mostre a bag em 3 movimentos</h2>
+  <div class="demo">
+    <div class="mov">
+      <div class="n">Movimento 1</div>
+      <div class="ic">🍔</div>
+      <div class="tt">Quente de um lado</div>
+      <div class="ds">"Aqui você coloca o hambúrguer, a batata, comida quente. Chega crocante, sem suar."</div>
+    </div>
+    <div class="mov">
+      <div class="n">Movimento 2</div>
+      <div class="ic">🥤</div>
+      <div class="tt">Gelado do outro</div>
+      <div class="ds">"Aqui vai refrigerante, sobremesa, salada. Chega gelado de verdade — pode levar gelo dentro."</div>
+    </div>
+    <div class="mov">
+      <div class="n">Movimento 3</div>
+      <div class="ic">🎨</div>
+      <div class="tt">360° com sua marca</div>
+      <div class="ds">"E você personaliza TODA a bag — frente, lados, traseira. Não é adesivo, é impressão 360°."</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRODUTO (LINHAS) ============ -->
+<section class="s" id="produto">
+  <div class="eyebrow">As linhas · saber o nome</div>
+  <h2>Produto · 4 linhas, 1 mensagem</h2>
+  <div class="linhas">
+    <div class="linha"><div class="h"><div class="nm">360</div><div class="tg">estrela</div></div><div class="ds">Personalização em <b>toda a bag</b>. Cliente coloca a marca em 360°. Indicada pra clientes que querem branding forte.</div></div>
+    <div class="linha"><div class="h"><div class="nm">Silk</div><div class="tg azul">1 cor</div></div><div class="ds">Personalização <b>em 1 cor</b> nas faces. Mais econômica, ideal pra primeira compra ou volume menor.</div></div>
+    <div class="linha"><div class="h"><div class="nm">UV</div><div class="tg azul">qualidade</div></div><div class="ds">Personalização <b>com tinta UV</b> — cores vivas, durabilidade alta. Meio termo entre Silk e 360.</div></div>
+    <div class="linha"><div class="h"><div class="nm">Smart</div><div class="tg">pronta</div></div><div class="ds">Bag <b>sem personalização</b>, pronta pra venda direta. Pra cliente que quer começar rápido.</div></div>
+  </div>
+  <p style="font-size:13px;color:var(--muted);margin-top:10px">Você <b>não precisa decorar preço</b>. Só sabe os nomes e a ideia de cada linha. Preço é com o consultor.</p>
+</section>
+
+<!-- ============ DIFERENCIAIS ============ -->
+<section class="s">
+  <div class="eyebrow">O que falar de bom · diferenciais</div>
+  <h2>6 coisas pra mencionar</h2>
+  <div class="dif">
+    <div class="ch"><div class="ic">🔥</div><div class="tx"><b>Quente e gelado juntos</b><span>Único kit que faz os dois</span></div></div>
+    <div class="ch"><div class="ic">🎨</div><div class="tx"><b>Personalização 360°</b><span>Toda a bag, não só uma face</span></div></div>
+    <div class="ch"><div class="ic">💪</div><div class="tx"><b>Durabilidade alta</b><span>Aguenta uso intenso de delivery</span></div></div>
+    <div class="ch"><div class="ic">🏭</div><div class="tx"><b>Produção própria</b><span>Não é revenda · controle total</span></div></div>
+    <div class="ch"><div class="ic">⭐</div><div class="tx"><b>Clientes grandes</b><span>Swift · Zé Delivery · Bacio · Seara</span></div></div>
+    <div class="ch"><div class="ic">⚡</div><div class="tx"><b>Prazo curto</b><span>Produção rápida, entrega no Brasil todo</span></div></div>
+  </div>
+</section>
+
+<!-- ============ QUANDO PASSAR — A SEÇÃO MAIS IMPORTANTE ============ -->
+<section class="s" id="passar">
+  <div class="eyebrow">A parte mais importante</div>
+  <h2>Quando passar pro consultor</h2>
+  <div class="passar-box">
+    <div class="sub">Sinais de que o visitante quer fechar</div>
+    <h3>Se ouvir qualquer uma dessas frases, PASSE NA HORA pro consultor:</h3>
+    <div class="sinais">
+      <div class="sinal">"Quanto custa?"</div>
+      <div class="sinal">"Qual o prazo de entrega?"</div>
+      <div class="sinal">"Como faço pra pedir?"</div>
+      <div class="sinal">"Tem orçamento?"</div>
+      <div class="sinal">"Trabalha com qual quantidade?"</div>
+      <div class="sinal">"Aceita parcelar?"</div>
+    </div>
+    <div class="passar-frase">
+      <div class="lb">Frase pronta pra passar</div>
+      <div class="txt">"Que ótimo! Vou te apresentar nosso consultor que vai te mostrar valores e condições. Vem comigo, é aqui."</div>
+    </div>
+    <div style="margin-top:14px;font-size:13px;color:var(--muted)"><b style="color:var(--amarelo)">Importante:</b> não solta o visitante. Caminha com ele até o consultor, faz a apresentação e fala uma linha do que conversaram (ex: <i>"essa é a Camila, ela tem uma hamburgueria em SP e gostou da linha 360"</i>).</div>
+  </div>
+
+  <div style="margin-top:18px">
+    <div class="eyebrow">Quem são os consultores</div>
+    <div class="cons">
+      <div class="c"><div class="av">PG</div><div class="nm">Paulo Guilherme</div><div class="tm">Máfia Azul</div></div>
+      <div class="c"><div class="av">LN</div><div class="nm">Luiz Nascimento</div><div class="tm">Máfia Azul</div></div>
+      <div class="c"><div class="av">LF</div><div class="nm">Luiz Felipe</div><div class="tm">Máfia Azul</div></div>
+      <div class="c"><div class="av">NG</div><div class="nm">Nayara Gadelha</div><div class="tm">Cartel de Fogo</div></div>
+      <div class="c"><div class="av">EC</div><div class="nm">Eugênia Costa</div><div class="tm">Cartel de Fogo</div></div>
+      <div class="c"><div class="av">PR</div><div class="nm">Pablo Ramos</div><div class="tm">Cartel de Fogo</div></div>
+    </div>
+    <p style="font-size:12px;color:var(--muted);margin-top:8px">Coordenação: <b>Murillo Lima</b> · <b>Willian</b> · <b>Leilliany</b> — chame um deles se algum consultor estiver ocupado.</p>
+  </div>
+</section>
+
+<!-- ============ NÃO FAÇA NUNCA ============ -->
+<section class="s" id="nope">
+  <div class="eyebrow">Erros que custam venda · evite</div>
+  <h2>Nunca · em hipótese alguma</h2>
+  <div class="nope">
+    <div class="it"><div class="ic">🚫</div><div><b>Não dê preço de cabeça</b> <span>· mesmo que você tenha visto · preço é só com o consultor</span></div></div>
+    <div class="it"><div class="ic">🚫</div><div><b>Não prometa prazo de entrega</b> <span>· depende do volume e produção · consultor confirma</span></div></div>
+    <div class="it"><div class="ic">🚫</div><div><b>Não fale de desconto</b> <span>· condição especial é assunto do consultor</span></div></div>
+    <div class="it"><div class="ic">🚫</div><div><b>Não fale mal de concorrente</b> <span>· foque no que a Neobag tem de bom, não no que o outro tem de ruim</span></div></div>
+    <div class="it"><div class="ic">🚫</div><div><b>Não saia do estande</b> <span>· nunca acompanhe visitante pra fora · seu posto é aqui</span></div></div>
+    <div class="it"><div class="ic">🚫</div><div><b>Não invente resposta</b> <span>· se não souber: "ótima pergunta, vou chamar o consultor pra te responder"</span></div></div>
+  </div>
+</section>
+
+<!-- ============ CHEAT SHEET ============ -->
+<section class="s" id="cheat">
+  <div class="eyebrow">Pro celular · consultar a hora que precisar</div>
+  <h2>Cheat sheet</h2>
+  <div class="cheat">
+    <h3>Promotora FISPAL · cheat sheet</h3>
+    <div class="cheat-row"><span>Empresa</span><b>Neobag · K50</b></div>
+    <div class="cheat-row"><span>Produto em 1 frase</span><b>Bag térmica quente+gelado, personalizada 360°</b></div>
+    <div class="cheat-row"><span>Tagline</span><b>"O delivery que ninguém mais faz"</b></div>
+    <div class="sp"></div>
+    <div class="cheat-row"><span>Abordagem</span><b>"Já conhece a Neobag?"</b></div>
+    <div class="cheat-row"><span>Pergunta 1</span><b>Segmento? (hambúrguer · restô · mercado · padaria)</b></div>
+    <div class="cheat-row"><span>Pergunta 2</span><b>Já usa bag personalizada? Como tá?</b></div>
+    <div class="cheat-row"><span>Pergunta 3</span><b>Manda muito delivery? Volume mensal?</b></div>
+    <div class="sp"></div>
+    <div class="cheat-row"><span>Demo movimento 1</span><b>Quente de um lado (🍔)</b></div>
+    <div class="cheat-row"><span>Demo movimento 2</span><b>Gelado do outro (🥤)</b></div>
+    <div class="cheat-row"><span>Demo movimento 3</span><b>Personalização 360° (🎨)</b></div>
+    <div class="sp"></div>
+    <div class="cheat-row"><span>Linhas (só os nomes)</span><b>360 · Silk · UV · Smart</b></div>
+    <div class="sp"></div>
+    <div class="cheat-row"><span>SINAL pra passar</span><b>preço · prazo · pedido · orçamento</b></div>
+    <div class="cheat-row"><span>Frase de passar</span><b>"Vou te apresentar nosso consultor"</b></div>
+    <div class="cheat-row"><span>Coordenação</span><b>Murillo · Willian · Leilliany</b></div>
+    <div class="sp"></div>
+    <div class="cheat-row"><span>NUNCA</span><b>preço · prazo · desconto · sair do estande</b></div>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div>NEOBAG · Kit Promotora · K50 · FISPAL 26–29/05/2026</div>
+</footer>
+</body>
+</html>
