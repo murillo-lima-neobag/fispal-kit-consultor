@@ -65,8 +65,9 @@ section.s h2{font-size:22px;margin-bottom:14px}
 .about .quote{margin-top:12px;font-family:'Space Grotesk';font-weight:600;font-style:italic;font-size:17px;color:var(--azul-neon);padding-left:14px;border-left:3px solid var(--azul-neon)}
 
 /* PAPEL EM 4 PASSOS */
-.papel{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:8px}
+.papel{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:8px}
 @media(max-width:760px){.papel{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.papel{grid-template-columns:1fr 1fr}}
 .papel .step{padding:18px 14px;background:var(--glass);border:1px solid var(--glass-bd);border-radius:12px;text-align:center;position:relative}
 .papel .step .nm{font-family:'Space Grotesk';font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--azul-neon);font-weight:600}
 .papel .step .ic{font-size:36px;margin:6px 0 8px}
@@ -82,7 +83,8 @@ section.s h2{font-size:22px;margin-bottom:14px}
 
 /* PERGUNTAS QUALIFICADORAS */
 .perg{counter-reset:p;margin-top:8px}
-.perg .item{display:grid;grid-template-columns:36px 1fr;gap:14px;padding:12px 14px;background:var(--glass);border:1px solid var(--glass-bd);border-radius:10px;margin-bottom:8px;align-items:flex-start}
+.perg .item{display:grid;grid-template-columns:36px 1fr;gap:14px;padding:12px 14px;background:var(--glass);border:1px solid var(--glass-bd);border-radius:10px;margin-bottom:8px;align-items:start}
+.perg .item > div{min-width:0}
 .perg .item::before{counter-increment:p;content:counter(p);width:30px;height:30px;border-radius:50%;background:var(--azul);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk';font-weight:700;font-size:14px;flex-shrink:0}
 .perg .item .q{font-family:'Space Grotesk';font-weight:700;font-size:15px;margin-bottom:2px}
 .perg .item .why{font-size:12px;color:var(--muted)}
@@ -172,9 +174,10 @@ footer{padding:24px 0 36px;text-align:center;color:var(--muted);border-top:1px s
       <a href="#perguntar">Perguntar</a>
       <a href="#demo">Demo</a>
       <a href="#produto">Produto</a>
+      <a href="#tecnico">Detalhes</a>
       <a href="#passar">Quando passar</a>
       <a href="#nope">Nunca</a>
-      <a href="#cheat">Cheat</a>
+      <a href="#cheat">Checklist</a>
     </div>
   </div>
 </header>
@@ -184,12 +187,12 @@ footer{padding:24px 0 36px;text-align:center;color:var(--muted);border-top:1px s
 <section class="hero">
   <span class="kick">⚡ Treinamento express · D1 antes da abertura</span>
   <h1>Você é a porta de entrada da<span class="big">Neobag.</span></h1>
-  <p class="lead">Seu papel: abordar visitante → fazer ele entender o produto em 60 segundos → passar pro consultor fechar. Sem vender, sem dar preço. <b>Encantar e passar.</b></p>
+  <p class="lead">Seu papel: abordar visitante → <b>bipar o crachá</b> → fazer ele entender o produto em 60 segundos → passar pro consultor fechar. Sem vender, sem detalhar condições. <b>Encantar e passar.</b></p>
   <div class="stats">
     <div class="stat"><div class="lb">Onde</div><div class="vl amar">K50</div></div>
     <div class="stat"><div class="lb">Quando</div><div class="vl">26 a 29 / 05</div></div>
     <div class="stat"><div class="lb">Seu objetivo</div><div class="vl">qualificar leads</div></div>
-    <div class="stat"><div class="lb">Você NÃO</div><div class="vl">fala preço · fecha venda</div></div>
+    <div class="stat"><div class="lb">Você NÃO</div><div class="vl">fecha venda · detalha condições</div></div>
   </div>
 </section>
 
@@ -200,9 +203,10 @@ footer{padding:24px 0 36px;text-align:center;color:var(--muted);border-top:1px s
   <div class="about">
     <span class="pill">2 anos · estande K50</span>
     <h3>Bags térmicas personalizadas pro delivery do food service</h3>
-    <p>A Neobag fabrica bags térmicas que mantêm <b>quente o que precisa estar quente, e gelado o que precisa estar gelado</b>. A linha 360 permite <b>personalização em TODA a bag</b> (não só uma face) — algo que ninguém mais entrega no Brasil.</p>
+    <p>A Neobag fabrica <b>bags térmicas diferentes</b> pra cada tipo de pedido: uma <b>bag pra quente</b> (hambúrguer, batata, pratos quentes) e uma <b>bag pra gelado</b> (refrigerante, sobremesa, salada). O cliente compra a que precisa ou as duas — não é a mesma bag dividida.</p>
+    <p>A linha 360 permite <b>personalização em TODA a bag</b> (frente, lados e traseira) — um diferencial forte no mercado.</p>
     <p>Cliente: hamburgueria, restaurante, padaria, mercado, atacarejo. Tudo que faz delivery e quer o pedido chegar do jeito certo.</p>
-    <div class="quote">"Quente de um lado, gelado do outro. O delivery que ninguém mais faz."</div>
+    <div class="quote">"Bag certa pra cada tipo de pedido. Personalização 360° que coloca sua marca em toda a peça."</div>
   </div>
 </section>
 
@@ -212,10 +216,12 @@ footer{padding:24px 0 36px;text-align:center;color:var(--muted);border-top:1px s
   <h2>4 passos · você faz 1 → 2 → 3, consultor fecha</h2>
   <div class="papel">
     <div class="step"><div class="nm">1 · Você</div><div class="ic">👋</div><div class="tt">Abordar</div><div class="ds">Recebe o visitante na frente do estande</div></div>
-    <div class="step"><div class="nm">2 · Você</div><div class="ic">🎯</div><div class="tt">Qualificar</div><div class="ds">3-4 perguntas rápidas pra entender o cliente</div></div>
-    <div class="step"><div class="nm">3 · Você</div><div class="ic">🎬</div><div class="tt">Demo</div><div class="ds">Mostra a bag em 60 segundos, encanta</div></div>
-    <div class="step" style="border-color:var(--amarelo);background:linear-gradient(135deg,rgba(255,199,44,.10),transparent)"><div class="nm" style="color:var(--amarelo)">4 · Consultor</div><div class="ic">🤝</div><div class="tt">Passar</div><div class="ds">Apresenta o vendedor, fecha o ciclo</div></div>
+    <div class="step" style="border-color:var(--azul-neon);background:linear-gradient(135deg,rgba(0,138,250,.12),transparent)"><div class="nm" style="color:var(--azul-neon)">2 · SEMPRE</div><div class="ic">📲</div><div class="tt">Bipar crachá</div><div class="ds">Todo abordado · vira pipeline pós-feira</div></div>
+    <div class="step"><div class="nm">3 · Você</div><div class="ic">🎯</div><div class="tt">Qualificar</div><div class="ds">4 perguntas rápidas pra entender o cliente</div></div>
+    <div class="step"><div class="nm">4 · Você</div><div class="ic">🎬</div><div class="tt">Demo</div><div class="ds">Mostra a bag em 60 segundos, encanta</div></div>
+    <div class="step" style="border-color:var(--amarelo);background:linear-gradient(135deg,rgba(255,199,44,.10),transparent)"><div class="nm" style="color:var(--amarelo)">5 · Consultor</div><div class="ic">🤝</div><div class="tt">Passar</div><div class="ds">Apresenta o vendedor, fecha o ciclo</div></div>
   </div>
+  <p style="font-size:13px;color:var(--azul-neon);margin-top:12px;font-family:'Space Grotesk';font-weight:600"><b>⚡ Atenção:</b> bipar o crachá vale pra TODO abordado, mesmo que não fique pra demo nem passe pro consultor. Esses contatos vão ser trabalhados pelo time pós-feira.</p>
 </section>
 
 <!-- ============ COMO ABORDAR ============ -->
@@ -229,7 +235,7 @@ footer{padding:24px 0 36px;text-align:center;color:var(--muted);border-top:1px s
     </div>
     <div class="frase">
       <div class="ctx">Visitante olhando a bag</div>
-      <div class="txt">"Posso te mostrar uma coisa que ninguém mais faz no Brasil?"</div>
+      <div class="txt">"Posso te mostrar a bag que tá mudando o delivery aqui na feira?"</div>
     </div>
     <div class="frase">
       <div class="ctx">Visitante curioso</div>
@@ -244,9 +250,10 @@ footer{padding:24px 0 36px;text-align:center;color:var(--muted);border-top:1px s
   <div class="eyebrow">3 perguntas-chave · em ordem</div>
   <h2>Qualificar em 30 segundos</h2>
   <div class="perg">
-    <div class="item"><div></div><div><div class="q">"Qual seu segmento? Restaurante, hambúrguer, mercado, padaria?"</div><div class="why">Saber se é food service, varejo, ou outro · direciona o pitch certo</div></div></div>
-    <div class="item"><div></div><div><div class="q">"Você já usa bag personalizada hoje? Como tá funcionando?"</div><div class="why">Descobre se é cliente novo (oportunidade) ou troca de fornecedor (dor)</div></div></div>
-    <div class="item"><div></div><div><div class="q">"Manda muito delivery? Tem ideia de volume mensal de bags?"</div><div class="why">Pra ver se o ticket é grande o suficiente pra valer a pena passar pro consultor</div></div></div>
+    <div class="item"><div><div class="q">"Qual o seu nome?"</div><div class="why">Personaliza a conversa do começo · ajuda na hora de apresentar pro consultor</div></div></div>
+    <div class="item"><div><div class="q">"Qual seu segmento? Restaurante, hambúrguer, mercado, padaria?"</div><div class="why">Saber se é food service, varejo, ou outro · direciona o pitch certo</div></div></div>
+    <div class="item"><div><div class="q">"Você já trabalha com delivery? Como tá funcionando?"</div><div class="why">Descobre se é cliente novo, em crescimento ou trocando de fornecedor</div></div></div>
+    <div class="item"><div><div class="q">"Quer conhecer mais do produto e das condições?"</div><div class="why">Sinal claro: se disser sim, é hora de fazer a demo (movimento 3) e passar pro consultor</div></div></div>
   </div>
 </section>
 
@@ -258,20 +265,20 @@ footer{padding:24px 0 36px;text-align:center;color:var(--muted);border-top:1px s
     <div class="mov">
       <div class="n">Movimento 1</div>
       <div class="ic">🍔</div>
-      <div class="tt">Quente de um lado</div>
-      <div class="ds">"Aqui você coloca o hambúrguer, a batata, comida quente. Chega crocante, sem suar."</div>
+      <div class="tt">Bag pra quente</div>
+      <div class="ds">"Essa bag é pra comida quente — hambúrguer, batata, pratos quentes. Chega crocante, sem suar."</div>
     </div>
     <div class="mov">
       <div class="n">Movimento 2</div>
       <div class="ic">🥤</div>
-      <div class="tt">Gelado do outro</div>
-      <div class="ds">"Aqui vai refrigerante, sobremesa, salada. Chega gelado de verdade — pode levar gelo dentro."</div>
+      <div class="tt">Bag pra gelado</div>
+      <div class="ds">"Essa outra é pra gelado — refrigerante, sobremesa, salada. Chega gelado de verdade · pode levar gelo dentro."</div>
     </div>
     <div class="mov">
       <div class="n">Movimento 3</div>
       <div class="ic">🎨</div>
       <div class="tt">360° com sua marca</div>
-      <div class="ds">"E você personaliza TODA a bag — frente, lados, traseira. Não é adesivo, é impressão 360°."</div>
+      <div class="ds">"E você personaliza TODA a bag — frente, lados, traseira. Não é adesivo, é impressão 360° de verdade."</div>
     </div>
   </div>
 </section>
@@ -284,9 +291,9 @@ footer{padding:24px 0 36px;text-align:center;color:var(--muted);border-top:1px s
     <div class="linha"><div class="h"><div class="nm">360</div><div class="tg">estrela</div></div><div class="ds">Personalização em <b>toda a bag</b>. Cliente coloca a marca em 360°. Indicada pra clientes que querem branding forte.</div></div>
     <div class="linha"><div class="h"><div class="nm">Silk</div><div class="tg azul">1 cor</div></div><div class="ds">Personalização <b>em 1 cor</b> nas faces. Mais econômica, ideal pra primeira compra ou volume menor.</div></div>
     <div class="linha"><div class="h"><div class="nm">UV</div><div class="tg azul">qualidade</div></div><div class="ds">Personalização <b>com tinta UV</b> — cores vivas, durabilidade alta. Meio termo entre Silk e 360.</div></div>
-    <div class="linha"><div class="h"><div class="nm">Smart</div><div class="tg">pronta</div></div><div class="ds">Bag <b>sem personalização</b>, pronta pra venda direta. Pra cliente que quer começar rápido.</div></div>
+    <div class="linha"><div class="h"><div class="nm">Smart</div><div class="tg">pronta</div></div><div class="ds">Bag <b>sem personalização</b>, pronta pra venda direta. <b>Também pode ser feita em 360°</b> se o cliente quiser personalizar depois. Ideal pra cliente que quer começar rápido.</div></div>
   </div>
-  <p style="font-size:13px;color:var(--muted);margin-top:10px">Você <b>não precisa decorar preço</b>. Só sabe os nomes e a ideia de cada linha. Preço é com o consultor.</p>
+  <p style="font-size:13px;color:var(--muted);margin-top:10px">Você <b>não detalha preço</b> (exceto a comunicação oficial das bags R$ 2,00 — ver mais abaixo). Só sabe os nomes e a ideia de cada linha. Condições são com o consultor.</p>
 </section>
 
 <!-- ============ DIFERENCIAIS ============ -->
@@ -294,12 +301,24 @@ footer{padding:24px 0 36px;text-align:center;color:var(--muted);border-top:1px s
   <div class="eyebrow">O que falar de bom · diferenciais</div>
   <h2>6 coisas pra mencionar</h2>
   <div class="dif">
-    <div class="ch"><div class="ic">🔥</div><div class="tx"><b>Quente e gelado juntos</b><span>Único kit que faz os dois</span></div></div>
+    <div class="ch"><div class="ic">🔥❄️</div><div class="tx"><b>Bags pra quente E gelado</b><span>Duas bags, uma pra cada lado do pedido</span></div></div>
     <div class="ch"><div class="ic">🎨</div><div class="tx"><b>Personalização 360°</b><span>Toda a bag, não só uma face</span></div></div>
-    <div class="ch"><div class="ic">💪</div><div class="tx"><b>Durabilidade alta</b><span>Aguenta uso intenso de delivery</span></div></div>
+    <div class="ch"><div class="ic">🎁</div><div class="tx"><b>Clichê e arte por nossa conta</b><span>Linha 360 · sem cobrar arte nem cores</span></div></div>
+    <div class="ch"><div class="ic">♻️</div><div class="tx"><b>Supercola até 100 usos</b><span>Fechamento reutilizável muitas vezes</span></div></div>
     <div class="ch"><div class="ic">🏭</div><div class="tx"><b>Produção própria</b><span>Não é revenda · controle total</span></div></div>
     <div class="ch"><div class="ic">⭐</div><div class="tx"><b>Clientes grandes</b><span>Swift · Zé Delivery · Bacio · Seara</span></div></div>
-    <div class="ch"><div class="ic">⚡</div><div class="tx"><b>Prazo curto</b><span>Produção rápida, entrega no Brasil todo</span></div></div>
+  </div>
+</section>
+
+<!-- ============ DETALHES TÉCNICOS DO PRODUTO ============ -->
+<section class="s" id="tecnico">
+  <div class="eyebrow">Cuidado e detalhes técnicos · pra responder bem se perguntarem</div>
+  <h2>Detalhes do produto</h2>
+  <div class="linhas">
+    <div class="linha"><div class="h"><div class="nm">♻️ Supercola reutilizável</div><div class="tg">até 100 usos</div></div><div class="ds">O fechamento da bag é por <b>supercola</b> — não é zíper, não é velcro. Pode abrir e fechar até <b>100 vezes</b> mantendo a aderência. Cliente reutiliza a bag muito mais que o esperado.</div></div>
+    <div class="linha"><div class="h"><div class="nm">🎁 Cortesia linha 360</div><div class="tg azul">grátis</div></div><div class="ds">Na linha 360, <b>não cobramos clichê, arte nem quantidade de cores</b>. Tudo é cortesia, faz parte do projeto. Destaque isso — é um diferencial forte.</div></div>
+    <div class="linha"><div class="h"><div class="nm">💪 Alça aguenta 12 kg</div><div class="tg" style="color:var(--warn);background:rgba(255,181,71,.12)">atenção</div></div><div class="ds">A alça é super resistente: aguenta <b>até 12 kg</b> com o peso pra baixo (uso normal de delivery). <b>Atenção:</b> se o cliente puxar a bag pra cima (tipo levantar com força), a alça se rompe com facilidade. Sempre usar com peso pra baixo.</div></div>
+    <div class="linha"><div class="h"><div class="nm">⭐ Smart também faz 360°</div><div class="tg">opção</div></div><div class="ds">A linha Smart já é vendida pronta sem personalização, mas <b>pode sim ser feita no modelo 360°</b> se o cliente quiser. Boa pra quem começa simples e depois quer personalizar.</div></div>
   </div>
 </section>
 
@@ -323,6 +342,12 @@ footer{padding:24px 0 36px;text-align:center;color:var(--muted);border-top:1px s
       <div class="txt">"Que ótimo! Vou te apresentar nosso consultor que vai te mostrar valores e condições. Vem comigo, é aqui."</div>
     </div>
     <div style="margin-top:14px;font-size:13px;color:var(--muted)"><b style="color:var(--amarelo)">Importante:</b> não solta o visitante. Caminha com ele até o consultor, faz a apresentação e fala uma linha do que conversaram (ex: <i>"essa é a Camila, ela tem uma hamburgueria em SP e gostou da linha 360"</i>).</div>
+
+    <div style="margin-top:14px;padding:14px 16px;background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.3);border-radius:10px">
+      <div style="font-family:'Space Grotesk';font-weight:700;font-size:13px;color:var(--ok);margin-bottom:6px">✓ EXCEÇÃO · você pode falar disso</div>
+      <div style="font-size:14px;line-height:1.5">Esta feira tem <b>bags a R$ 2,00</b> (modelos pequenos · médio pra baixo) — é comunicação oficial que vai estar destacada no estande. <b>Você pode mencionar esse preço como gancho de fechamento</b> e direcionar imediatamente pro consultor pra ele detalhar condições.</div>
+      <div style="margin-top:10px;font-family:'Space Grotesk';font-weight:600;font-size:14px;font-style:italic;color:var(--ok)">"Aqui na feira a gente tem bags a partir de R$ 2,00 — quer falar com o consultor pra ver as condições?"</div>
+    </div>
   </div>
 
   <div style="margin-top:18px">
@@ -344,7 +369,7 @@ footer{padding:24px 0 36px;text-align:center;color:var(--muted);border-top:1px s
   <div class="eyebrow">Erros que custam venda · evite</div>
   <h2>Nunca · em hipótese alguma</h2>
   <div class="nope">
-    <div class="it"><div class="ic">🚫</div><div><b>Não dê preço de cabeça</b> <span>· mesmo que você tenha visto · preço é só com o consultor</span></div></div>
+    <div class="it"><div class="ic">🚫</div><div><b>Não detalhe preço</b> <span>· exceto a comunicação oficial das bags R$ 2,00 · outros valores e condições só com o consultor</span></div></div>
     <div class="it"><div class="ic">🚫</div><div><b>Não prometa prazo de entrega</b> <span>· depende do volume e produção · consultor confirma</span></div></div>
     <div class="it"><div class="ic">🚫</div><div><b>Não fale de desconto</b> <span>· condição especial é assunto do consultor</span></div></div>
     <div class="it"><div class="ic">🚫</div><div><b>Não fale mal de concorrente</b> <span>· foque no que a Neobag tem de bom, não no que o outro tem de ruim</span></div></div>
@@ -353,32 +378,39 @@ footer{padding:24px 0 36px;text-align:center;color:var(--muted);border-top:1px s
   </div>
 </section>
 
-<!-- ============ CHEAT SHEET ============ -->
+<!-- ============ CHECKLIST DE QUALIFICAÇÃO ============ -->
 <section class="s" id="cheat">
-  <div class="eyebrow">Pro celular · consultar a hora que precisar</div>
-  <h2>Cheat sheet</h2>
-  <div class="cheat">
-    <h3>Promotora FISPAL · cheat sheet</h3>
-    <div class="cheat-row"><span>Empresa</span><b>Neobag · K50</b></div>
-    <div class="cheat-row"><span>Produto em 1 frase</span><b>Bag térmica quente+gelado, personalizada 360°</b></div>
-    <div class="cheat-row"><span>Tagline</span><b>"O delivery que ninguém mais faz"</b></div>
-    <div class="sp"></div>
-    <div class="cheat-row"><span>Abordagem</span><b>"Já conhece a Neobag?"</b></div>
-    <div class="cheat-row"><span>Pergunta 1</span><b>Segmento? (hambúrguer · restô · mercado · padaria)</b></div>
-    <div class="cheat-row"><span>Pergunta 2</span><b>Já usa bag personalizada? Como tá?</b></div>
-    <div class="cheat-row"><span>Pergunta 3</span><b>Manda muito delivery? Volume mensal?</b></div>
-    <div class="sp"></div>
-    <div class="cheat-row"><span>Demo movimento 1</span><b>Quente de um lado (🍔)</b></div>
-    <div class="cheat-row"><span>Demo movimento 2</span><b>Gelado do outro (🥤)</b></div>
-    <div class="cheat-row"><span>Demo movimento 3</span><b>Personalização 360° (🎨)</b></div>
-    <div class="sp"></div>
-    <div class="cheat-row"><span>Linhas (só os nomes)</span><b>360 · Silk · UV · Smart</b></div>
-    <div class="sp"></div>
-    <div class="cheat-row"><span>SINAL pra passar</span><b>preço · prazo · pedido · orçamento</b></div>
-    <div class="cheat-row"><span>Frase de passar</span><b>"Vou te apresentar nosso consultor"</b></div>
-    <div class="cheat-row"><span>Coordenação</span><b>Murillo · Willian · Leilliany</b></div>
-    <div class="sp"></div>
-    <div class="cheat-row"><span>NUNCA</span><b>preço · prazo · desconto · sair do estande</b></div>
+  <div class="eyebrow">Antes de passar pro consultor · garante que você puxou</div>
+  <h2>Checklist da abordagem</h2>
+  <div style="margin-top:8px;padding:20px 22px;background:linear-gradient(135deg,rgba(0,138,250,.10),rgba(255,199,44,.06));border:1px solid var(--glass-bd);border-radius:14px">
+    <p style="font-family:'Space Grotesk';font-size:13px;color:var(--muted);margin-bottom:14px;letter-spacing:.04em">Use como guia mental. Não precisa ser uma checklist literal — só garante que rolou pelos 4 pontos antes de chamar o consultor.</p>
+
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <label style="display:flex;gap:12px;align-items:flex-start;padding:14px 16px;background:rgba(3,7,15,.45);border:1px solid var(--glass-bd);border-radius:10px;cursor:pointer">
+        <input type="checkbox" style="width:20px;height:20px;accent-color:var(--amarelo);flex-shrink:0;margin-top:2px">
+        <div><div style="font-family:'Space Grotesk';font-weight:700;font-size:15px">Segmento</div><div style="font-size:13px;color:var(--muted);margin-top:2px">Hambúrguer · restaurante · padaria · mercado · atacarejo · outro</div></div>
+      </label>
+      <label style="display:flex;gap:12px;align-items:flex-start;padding:14px 16px;background:rgba(3,7,15,.45);border:1px solid var(--glass-bd);border-radius:10px;cursor:pointer">
+        <input type="checkbox" style="width:20px;height:20px;accent-color:var(--amarelo);flex-shrink:0;margin-top:2px">
+        <div><div style="font-family:'Space Grotesk';font-weight:700;font-size:15px">Nome do cliente</div><div style="font-size:13px;color:var(--muted);margin-top:2px">Como ele se chama? · ajuda na hora de apresentar pro consultor</div></div>
+      </label>
+      <label style="display:flex;gap:12px;align-items:flex-start;padding:14px 16px;background:rgba(3,7,15,.45);border:1px solid var(--glass-bd);border-radius:10px;cursor:pointer">
+        <input type="checkbox" style="width:20px;height:20px;accent-color:var(--amarelo);flex-shrink:0;margin-top:2px">
+        <div><div style="font-family:'Space Grotesk';font-weight:700;font-size:15px">Trabalha com delivery?</div><div style="font-size:13px;color:var(--muted);margin-top:2px">Já está no delivery? Em qual escala? Está pensando em começar?</div></div>
+      </label>
+      <label style="display:flex;gap:12px;align-items:flex-start;padding:14px 16px;background:rgba(3,7,15,.45);border:1px solid var(--glass-bd);border-radius:10px;cursor:pointer">
+        <input type="checkbox" style="width:20px;height:20px;accent-color:var(--amarelo);flex-shrink:0;margin-top:2px">
+        <div><div style="font-family:'Space Grotesk';font-weight:700;font-size:15px">Quer conhecer mais do produto e das condições?</div><div style="font-size:13px;color:var(--muted);margin-top:2px">Se sim → hora de fazer a demo (movimento 3) e passar pro consultor</div></div>
+      </label>
+      <label style="display:flex;gap:12px;align-items:flex-start;padding:14px 16px;background:rgba(40,160,255,.06);border:1px solid var(--azul-neon);border-radius:10px;cursor:pointer">
+        <input type="checkbox" style="width:20px;height:20px;accent-color:var(--azul-neon);flex-shrink:0;margin-top:2px">
+        <div><div style="font-family:'Space Grotesk';font-weight:700;font-size:15px;color:var(--azul-neon)">📲 Bipou o crachá?</div><div style="font-size:13px;color:var(--muted);margin-top:2px"><b>SEMPRE</b> · todo abordado, mesmo que não fique nem passe pro consultor</div></div>
+      </label>
+    </div>
+
+    <div style="margin-top:18px;padding:14px 16px;background:rgba(255,199,44,.08);border-left:3px solid var(--amarelo);border-radius:8px;font-size:13px;line-height:1.5">
+      <b style="color:var(--amarelo)">Coordenação no estande:</b> Murillo · Willian · Leilliany · Henrique — chame um deles se precisar de algo ou se nenhum consultor estiver disponível.
+    </div>
   </div>
 </section>
 
