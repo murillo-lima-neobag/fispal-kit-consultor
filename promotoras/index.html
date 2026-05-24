@@ -40,6 +40,9 @@ h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif;letter-spacing:-.02em;l
 
 /* HERO */
 .hero{padding:24px 0 16px}
+.hero-grid{display:grid;grid-template-columns:1fr 220px;gap:24px;align-items:center}
+@media(max-width:760px){.hero-grid{grid-template-columns:1fr}.hero-img{max-width:180px;margin:0 auto}}
+.hero-img{width:100%;height:auto;border-radius:14px;display:block;filter:drop-shadow(0 30px 60px rgba(0,120,255,.45))}
 .hero .kick{display:inline-flex;align-items:center;gap:9px;font-family:'Space Grotesk';font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--azul-neon);border:1px solid var(--glass-bd);background:var(--glass);padding:6px 12px;border-radius:999px;margin-bottom:14px}
 .hero h1{font-size:clamp(28px,4.5vw,44px);margin-bottom:8px}
 .hero h1 .big{display:block;font-size:clamp(48px,7vw,82px);background:linear-gradient(180deg,#fff,#7fc0ff);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:.95}
@@ -59,6 +62,9 @@ section.s h2{font-size:22px;margin-bottom:14px}
 
 /* NEOBAG EM 30S */
 .about{padding:24px;background:linear-gradient(135deg,rgba(0,138,250,.14),rgba(255,199,44,.06));border:1px solid var(--glass-bd);border-radius:16px}
+.about-grid{display:grid;grid-template-columns:1fr 200px;gap:20px;align-items:center}
+@media(max-width:760px){.about-grid{grid-template-columns:1fr}.about-img{max-width:200px;margin:0 auto}}
+.about-img{width:100%;height:auto;border-radius:12px;display:block;filter:drop-shadow(0 20px 40px rgba(0,120,255,.3))}
 .about .pill{display:inline-block;font-family:'Space Grotesk';font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--amarelo);background:rgba(255,199,44,.1);padding:4px 10px;border-radius:999px;margin-bottom:10px}
 .about h3{font-size:24px;margin-bottom:8px;line-height:1.1}
 .about p{color:var(--txt);font-size:15px;line-height:1.55;margin-bottom:8px}
@@ -95,6 +101,7 @@ section.s h2{font-size:22px;margin-bottom:14px}
 .demo .mov{padding:18px;background:var(--glass);border:1px solid var(--glass-bd);border-radius:12px;text-align:center}
 .demo .mov .n{font-family:'Space Grotesk';font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--azul-neon);font-weight:600;margin-bottom:6px}
 .demo .mov .ic{font-size:42px;margin-bottom:8px}
+.demo .mov-img{width:100%;max-width:140px;height:120px;object-fit:contain;margin:0 auto 8px;display:block;filter:drop-shadow(0 14px 24px rgba(0,120,255,.35))}
 .demo .mov .tt{font-family:'Space Grotesk';font-weight:700;font-size:16px;margin-bottom:6px}
 .demo .mov .ds{font-size:13px;color:var(--muted)}
 
@@ -164,7 +171,7 @@ footer{padding:24px 0 36px;text-align:center;color:var(--muted);border-top:1px s
 <header class="head">
   <div class="wrap">
     <div class="top">
-      <div class="brand"><span class="dt"></span>NEOBAG · KIT PROMOTORA</div>
+      <div class="brand"><span class="dt"></span><img src="https://site-neobag.vercel.app/img/logo-branco.png" alt="Neobag" style="height:20px;vertical-align:middle;margin-right:6px"> · KIT PROMOTORA</div>
       <div class="meta">FISPAL · 26–29/05 · <b>K50</b></div>
     </div>
     <div class="nav">
@@ -185,9 +192,14 @@ footer{padding:24px 0 36px;text-align:center;color:var(--muted);border-top:1px s
 <div class="wrap">
 
 <section class="hero">
-  <span class="kick">⚡ Treinamento express · D1 antes da abertura</span>
-  <h1>Você é a porta de entrada da<span class="big">Neobag.</span></h1>
-  <p class="lead">Seu papel: abordar visitante → <b>bipar o crachá</b> → fazer ele entender o produto em 60 segundos → passar pro consultor fechar. Sem vender, sem detalhar condições. <b>Encantar e passar.</b></p>
+  <div class="hero-grid">
+    <div>
+      <span class="kick">⚡ Treinamento express · D1 antes da abertura</span>
+      <h1>Você é a porta de entrada da<span class="big">Neobag.</span></h1>
+      <p class="lead">Seu papel: abordar visitante → <b>bipar o crachá</b> → fazer ele entender o produto em 60 segundos → passar pro consultor fechar. Sem vender, sem detalhar condições. <b>Encantar e passar.</b></p>
+    </div>
+    <img class="hero-img" src="https://site-neobag.vercel.app/img/bag-velinha-1.png" alt="Bag Neobag" loading="lazy">
+  </div>
   <div class="stats">
     <div class="stat"><div class="lb">Onde</div><div class="vl amar">K50</div></div>
     <div class="stat"><div class="lb">Quando</div><div class="vl">26 a 29 / 05</div></div>
@@ -202,11 +214,16 @@ footer{padding:24px 0 36px;text-align:center;color:var(--muted);border-top:1px s
   <h2>O que é a Neobag</h2>
   <div class="about">
     <span class="pill">2 anos · estande K50</span>
-    <h3>Bags térmicas personalizadas pro delivery do food service</h3>
-    <p>A Neobag fabrica <b>bags térmicas diferentes</b> pra cada tipo de pedido: uma <b>bag pra quente</b> (hambúrguer, batata, pratos quentes) e uma <b>bag pra gelado</b> (refrigerante, sobremesa, salada). O cliente compra a que precisa ou as duas — não é a mesma bag dividida.</p>
-    <p>A linha 360 permite <b>personalização em TODA a bag</b> (frente, lados e traseira) — um diferencial forte no mercado.</p>
-    <p>Cliente: hamburgueria, restaurante, padaria, mercado, atacarejo. Tudo que faz delivery e quer o pedido chegar do jeito certo.</p>
-    <div class="quote">"Bag certa pra cada tipo de pedido. Personalização 360° que coloca sua marca em toda a peça."</div>
+    <div class="about-grid">
+      <div>
+        <h3>Bags térmicas personalizadas pro delivery do food service</h3>
+        <p>A Neobag fabrica <b>bags térmicas versáteis</b>: a mesma bag serve tanto pra produtos <b>quentes</b> (hambúrguer, batata, pratos) quanto pra <b>frios</b> (refrigerante, sorvete, açaí). O uso depende do segmento do cliente — a térmica isola dos dois jeitos.</p>
+        <p>A linha 360 permite <b>personalização em TODA a bag</b> (frente, lados e traseira) — um diferencial forte no mercado.</p>
+        <p>Cliente: hamburgueria, restaurante, padaria, mercado, atacarejo, sorveteria, açaiteria. Tudo que faz delivery e quer o pedido chegar do jeito certo.</p>
+        <div class="quote">"Bag térmica versátil · personalização 360° que coloca sua marca em toda a peça."</div>
+      </div>
+      <img class="about-img" src="https://site-neobag.vercel.app/img/bag-velinha-1.png" alt="Bag Neobag" loading="lazy">
+    </div>
   </div>
 </section>
 
@@ -264,15 +281,15 @@ footer{padding:24px 0 36px;text-align:center;color:var(--muted);border-top:1px s
   <div class="demo">
     <div class="mov">
       <div class="n">Movimento 1</div>
-      <div class="ic">🍔</div>
-      <div class="tt">Bag pra quente</div>
-      <div class="ds">"Essa bag é pra comida quente — hambúrguer, batata, pratos quentes. Chega crocante, sem suar."</div>
+      <img class="mov-img" src="https://site-neobag.vercel.app/img/hero-3d-1.png" alt="Bag térmica Neobag" loading="lazy">
+      <div class="tt">Bag térmica versátil</div>
+      <div class="ds">"A mesma bag térmica serve pra quente OU pra frio — depende do segmento. Hambúrguer chega crocante, refrigerante chega gelado, açaí chega firme."</div>
     </div>
     <div class="mov">
       <div class="n">Movimento 2</div>
-      <div class="ic">🥤</div>
-      <div class="tt">Bag pra gelado</div>
-      <div class="ds">"Essa outra é pra gelado — refrigerante, sobremesa, salada. Chega gelado de verdade · pode levar gelo dentro."</div>
+      <img class="mov-img" src="https://site-neobag.vercel.app/img/hero-3d-2.png" alt="Modelos Neobag" loading="lazy">
+      <div class="tt">Vários tamanhos</div>
+      <div class="ds">"Tem desde a Pequena (pra bebida e sobremesa) até a Extra G (pra pedido grande). Você escolhe pelo seu produto e volume."</div>
     </div>
     <div class="mov">
       <div class="n">Movimento 3</div>
@@ -301,7 +318,7 @@ footer{padding:24px 0 36px;text-align:center;color:var(--muted);border-top:1px s
   <div class="eyebrow">O que falar de bom · diferenciais</div>
   <h2>6 coisas pra mencionar</h2>
   <div class="dif">
-    <div class="ch"><div class="ic">🔥❄️</div><div class="tx"><b>Bags pra quente E gelado</b><span>Duas bags, uma pra cada lado do pedido</span></div></div>
+    <div class="ch"><div class="ic">🔥❄️</div><div class="tx"><b>Térmica versátil</b><span>Mesma bag pra quente OU frio · depende do segmento</span></div></div>
     <div class="ch"><div class="ic">🎨</div><div class="tx"><b>Personalização 360°</b><span>Toda a bag, não só uma face</span></div></div>
     <div class="ch"><div class="ic">🎁</div><div class="tx"><b>Clichê e arte por nossa conta</b><span>Linha 360 · sem cobrar arte nem cores</span></div></div>
     <div class="ch"><div class="ic">♻️</div><div class="tx"><b>Supercola até 100 usos</b><span>Fechamento reutilizável muitas vezes</span></div></div>
@@ -317,7 +334,7 @@ footer{padding:24px 0 36px;text-align:center;color:var(--muted);border-top:1px s
   <div class="linhas">
     <div class="linha"><div class="h"><div class="nm">♻️ Supercola reutilizável</div><div class="tg">até 100 usos</div></div><div class="ds">O fechamento da bag é por <b>supercola</b> — não é zíper, não é velcro. Pode abrir e fechar até <b>100 vezes</b> mantendo a aderência. Cliente reutiliza a bag muito mais que o esperado.</div></div>
     <div class="linha"><div class="h"><div class="nm">🎁 Cortesia linha 360</div><div class="tg azul">grátis</div></div><div class="ds">Na linha 360, <b>não cobramos clichê, arte nem quantidade de cores</b>. Tudo é cortesia, faz parte do projeto. Destaque isso — é um diferencial forte.</div></div>
-    <div class="linha"><div class="h"><div class="nm">💪 Alça aguenta 12 kg</div><div class="tg" style="color:var(--warn);background:rgba(255,181,71,.12)">atenção</div></div><div class="ds">A alça é super resistente: aguenta <b>até 12 kg</b> com o peso pra baixo (uso normal de delivery). <b>Atenção:</b> se o cliente puxar a bag pra cima (tipo levantar com força), a alça se rompe com facilidade. Sempre usar com peso pra baixo.</div></div>
+    <div class="linha"><div class="h"><div class="nm">💪 Alça aguenta 12 kg</div><div class="tg" style="color:var(--warn);background:rgba(255,181,71,.12)">atenção</div></div><div class="ds">A alça é super resistente: aguenta <b>até 12 kg</b> quando usada do jeito certo. O movimento natural da alça é ser <b>puxada pra cima</b> (gesto normal de carregar a bag). <b>Atenção:</b> nunca forçar a alça <b>pra baixo</b> — fora do movimento natural ela se rompe com facilidade.</div></div>
     <div class="linha"><div class="h"><div class="nm">⭐ Smart também faz 360°</div><div class="tg">opção</div></div><div class="ds">A linha Smart já é vendida pronta sem personalização, mas <b>pode sim ser feita no modelo 360°</b> se o cliente quiser. Boa pra quem começa simples e depois quer personalizar.</div></div>
   </div>
 </section>
