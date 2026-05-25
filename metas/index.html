@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Neobag · Metas FISPAL 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Sora:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --azul:#008afa;--azul-neon:#28a0ff;--amarelo:#ffc72c;
+  --bg:#03070f;--bg2:#061328;--txt:#eaf2ff;--muted:#9fb6d4;
+  --glass:rgba(255,255,255,.06);--glass-bd:rgba(120,180,255,.18);
+  --ok:#4ade80;--warn:#ffb547;--err:#ff6b6b;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Sora',-apple-system,sans-serif;background:var(--bg);color:var(--txt);line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.dsp{font-family:'Space Grotesk',sans-serif;letter-spacing:-.02em;line-height:1.05;font-weight:700}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.amar{color:var(--amarelo)}.azul{color:var(--azul-neon)}.ok{color:var(--ok)}.warn{color:var(--warn)}
+.mono{font-variant-numeric:tabular-nums}
+
+.bg-fx{position:fixed;inset:0;z-index:-2;background:
+  radial-gradient(900px 500px at 80% -10%,rgba(0,138,250,.22),transparent 60%),
+  radial-gradient(700px 400px at 0% 100%,rgba(255,199,44,.10),transparent 55%),var(--bg)}
+
+.head{padding:14px 0;border-bottom:1px solid var(--glass-bd);position:sticky;top:0;z-index:10;backdrop-filter:blur(14px);background:rgba(3,7,15,.9)}
+.head .top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.head .brand{font-family:'Space Grotesk';font-weight:700;font-size:16px;display:flex;align-items:center;gap:8px}
+.head .brand img{height:20px;filter:brightness(0) invert(1);vertical-align:middle}
+.head .brand .dt{width:8px;height:8px;border-radius:50%;background:var(--amarelo);box-shadow:0 0 8px var(--amarelo);animation:p 1.8s infinite}
+@keyframes p{0%,100%{opacity:1}50%{opacity:.4}}
+.head .nav{display:flex;gap:4px;margin-top:8px;flex-wrap:wrap}
+.head .nav a{font-family:'Space Grotesk';font-size:12px;color:var(--muted);text-decoration:none;padding:5px 10px;border-radius:6px;font-weight:500}
+.head .nav a:hover{color:var(--txt);background:var(--glass)}
+
+/* HERO */
+.hero{padding:30px 0 20px}
+.hero .kick{display:inline-flex;align-items:center;gap:8px;font-family:'Space Grotesk';font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--azul-neon);border:1px solid var(--glass-bd);background:var(--glass);padding:6px 12px;border-radius:999px;margin-bottom:14px}
+.hero h1{font-size:clamp(32px,5vw,52px);margin-bottom:10px}
+.hero h1 .big{display:block;font-size:clamp(52px,8.5vw,92px);background:linear-gradient(180deg,#fff,var(--amarelo));-webkit-background-clip:text;background-clip:text;color:transparent;line-height:.92;letter-spacing:-.04em}
+.hero .lead{font-size:16px;color:var(--muted);max-width:680px;margin-top:10px}
+
+/* BIG NUMBERS · 4 cards */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px}
+@media(max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}}
+.kpi{padding:18px 20px;background:var(--glass);border:1px solid var(--glass-bd);border-radius:14px;position:relative;overflow:hidden}
+.kpi .lb{font-family:'Space Grotesk';font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:8px}
+.kpi .vl{font-family:'Space Grotesk';font-weight:700;font-size:32px;line-height:1;letter-spacing:-.02em}
+.kpi .sub{font-size:12px;color:var(--muted);margin-top:4px;font-family:'Sora'}
+.kpi.amar .vl{color:var(--amarelo)}
+.kpi.azul .vl{color:var(--azul-neon)}
+.kpi.ok .vl{color:var(--ok)}
+.kpi.warn .vl{color:var(--warn)}
+
+/* SEÇÕES */
+section.s{padding:24px 0;border-top:1px solid var(--glass-bd);margin-top:24px;scroll-margin-top:90px}
+section.s .eyebrow{font-family:'Space Grotesk';font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--azul-neon);font-weight:600;margin-bottom:6px}
+section.s h2{font-size:26px;margin-bottom:8px}
+section.s .sub{font-size:14px;color:var(--muted);margin-bottom:16px}
+
+/* ESTRATÉGIA POR DIA · 4 cards */
+.dias{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px}
+@media(max-width:760px){.dias{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.dias{grid-template-columns:1fr 1fr}}
+.dia{padding:18px 16px;background:var(--glass);border:1px solid var(--glass-bd);border-radius:14px;text-align:center;position:relative;overflow:hidden}
+.dia .d{font-family:'Space Grotesk';font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.dia .data{font-family:'Space Grotesk';font-weight:700;font-size:16px;color:var(--txt);margin-top:4px}
+.dia .vd{font-family:'Space Grotesk';font-weight:700;font-size:42px;color:var(--amarelo);margin:10px 0 2px;line-height:1}
+.dia .vd-sub{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+.dia .val{margin-top:14px;padding-top:12px;border-top:1px solid var(--glass-bd);font-family:'Space Grotesk';font-weight:700;font-size:20px;color:var(--ok)}
+.dia .val-sub{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:2px}
+.dia.peak{background:linear-gradient(135deg,rgba(255,199,44,.14),rgba(0,138,250,.04));border-color:var(--amarelo)}
+.dia.peak .vd{color:var(--amarelo);font-size:48px}
+
+/* TOTAL · resumo da semana */
+.total-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:14px}
+@media(max-width:760px){.total-row{grid-template-columns:1fr}}
+.total{padding:18px 22px;background:linear-gradient(135deg,rgba(0,138,250,.12),rgba(255,199,44,.04));border:1px solid var(--azul-neon);border-radius:14px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.total .lb{font-family:'Space Grotesk';font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--azul-neon);font-weight:600}
+.total .lb-sub{font-size:12px;color:var(--muted);margin-top:2px}
+.total .vl{font-family:'Space Grotesk';font-weight:700;font-size:24px;text-align:right}
+
+/* MÉTRICAS-CHAVE · linhas */
+.kpis-detail{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+@media(max-width:760px){.kpis-detail{grid-template-columns:1fr}}
+.metric{padding:14px 18px;background:var(--glass);border:1px solid var(--glass-bd);border-radius:12px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.metric .info .nm{font-family:'Space Grotesk';font-weight:600;font-size:15px;margin-bottom:2px}
+.metric .info .ds{font-size:12px;color:var(--muted)}
+.metric .vl{font-family:'Space Grotesk';font-weight:700;font-size:22px;color:var(--amarelo);text-align:right;flex-shrink:0}
+.metric .vl.azul{color:var(--azul-neon)}
+.metric .vl.ok{color:var(--ok)}
+.metric .vl .un{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-top:-2px}
+
+/* CALCULADORA */
+.calc{margin-top:14px;padding:22px;background:linear-gradient(135deg,rgba(40,160,255,.08),rgba(255,199,44,.04));border:1px solid var(--glass-bd);border-radius:16px}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:860px){.calc-grid{grid-template-columns:1fr}}
+.calc-col h3{font-family:'Space Grotesk';font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--azul-neon);font-weight:600;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--glass-bd)}
+.calc-field{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:8px 0}
+.calc-field label{font-size:13px;color:var(--muted);flex:1}
+.calc-field input{width:140px;padding:8px 12px;background:var(--bg2);border:1px solid var(--glass-bd);border-radius:8px;color:var(--txt);font-family:'Space Grotesk';font-weight:700;font-size:14px;text-align:right;font-variant-numeric:tabular-nums}
+.calc-field input:focus{outline:none;border-color:var(--azul-neon);background:rgba(40,160,255,.06)}
+.calc-field input.dia{width:64px}
+.calc-row-dia{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:4px}
+.calc-row-dia .calc-mini{display:flex;flex-direction:column;align-items:center;gap:3px}
+.calc-row-dia .calc-mini label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.calc-row-dia .calc-mini input{width:100%;text-align:center}
+
+.calc-out{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 12px;background:rgba(3,7,15,.5);border-radius:8px;margin-bottom:6px}
+.calc-out .nm{font-size:12px;color:var(--muted)}
+.calc-out .vl{font-family:'Space Grotesk';font-weight:700;font-size:17px;color:var(--amarelo);font-variant-numeric:tabular-nums}
+.calc-out.hilite{background:rgba(255,199,44,.10);border:1px solid var(--amarelo)}
+.calc-out.hilite .vl{font-size:20px}
+.calc-out.status .vl{font-size:14px}
+.calc-out.status .vl.ok{color:var(--ok)}
+.calc-out.status .vl.warn{color:var(--warn)}
+.calc-out.status .vl.err{color:var(--err)}
+
+.calc-reset{margin-top:16px;text-align:right}
+.calc-reset button{padding:8px 16px;background:transparent;color:var(--muted);border:1px solid var(--glass-bd);border-radius:8px;font-family:'Space Grotesk';font-weight:500;font-size:12px;cursor:pointer}
+.calc-reset button:hover{color:var(--txt);border-color:var(--azul-neon)}
+
+/* OBSERVAÇÕES PEDAGÓGICAS */
+.notas{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+@media(max-width:760px){.notas{grid-template-columns:1fr}}
+.nota{padding:14px 16px;background:var(--glass);border:1px solid var(--glass-bd);border-radius:10px;border-left:3px solid var(--azul-neon)}
+.nota .h{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.nota .h .ic{font-size:18px}
+.nota .h .tt{font-family:'Space Grotesk';font-weight:700;font-size:14px}
+.nota .ds{font-size:13px;color:var(--muted);line-height:1.5}
+.nota.warn{border-left-color:var(--warn)}
+.nota.ok{border-left-color:var(--ok)}
+
+footer{padding:30px 0 50px;text-align:center;color:var(--muted);border-top:1px solid var(--glass-bd);margin-top:30px;font-size:11px}
+
+@media print{
+  .bg-fx,.head .nav,.calc-reset{display:none}
+  body{background:#fff;color:#000}
+  .kpi,.dia,.total,.metric,.calc,.nota{background:#fff!important;border:1px solid #ccc!important;color:#000!important}
+  .amar,.azul,.ok,.warn{color:#000!important;-webkit-text-fill-color:#000!important}
+}
+</style>
+</head>
+<body>
+<div class="bg-fx"></div>
+
+<header class="head">
+  <div class="wrap top">
+    <div class="brand"><span class="dt"></span><img src="https://neobagstore.com.br/wp-content/uploads/logo-new-neobag.svg" alt="Neobag"> · METAS FISPAL</div>
+    <div style="font-family:'Space Grotesk';font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">26–29/05 · <b style="color:var(--amarelo)">K50</b> · 6 vendedores</div>
+  </div>
+  <div class="wrap">
+    <div class="nav">
+      <a href="#topo">Visão geral</a>
+      <a href="#dias">Estratégia diária</a>
+      <a href="#metricas">Métricas-chave</a>
+      <a href="#calc">Calculadora</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section class="hero" id="topo">
+  <span class="kick">🎯 Pra o time · meta consolidada</span>
+  <h1>Plano de metas<span class="big">R$ 1,5 MI em 4 dias.</span></h1>
+  <p class="lead">A meta de time da FISPAL é <b>R$ 1.500.000</b> em 4 dias. Quebrada por vendedor, por dia e por ticket — pra cada um saber exatamente onde precisa chegar e em quanto tempo.</p>
+
+  <div class="kpis">
+    <div class="kpi amar">
+      <div class="lb">Meta do time</div>
+      <div class="vl mono">R$ 1,5 MI</div>
+      <div class="sub">6 vendedores · 4 dias</div>
+    </div>
+    <div class="kpi azul">
+      <div class="lb">Meta individual</div>
+      <div class="vl mono">R$ 250 k</div>
+      <div class="sub">R$ 1,5 MI ÷ 6</div>
+    </div>
+    <div class="kpi ok">
+      <div class="lb">Ticket médio mín.</div>
+      <div class="vl mono">R$ 15 k</div>
+      <div class="sub">por venda fechada</div>
+    </div>
+    <div class="kpi warn">
+      <div class="lb">Vendas por vendedor</div>
+      <div class="vl mono">17</div>
+      <div class="sub">distribuídas D1–D4</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ESTRATÉGIA POR DIA ============ -->
+<section class="s" id="dias">
+  <div class="eyebrow">Distribuição alvo por dia</div>
+  <h2>Vendas e valor por dia · por vendedor</h2>
+  <div class="sub">D3 é o dia de pico do plano. D4 mantém o ritmo confiando no follow-up dos dias anteriores. Cada vendedor entrega esse volume.</div>
+
+  <div class="dias">
+    <div class="dia">
+      <div class="d">D1</div>
+      <div class="data">terça · 26/05</div>
+      <div class="vd mono">4</div>
+      <div class="vd-sub">vendas</div>
+      <div class="val mono">R$ 60.000</div>
+      <div class="val-sub">por vendedor</div>
+    </div>
+    <div class="dia">
+      <div class="d">D2</div>
+      <div class="data">quarta · 27/05</div>
+      <div class="vd mono">4</div>
+      <div class="vd-sub">vendas</div>
+      <div class="val mono">R$ 60.000</div>
+      <div class="val-sub">por vendedor</div>
+    </div>
+    <div class="dia peak">
+      <div class="d">D3 · pico</div>
+      <div class="data">quinta · 28/05</div>
+      <div class="vd mono">5</div>
+      <div class="vd-sub">vendas</div>
+      <div class="val mono">R$ 75.000</div>
+      <div class="val-sub">por vendedor</div>
+    </div>
+    <div class="dia">
+      <div class="d">D4</div>
+      <div class="data">sexta · 29/05</div>
+      <div class="vd mono">4</div>
+      <div class="vd-sub">vendas</div>
+      <div class="val mono">R$ 60.000</div>
+      <div class="val-sub">por vendedor</div>
+    </div>
+  </div>
+
+  <div class="total-row">
+    <div class="total">
+      <div><div class="lb">Vendas/vendedor</div><div class="lb-sub">total nos 4 dias</div></div>
+      <div class="vl">17</div>
+    </div>
+    <div class="total">
+      <div><div class="lb">Valor/vendedor</div><div class="lb-sub">17 × R$ 15k</div></div>
+      <div class="vl">R$ 255 k</div>
+    </div>
+    <div class="total">
+      <div><div class="lb">Valor do time</div><div class="lb-sub">6 vendedores</div></div>
+      <div class="vl">R$ 1,53 MI</div>
+    </div>
+  </div>
+
+  <div class="notas">
+    <div class="nota ok">
+      <div class="h"><div class="ic">✅</div><div class="tt">Folga sobre a meta</div></div>
+      <div class="ds">R$ 1,53 MI projetado vs R$ 1,5 MI meta = <b>R$ 30k de folga</b> distribuída. Cobre eventual venda perdida ou ticket abaixo do médio.</div>
+    </div>
+    <div class="nota warn">
+      <div class="h"><div class="ic">📊</div><div class="tt">Premissa do ticket</div></div>
+      <div class="ds">R$ 15k é o <b>ticket médio mínimo</b>. Considera muitas vendas de R$ 10k e algumas de ticket maior. Se o mix subir, supera a meta.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MÉTRICAS-CHAVE ============ -->
+<section class="s" id="metricas">
+  <div class="eyebrow">Métricas operacionais · ritmo da feira</div>
+  <h2>O que cada vendedor precisa entregar</h2>
+  <div class="sub">7 horas por dia · 15 atendimentos · 4-5 vendas. Pra fazer essa conta funcionar, cada métrica abaixo é INNEGOCIÁVEL.</div>
+
+  <div class="kpis-detail">
+    <div class="metric">
+      <div class="info">
+        <div class="nm">⏱️ Tempo por atendimento</div>
+        <div class="ds">7 h × 60 min ÷ 15 atendimentos</div>
+      </div>
+      <div class="vl"><span class="mono">28</span><span class="un">minutos</span></div>
+    </div>
+    <div class="metric">
+      <div class="info">
+        <div class="nm">🎯 Taxa de conversão necessária</div>
+        <div class="ds">17 vendas ÷ 60 atendimentos × 100</div>
+      </div>
+      <div class="vl azul"><span class="mono">28,3</span><span class="un">% · 1 a cada 3,5</span></div>
+    </div>
+    <div class="metric">
+      <div class="info">
+        <div class="nm">👥 Atendimentos por dia</div>
+        <div class="ds">por vendedor · 15 abordagens qualificadas</div>
+      </div>
+      <div class="vl mono">15</div>
+    </div>
+    <div class="metric">
+      <div class="info">
+        <div class="nm">📦 Atendimentos totais na feira</div>
+        <div class="ds">15/dia × 4 dias · por vendedor</div>
+      </div>
+      <div class="vl mono">60</div>
+    </div>
+    <div class="metric">
+      <div class="info">
+        <div class="nm">💰 Valor por dia · vendedor</div>
+        <div class="ds">D1, D2, D4 = R$ 60k · D3 = R$ 75k</div>
+      </div>
+      <div class="vl ok mono">R$ 60–75k</div>
+    </div>
+    <div class="metric">
+      <div class="info">
+        <div class="nm">💰 Valor por dia · time</div>
+        <div class="ds">6 × valor individual do dia</div>
+      </div>
+      <div class="vl ok mono">R$ 360–450k</div>
+    </div>
+  </div>
+
+  <div class="notas" style="margin-top:14px">
+    <div class="nota">
+      <div class="h"><div class="ic">🧠</div><div class="tt">Quebra mental dos 28 minutos</div></div>
+      <div class="ds"><b>5 min</b> qualificação (segmento, volume, decisor) · <b>10 min</b> demo e linha · <b>10 min</b> pitch comercial · <b>3 min</b> fechamento ou próximo passo.</div>
+    </div>
+    <div class="nota warn">
+      <div class="h"><div class="ic">⚡</div><div class="tt">Se travar em 1 cliente</div></div>
+      <div class="ds">Lembra: cada minuto a mais com 1 cliente travado é 1 minuto a menos com outro qualificado. Identifica em 5 min se vale insistir ou passar pro próximo.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CALCULADORA ============ -->
+<section class="s" id="calc">
+  <div class="eyebrow">Pra simular · ajuste o cenário que quiser</div>
+  <h2>Calculadora de metas</h2>
+  <div class="sub">Mude qualquer valor e veja como a conta se ajusta em tempo real. Os números acima são o cenário padrão.</div>
+
+  <div class="calc">
+    <div class="calc-grid">
+      <!-- INPUTS -->
+      <div class="calc-col">
+        <h3>⚙️ Parâmetros</h3>
+
+        <div class="calc-field">
+          <label>Meta do time (R$)</label>
+          <input type="number" id="metaTime" value="1500000" step="50000">
+        </div>
+        <div class="calc-field">
+          <label>Número de vendedores</label>
+          <input type="number" id="vendedores" value="6" min="1" step="1">
+        </div>
+        <div class="calc-field">
+          <label>Ticket médio mínimo (R$)</label>
+          <input type="number" id="ticket" value="15000" step="500">
+        </div>
+        <div class="calc-field">
+          <label>Horas de trabalho/dia</label>
+          <input type="number" id="horas" value="7" step="0.5" min="1">
+        </div>
+        <div class="calc-field">
+          <label>Atendimentos/dia (por vendedor)</label>
+          <input type="number" id="atendimentos" value="15" step="1" min="1">
+        </div>
+
+        <h3 style="margin-top:16px">📅 Vendas por dia (por vendedor)</h3>
+        <div class="calc-row-dia">
+          <div class="calc-mini"><label>D1 ter</label><input type="number" class="dia" id="d1" value="4" min="0"></div>
+          <div class="calc-mini"><label>D2 qua</label><input type="number" class="dia" id="d2" value="4" min="0"></div>
+          <div class="calc-mini"><label>D3 qui</label><input type="number" class="dia" id="d3" value="5" min="0"></div>
+          <div class="calc-mini"><label>D4 sex</label><input type="number" class="dia" id="d4" value="4" min="0"></div>
+        </div>
+
+        <div class="calc-reset">
+          <button onclick="resetCalc()">↺ Restaurar padrão</button>
+        </div>
+      </div>
+
+      <!-- OUTPUTS -->
+      <div class="calc-col">
+        <h3>📊 Resultado</h3>
+
+        <div class="calc-out hilite">
+          <span class="nm">Meta por vendedor</span>
+          <span class="vl" id="o-metaInd">R$ 250.000</span>
+        </div>
+        <div class="calc-out">
+          <span class="nm">Vendas projetadas (por vendedor)</span>
+          <span class="vl" id="o-vendasTotal">17</span>
+        </div>
+        <div class="calc-out">
+          <span class="nm">Valor projetado por vendedor</span>
+          <span class="vl" id="o-valorInd">R$ 255.000</span>
+        </div>
+        <div class="calc-out hilite">
+          <span class="nm">Valor projetado do TIME</span>
+          <span class="vl" id="o-valorTime">R$ 1.530.000</span>
+        </div>
+        <div class="calc-out status">
+          <span class="nm">Cobre a meta?</span>
+          <span class="vl" id="o-statusMeta">✓ +R$ 30.000</span>
+        </div>
+
+        <h3 style="margin-top:14px">⏱️ Operacional</h3>
+
+        <div class="calc-out">
+          <span class="nm">Tempo por atendimento</span>
+          <span class="vl" id="o-tempo">28 min</span>
+        </div>
+        <div class="calc-out">
+          <span class="nm">Atendimentos totais (por vendedor)</span>
+          <span class="vl" id="o-atTotal">60</span>
+        </div>
+        <div class="calc-out">
+          <span class="nm">Taxa de conversão necessária</span>
+          <span class="vl" id="o-conv">28,3 %</span>
+        </div>
+
+        <h3 style="margin-top:14px">💰 Valor por dia · time</h3>
+
+        <div class="calc-out">
+          <span class="nm">D1 · terça</span>
+          <span class="vl" id="o-d1">R$ 360.000</span>
+        </div>
+        <div class="calc-out">
+          <span class="nm">D2 · quarta</span>
+          <span class="vl" id="o-d2">R$ 360.000</span>
+        </div>
+        <div class="calc-out">
+          <span class="nm">D3 · quinta · pico</span>
+          <span class="vl" id="o-d3">R$ 450.000</span>
+        </div>
+        <div class="calc-out">
+          <span class="nm">D4 · sexta</span>
+          <span class="vl" id="o-d4">R$ 360.000</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div>NEOBAG · Plano de Metas FISPAL · 26–29/05/2026 · K50</div>
+  <div style="margin-top:6px">Premissa de cálculo: 7h de trabalho/dia · 15 atendimentos/dia · ticket médio mín. R$ 15k · D3 é o dia de pico</div>
+</footer>
+
+<script>
+const fmtBRL = n => "R$ " + Math.round(n||0).toLocaleString("pt-BR");
+const fmtNum = n => Number(n||0).toLocaleString("pt-BR", {maximumFractionDigits:1});
+
+const ids = ["metaTime","vendedores","ticket","horas","atendimentos","d1","d2","d3","d4"];
+const defaults = {metaTime:1500000, vendedores:6, ticket:15000, horas:7, atendimentos:15, d1:4, d2:4, d3:5, d4:4};
+
+function getVals(){
+  const v = {};
+  ids.forEach(id => v[id] = Number(document.getElementById(id).value)||0);
+  return v;
+}
+
+function recalc(){
+  const v = getVals();
+  const metaInd = v.vendedores > 0 ? v.metaTime / v.vendedores : 0;
+  const vendasTotal = v.d1 + v.d2 + v.d3 + v.d4;
+  const valorInd = vendasTotal * v.ticket;
+  const valorTime = valorInd * v.vendedores;
+  const diff = valorTime - v.metaTime;
+  const atTotal = v.atendimentos * 4;
+  const tempo = v.atendimentos > 0 ? (v.horas * 60) / v.atendimentos : 0;
+  const conv = atTotal > 0 ? (vendasTotal / atTotal) * 100 : 0;
+
+  document.getElementById("o-metaInd").textContent = fmtBRL(metaInd);
+  document.getElementById("o-vendasTotal").textContent = vendasTotal;
+  document.getElementById("o-valorInd").textContent = fmtBRL(valorInd);
+  document.getElementById("o-valorTime").textContent = fmtBRL(valorTime);
+
+  const status = document.getElementById("o-statusMeta");
+  if(diff >= 0){
+    status.textContent = "✓ +" + fmtBRL(diff) + " de folga";
+    status.className = "vl ok";
+  }else{
+    status.textContent = "✗ Faltam " + fmtBRL(Math.abs(diff));
+    status.className = "vl err";
+  }
+
+  document.getElementById("o-tempo").textContent = fmtNum(tempo) + " min";
+  document.getElementById("o-atTotal").textContent = atTotal;
+  document.getElementById("o-conv").textContent = fmtNum(conv) + " %";
+
+  document.getElementById("o-d1").textContent = fmtBRL(v.d1 * v.ticket * v.vendedores);
+  document.getElementById("o-d2").textContent = fmtBRL(v.d2 * v.ticket * v.vendedores);
+  document.getElementById("o-d3").textContent = fmtBRL(v.d3 * v.ticket * v.vendedores);
+  document.getElementById("o-d4").textContent = fmtBRL(v.d4 * v.ticket * v.vendedores);
+
+  // persiste
+  ids.forEach(id => localStorage.setItem("fispal_metas_"+id, document.getElementById(id).value));
+}
+
+function loadSaved(){
+  ids.forEach(id => {
+    const saved = localStorage.getItem("fispal_metas_"+id);
+    if(saved !== null) document.getElementById(id).value = saved;
+  });
+}
+
+function resetCalc(){
+  ids.forEach(id => document.getElementById(id).value = defaults[id]);
+  recalc();
+}
+
+ids.forEach(id => document.getElementById(id).addEventListener("input", recalc));
+loadSaved();
+recalc();
+</script>
+</body>
+</html>
