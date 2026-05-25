@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Neobag · Minha Calculadora FISPAL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Sora:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --azul:#008afa;--azul-neon:#28a0ff;--amarelo:#ffc72c;
+  --bg:#03070f;--bg2:#061328;--txt:#eaf2ff;--muted:#9fb6d4;
+  --glass:rgba(255,255,255,.06);--glass-bd:rgba(120,180,255,.18);
+  --ok:#4ade80;--warn:#ffb547;--err:#ff6b6b;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Sora',-apple-system,sans-serif;background:var(--bg);color:var(--txt);line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-.02em;line-height:1.05;font-weight:700}
+.wrap{max-width:880px;margin:0 auto;padding:0 18px}
+.amar{color:var(--amarelo)}.azul{color:var(--azul-neon)}.ok{color:var(--ok)}.warn{color:var(--warn)}.err{color:var(--err)}
+.mono{font-variant-numeric:tabular-nums}
+
+.bg-fx{position:fixed;inset:0;z-index:-2;background:
+  radial-gradient(900px 500px at 80% -10%,rgba(0,138,250,.22),transparent 60%),
+  radial-gradient(700px 400px at 0% 100%,rgba(255,199,44,.10),transparent 55%),var(--bg)}
+
+.head{padding:14px 0;border-bottom:1px solid var(--glass-bd);position:sticky;top:0;z-index:10;backdrop-filter:blur(14px);background:rgba(3,7,15,.9)}
+.head .top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.head .brand{font-family:'Space Grotesk';font-weight:700;font-size:15px;display:flex;align-items:center;gap:8px}
+.head .brand img{height:18px;filter:brightness(0) invert(1);vertical-align:middle}
+.head .brand .dt{width:8px;height:8px;border-radius:50%;background:var(--amarelo);box-shadow:0 0 8px var(--amarelo);animation:p 1.8s infinite}
+@keyframes p{0%,100%{opacity:1}50%{opacity:.4}}
+.head .back{font-family:'Space Grotesk';font-size:12px;color:var(--muted);text-decoration:none;padding:6px 12px;border-radius:8px;border:1px solid var(--glass-bd)}
+.head .back:hover{color:var(--txt);border-color:var(--azul-neon)}
+
+/* HERO COMPACTO */
+.hero{padding:20px 0 14px}
+.hero h1{font-size:clamp(26px,4vw,38px);margin-bottom:6px}
+.hero .lead{font-size:14px;color:var(--muted);max-width:620px}
+
+/* NAME INPUT · BIG */
+.name-bx{margin-top:16px;padding:16px 18px;background:linear-gradient(135deg,rgba(40,160,255,.10),rgba(255,199,44,.04));border:1px solid var(--glass-bd);border-radius:12px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.name-bx label{font-family:'Space Grotesk';font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--azul-neon);font-weight:600}
+.name-bx input{flex:1;min-width:200px;padding:10px 14px;background:var(--bg2);border:1px solid var(--glass-bd);border-radius:8px;color:var(--txt);font-family:'Space Grotesk';font-weight:700;font-size:18px}
+.name-bx input:focus{outline:none;border-color:var(--azul-neon);background:rgba(40,160,255,.06)}
+.name-bx .greet{font-family:'Space Grotesk';font-weight:700;font-size:18px;color:var(--amarelo)}
+
+/* STATUS BAR · grande, sempre visível */
+.status-bar{margin-top:14px;padding:22px;background:var(--glass);border:1px solid var(--glass-bd);border-radius:14px;text-align:center;transition:.3s}
+.status-bar.ok{background:linear-gradient(135deg,rgba(74,222,128,.14),rgba(74,222,128,.04));border-color:var(--ok)}
+.status-bar.warn{background:linear-gradient(135deg,rgba(255,181,71,.14),rgba(255,181,71,.04));border-color:var(--warn)}
+.status-bar.err{background:linear-gradient(135deg,rgba(255,107,107,.14),rgba(255,107,107,.04));border-color:var(--err)}
+.status-bar .label{font-family:'Space Grotesk';font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:8px}
+.status-bar .big{font-family:'Space Grotesk';font-weight:700;font-size:clamp(30px,5.5vw,46px);line-height:1;letter-spacing:-.02em}
+.status-bar .sub{font-size:14px;color:var(--muted);margin-top:6px}
+.status-bar .prog{margin-top:14px;height:10px;background:rgba(3,7,15,.5);border-radius:999px;overflow:hidden}
+.status-bar .prog > div{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--azul),var(--amarelo));transition:width .5s cubic-bezier(.2,.8,.2,1)}
+.status-bar.ok .prog > div{background:var(--ok)}
+.status-bar.warn .prog > div{background:var(--warn)}
+.status-bar.err .prog > div{background:var(--err)}
+
+/* SEÇÕES */
+section.s{padding:22px 0;border-top:1px solid var(--glass-bd);margin-top:22px}
+section.s .eyebrow{font-family:'Space Grotesk';font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--azul-neon);font-weight:600;margin-bottom:4px}
+section.s h2{font-size:20px;margin-bottom:6px}
+section.s .sub{font-size:13px;color:var(--muted);margin-bottom:14px}
+
+/* FIELDS · planejamento */
+.fields{background:var(--glass);border:1px solid var(--glass-bd);border-radius:12px;padding:16px 18px}
+.field-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--glass-bd)}
+.field-row:last-child{border-bottom:none}
+.field-row label{font-size:13px;color:var(--muted);flex:1}
+.field-row input{width:130px;padding:8px 12px;background:var(--bg2);border:1px solid var(--glass-bd);border-radius:8px;color:var(--txt);font-family:'Space Grotesk';font-weight:700;font-size:14px;text-align:right;font-variant-numeric:tabular-nums}
+.field-row input:focus{outline:none;border-color:var(--azul-neon);background:rgba(40,160,255,.06)}
+
+/* TABELA DE DIAS · planejado vs realizado */
+.dia-table{margin-top:12px;background:var(--glass);border:1px solid var(--glass-bd);border-radius:12px;overflow:hidden}
+.dia-table .hdr{display:grid;grid-template-columns:80px 1fr 1fr 1fr;gap:6px;padding:10px 14px;background:rgba(3,7,15,.4);font-family:'Space Grotesk';font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.dia-table .hdr > div:not(:first-child){text-align:center}
+.dia-table .row{display:grid;grid-template-columns:80px 1fr 1fr 1fr;gap:6px;padding:10px 14px;border-top:1px solid rgba(120,180,255,.07);align-items:center}
+.dia-table .row.peak{background:rgba(255,199,44,.04)}
+.dia-table .row .d-lbl{font-family:'Space Grotesk';font-weight:700;font-size:13px}
+.dia-table .row .d-lbl .data{display:block;font-size:10px;color:var(--muted);font-weight:400;letter-spacing:.06em;text-transform:uppercase}
+.dia-table .row input{width:100%;padding:6px 8px;background:var(--bg2);border:1px solid var(--glass-bd);border-radius:6px;color:var(--txt);font-family:'Space Grotesk';font-weight:700;font-size:13px;text-align:center;font-variant-numeric:tabular-nums}
+.dia-table .row input:focus{outline:none;border-color:var(--azul-neon);background:rgba(40,160,255,.06)}
+.dia-table .row input.real{background:rgba(74,222,128,.06);border-color:rgba(74,222,128,.3)}
+.dia-table .row input.real:focus{background:rgba(74,222,128,.10);border-color:var(--ok)}
+.dia-table .row .val-out{font-family:'Space Grotesk';font-weight:700;font-size:13px;text-align:center;color:var(--amarelo);font-variant-numeric:tabular-nums}
+
+/* OUTPUTS · 2 colunas */
+.outs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+@media(max-width:600px){.outs{grid-template-columns:1fr}}
+.out{padding:14px 16px;background:var(--glass);border:1px solid var(--glass-bd);border-radius:10px}
+.out .lb{font-family:'Space Grotesk';font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:4px}
+.out .vl{font-family:'Space Grotesk';font-weight:700;font-size:22px;line-height:1;color:var(--amarelo);font-variant-numeric:tabular-nums}
+.out .sub{font-size:11px;color:var(--muted);margin-top:4px}
+.out.ok .vl{color:var(--ok)}
+.out.warn .vl{color:var(--warn)}
+.out.err .vl{color:var(--err)}
+.out.azul .vl{color:var(--azul-neon)}
+
+/* NEXT ACTION · destaque do que fazer agora */
+.action-bx{margin-top:14px;padding:18px 22px;background:linear-gradient(135deg,rgba(255,199,44,.14),rgba(40,160,255,.04));border:1px solid var(--amarelo);border-radius:12px}
+.action-bx .h{font-family:'Space Grotesk';font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--amarelo);font-weight:600;margin-bottom:8px}
+.action-bx .body{font-family:'Space Grotesk';font-weight:700;font-size:17px;line-height:1.35}
+.action-bx .body .num{color:var(--amarelo);font-size:22px}
+
+/* RESET */
+.reset-row{margin-top:18px;text-align:center}
+.reset-row button{padding:8px 18px;background:transparent;color:var(--muted);border:1px solid var(--glass-bd);border-radius:8px;font-family:'Space Grotesk';font-weight:500;font-size:12px;cursor:pointer}
+.reset-row button:hover{color:var(--err);border-color:var(--err)}
+
+footer{padding:24px 0 50px;text-align:center;color:var(--muted);border-top:1px solid var(--glass-bd);margin-top:24px;font-size:11px}
+
+/* mini-tip */
+.tip{margin-top:8px;font-size:12px;color:var(--muted);font-style:italic}
+.tip b{color:var(--azul-neon);font-style:normal}
+</style>
+</head>
+<body>
+<div class="bg-fx"></div>
+
+<header class="head">
+  <div class="wrap top">
+    <div class="brand"><span class="dt"></span><img src="https://neobagstore.com.br/wp-content/uploads/logo-new-neobag.svg" alt="Neobag"> · MINHA CALCULADORA</div>
+    <a class="back" href="../">← Apresentação geral</a>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section class="hero">
+  <h1>Sua meta · seu acompanhamento.</h1>
+  <p class="lead">Configure o seu plano de feira, atualize as vendas e o valor a cada dia, veja a meta avançando em tempo real. Os números ficam salvos no seu celular automaticamente — só você acessa.</p>
+
+  <div class="name-bx">
+    <label>EU SOU</label>
+    <input type="text" id="vendedor-nome" placeholder="Seu nome aqui">
+    <span class="greet" id="greet">👋</span>
+  </div>
+</section>
+
+<!-- ============ STATUS BAR · destaque do progresso ============ -->
+<div class="status-bar" id="status-bar">
+  <div class="label" id="s-label">Meta individual</div>
+  <div class="big mono" id="s-big">R$ 0 / R$ 250.000</div>
+  <div class="sub" id="s-sub">configure abaixo pra começar</div>
+  <div class="prog"><div id="s-prog" style="width:0%"></div></div>
+</div>
+
+<!-- ============ PLANO ============ -->
+<section class="s">
+  <div class="eyebrow">Passo 1 · planejamento</div>
+  <h2>Seu plano de feira</h2>
+  <div class="sub">Ajuste se precisar. O padrão segue a meta consolidada do time (R$ 250k por vendedor).</div>
+
+  <div class="fields">
+    <div class="field-row">
+      <label>Minha meta individual (R$)</label>
+      <input type="number" id="meta" value="250000" step="5000">
+    </div>
+    <div class="field-row">
+      <label>Ticket médio mínimo (R$)</label>
+      <input type="number" id="ticket" value="15000" step="500">
+    </div>
+    <div class="field-row">
+      <label>Horas de trabalho por dia</label>
+      <input type="number" id="horas" value="7" step="0.5" min="1">
+    </div>
+    <div class="field-row">
+      <label>Atendimentos planejados por dia</label>
+      <input type="number" id="atendimentos" value="15" step="1" min="1">
+    </div>
+  </div>
+
+  <div class="outs">
+    <div class="out"><div class="lb">Vendas necessárias</div><div class="vl mono" id="o-vendasNec">17</div><div class="sub">meta ÷ ticket médio</div></div>
+    <div class="out azul"><div class="lb">Tempo por atendimento</div><div class="vl mono" id="o-tempo">28 min</div><div class="sub">7h × 60 ÷ atend/dia</div></div>
+    <div class="out azul"><div class="lb">Conversão necessária</div><div class="vl mono" id="o-conv">28,3 %</div><div class="sub">vendas ÷ atendimentos</div></div>
+    <div class="out"><div class="lb">Atendimentos totais</div><div class="vl mono" id="o-atTotal">60</div><div class="sub">atend/dia × 4 dias</div></div>
+  </div>
+</section>
+
+<!-- ============ DIA A DIA ============ -->
+<section class="s">
+  <div class="eyebrow">Passo 2 · dia a dia</div>
+  <h2>Planejado vs realizado</h2>
+  <div class="sub">A coluna <b style="color:var(--azul-neon)">azul</b> é o seu plano (quantas vendas pretende fazer). As colunas <b style="color:var(--ok)">verdes</b> são o que você de fato fez. Atualize ao longo da feira.</div>
+
+  <div class="dia-table">
+    <div class="hdr">
+      <div>Dia</div>
+      <div>Plano vendas</div>
+      <div style="color:var(--ok)">Vendas reais</div>
+      <div style="color:var(--ok)">R$ real do dia</div>
+    </div>
+    <div class="row">
+      <div class="d-lbl">D1<span class="data">ter 26/05</span></div>
+      <div><input type="number" id="p-d1" value="4" min="0"></div>
+      <div><input type="number" class="real" id="r-d1" value="0" min="0"></div>
+      <div><input type="number" class="real" id="rv-d1" value="0" min="0" step="500"></div>
+    </div>
+    <div class="row">
+      <div class="d-lbl">D2<span class="data">qua 27/05</span></div>
+      <div><input type="number" id="p-d2" value="4" min="0"></div>
+      <div><input type="number" class="real" id="r-d2" value="0" min="0"></div>
+      <div><input type="number" class="real" id="rv-d2" value="0" min="0" step="500"></div>
+    </div>
+    <div class="row peak">
+      <div class="d-lbl">D3 · pico<span class="data">qui 28/05</span></div>
+      <div><input type="number" id="p-d3" value="5" min="0"></div>
+      <div><input type="number" class="real" id="r-d3" value="0" min="0"></div>
+      <div><input type="number" class="real" id="rv-d3" value="0" min="0" step="500"></div>
+    </div>
+    <div class="row">
+      <div class="d-lbl">D4<span class="data">sex 29/05</span></div>
+      <div><input type="number" id="p-d4" value="4" min="0"></div>
+      <div><input type="number" class="real" id="r-d4" value="0" min="0"></div>
+      <div><input type="number" class="real" id="rv-d4" value="0" min="0" step="500"></div>
+    </div>
+  </div>
+
+  <p class="tip">💡 <b>Dica:</b> abre essa calculadora no celular. Cada vez que fechar uma venda, atualize aqui — vai ver a meta caminhando em tempo real.</p>
+</section>
+
+<!-- ============ ACOMPANHAMENTO REAL ============ -->
+<section class="s">
+  <div class="eyebrow">Passo 3 · onde você está</div>
+  <h2>Seus números reais</h2>
+  <div class="sub">Calculado automaticamente conforme você preenche o que JÁ fez.</div>
+
+  <div class="outs">
+    <div class="out ok"><div class="lb">Já fechei (R$)</div><div class="vl mono" id="o-realValor">R$ 0</div><div class="sub" id="o-realPct">0 % da meta</div></div>
+    <div class="out ok"><div class="lb">Vendas já feitas</div><div class="vl mono" id="o-realVendas">0</div><div class="sub" id="o-realResta">faltam 17 vendas</div></div>
+    <div class="out"><div class="lb">Ticket médio real</div><div class="vl mono" id="o-ticketReal">—</div><div class="sub">valor real ÷ vendas reais</div></div>
+    <div class="out"><div class="lb">Falta pra meta</div><div class="vl mono err" id="o-falta">R$ 250.000</div><div class="sub">meta − realizado</div></div>
+  </div>
+
+  <div class="action-bx" id="action-box">
+    <div class="h">🎯 sua próxima ação</div>
+    <div class="body" id="action-body">Configure o plano acima pra começar.</div>
+  </div>
+</section>
+
+<!-- ============ PROJEÇÃO ============ -->
+<section class="s">
+  <div class="eyebrow">Passo 4 · até onde você chega no ritmo atual</div>
+  <h2>Projeção fim da feira</h2>
+  <div class="sub">Se você mantiver o ritmo médio que vem fazendo, onde termina?</div>
+
+  <div class="outs">
+    <div class="out azul"><div class="lb">Projeção final (R$)</div><div class="vl mono" id="o-projecao">R$ 0</div><div class="sub" id="o-projecaoSub">precisa preencher pelo menos D1</div></div>
+    <div class="out"><div class="lb">Vendas no ritmo</div><div class="vl mono" id="o-vendasProj">0</div><div class="sub">projeção 4 dias</div></div>
+  </div>
+
+  <div class="reset-row">
+    <button onclick="resetTudo()">↺ Zerar tudo (vou planejar de novo)</button>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div>NEOBAG · Calculadora individual · FISPAL 2026 · 26–29/05</div>
+  <div style="margin-top:6px">Tudo é salvo automaticamente no seu celular · só você vê</div>
+</footer>
+
+<script>
+const fmtBRL = n => "R$ " + Math.round(n||0).toLocaleString("pt-BR");
+const fmtNum = n => Number(n||0).toLocaleString("pt-BR", {maximumFractionDigits:1});
+
+const ids = ["vendedor-nome","meta","ticket","horas","atendimentos","p-d1","p-d2","p-d3","p-d4","r-d1","r-d2","r-d3","r-d4","rv-d1","rv-d2","rv-d3","rv-d4"];
+const defaults = {"vendedor-nome":"","meta":250000,"ticket":15000,"horas":7,"atendimentos":15,"p-d1":4,"p-d2":4,"p-d3":5,"p-d4":4,"r-d1":0,"r-d2":0,"r-d3":0,"r-d4":0,"rv-d1":0,"rv-d2":0,"rv-d3":0,"rv-d4":0};
+
+function v(id){
+  const el = document.getElementById(id);
+  if(el.type === "text") return el.value.trim();
+  return Number(el.value)||0;
+}
+
+function diaPlanejado(){
+  // Quantos dias já foram preenchidos (têm vendas reais > 0)?
+  const dias = ["d1","d2","d3","d4"];
+  let preenchidos = 0;
+  for(const d of dias){
+    if(v("r-"+d) > 0 || v("rv-"+d) > 0) preenchidos++;
+  }
+  return preenchidos;
+}
+
+function recalc(){
+  const nome = v("vendedor-nome");
+  document.getElementById("greet").textContent = nome ? `bora, ${nome.split(" ")[0]}! 💪` : "👋";
+
+  const meta = v("meta");
+  const ticket = v("ticket");
+  const horas = v("horas");
+  const atendimentos = v("atendimentos");
+
+  // PLANO
+  const vendasNec = ticket > 0 ? Math.ceil(meta / ticket) : 0;
+  const atTotal = atendimentos * 4;
+  const tempo = atendimentos > 0 ? (horas * 60) / atendimentos : 0;
+  const conv = atTotal > 0 ? (vendasNec / atTotal) * 100 : 0;
+
+  document.getElementById("o-vendasNec").textContent = vendasNec;
+  document.getElementById("o-tempo").textContent = fmtNum(tempo) + " min";
+  document.getElementById("o-conv").textContent = fmtNum(conv) + " %";
+  document.getElementById("o-atTotal").textContent = atTotal;
+
+  // REAL
+  const realVendas = v("r-d1") + v("r-d2") + v("r-d3") + v("r-d4");
+  const realValor = v("rv-d1") + v("rv-d2") + v("rv-d3") + v("rv-d4");
+  const realPct = meta > 0 ? (realValor / meta) * 100 : 0;
+  const ticketReal = realVendas > 0 ? realValor / realVendas : 0;
+  const falta = meta - realValor;
+  const vendasFalta = Math.max(0, vendasNec - realVendas);
+
+  document.getElementById("o-realValor").textContent = fmtBRL(realValor);
+  document.getElementById("o-realPct").textContent = fmtNum(realPct) + " % da meta";
+  document.getElementById("o-realVendas").textContent = realVendas;
+  document.getElementById("o-realResta").textContent = vendasFalta > 0 ? `faltam ${vendasFalta} vendas` : "✓ meta de vendas atingida";
+  document.getElementById("o-ticketReal").textContent = ticketReal > 0 ? fmtBRL(ticketReal) : "—";
+  document.getElementById("o-falta").textContent = falta > 0 ? fmtBRL(falta) : "✓ meta batida!";
+
+  // STATUS BAR
+  const sBar = document.getElementById("status-bar");
+  document.getElementById("s-big").textContent = fmtBRL(realValor) + " / " + fmtBRL(meta);
+  document.getElementById("s-prog").style.width = Math.min(100, realPct) + "%";
+  if(realPct >= 100){
+    sBar.className = "status-bar ok";
+    document.getElementById("s-label").textContent = "🎉 Meta atingida!";
+    document.getElementById("s-sub").textContent = "Parabéns. Cada venda agora é folga · top 1 individual está em jogo.";
+  }else if(realPct >= 75){
+    sBar.className = "status-bar ok";
+    document.getElementById("s-label").textContent = "no ritmo · faltam " + fmtNum(100-realPct) + "%";
+    document.getElementById("s-sub").textContent = "Você está perto. Continua firme.";
+  }else if(realPct >= 50){
+    sBar.className = "status-bar warn";
+    document.getElementById("s-label").textContent = "no caminho · " + fmtNum(realPct) + "% feito";
+    document.getElementById("s-sub").textContent = "Mais da metade já foi. Ritmo bom.";
+  }else if(realPct > 0){
+    sBar.className = "status-bar warn";
+    document.getElementById("s-label").textContent = "começando · " + fmtNum(realPct) + "%";
+    document.getElementById("s-sub").textContent = "Cada venda agora vale muito. Vai com tudo.";
+  }else{
+    sBar.className = "status-bar";
+    document.getElementById("s-label").textContent = "Meta individual";
+    document.getElementById("s-sub").textContent = "preencha o real do dia pra ver o progresso";
+  }
+
+  // PROJEÇÃO
+  const diasFeitos = diaPlanejado();
+  let projecao = 0, vendasProj = 0;
+  if(diasFeitos > 0){
+    const mediaValorDia = realValor / diasFeitos;
+    const mediaVendasDia = realVendas / diasFeitos;
+    projecao = mediaValorDia * 4;
+    vendasProj = Math.round(mediaVendasDia * 4);
+  }
+  document.getElementById("o-projecao").textContent = fmtBRL(projecao);
+  document.getElementById("o-vendasProj").textContent = vendasProj;
+  const projDiff = projecao - meta;
+  if(diasFeitos === 0){
+    document.getElementById("o-projecaoSub").textContent = "preencha pelo menos D1 pra ver";
+  }else if(projDiff >= 0){
+    document.getElementById("o-projecaoSub").textContent = `✓ supera meta em ${fmtBRL(projDiff)}`;
+  }else{
+    document.getElementById("o-projecaoSub").textContent = `✗ ${fmtBRL(Math.abs(projDiff))} abaixo da meta · acelera`;
+  }
+
+  // PRÓXIMA AÇÃO
+  const actionBody = document.getElementById("action-body");
+  if(realPct >= 100){
+    actionBody.innerHTML = `Meta batida. <span class="num">Cada venda extra</span> é folga + pontos pro top 1 individual.`;
+  }else if(vendasFalta > 0 && ticket > 0){
+    const valorFalta = falta;
+    const diasRestantes = Math.max(1, 4 - diasFeitos);
+    const ritmoNecessario = Math.ceil(vendasFalta / diasRestantes);
+    if(diasFeitos === 0){
+      actionBody.innerHTML = `Pra bater os R$ ${(meta/1000).toFixed(0)}k em 4 dias, você precisa fechar em média <span class="num">${Math.ceil(vendasNec/4)} vendas/dia</span> de R$ ${(ticket/1000).toFixed(0)}k.`;
+    }else if(diasRestantes > 0){
+      actionBody.innerHTML = `Faltam <span class="num">${fmtBRL(valorFalta)}</span> em ${diasRestantes} ${diasRestantes===1?"dia":"dias"} · <span class="num">${ritmoNecessario} venda${ritmoNecessario===1?"":"s"}/dia</span> de ~R$ ${(ticket/1000).toFixed(0)}k.`;
+    }else{
+      actionBody.innerHTML = `A feira acabou. Você fechou <span class="num">${fmtBRL(realValor)}</span>${falta>0?` · faltaram ${fmtBRL(falta)}`:` · superou a meta`}.`;
+    }
+  }else{
+    actionBody.innerHTML = `Configure o plano acima pra começar.`;
+  }
+
+  // PERSISTE
+  ids.forEach(id => localStorage.setItem("fispal_calc_"+id, document.getElementById(id).value));
+}
+
+function loadSaved(){
+  ids.forEach(id => {
+    const saved = localStorage.getItem("fispal_calc_"+id);
+    if(saved !== null) document.getElementById(id).value = saved;
+  });
+}
+
+function resetTudo(){
+  if(!confirm("Zerar tudo? Vai apagar seu plano e os reais já lançados.")) return;
+  ids.forEach(id => document.getElementById(id).value = defaults[id]);
+  recalc();
+}
+
+ids.forEach(id => document.getElementById(id).addEventListener("input", recalc));
+loadSaved();
+recalc();
+</script>
+</body>
+</html>

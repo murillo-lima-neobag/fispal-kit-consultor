@@ -157,7 +157,7 @@ footer{padding:30px 0 50px;text-align:center;color:var(--muted);border-top:1px s
       <a href="#topo">Visão geral</a>
       <a href="#dias">Estratégia diária</a>
       <a href="#metricas">Métricas-chave</a>
-      <a href="#calc">Calculadora</a>
+      <a href="calculadora/" style="color:var(--amarelo);background:rgba(255,199,44,.08)">🧮 Calculadora individual →</a>
     </div>
   </div>
 </header>
@@ -324,112 +324,18 @@ footer{padding:30px 0 50px;text-align:center;color:var(--muted);border-top:1px s
   </div>
 </section>
 
-<!-- ============ CALCULADORA ============ -->
-<section class="s" id="calc">
-  <div class="eyebrow">Pra simular · ajuste o cenário que quiser</div>
-  <h2>Calculadora de metas</h2>
-  <div class="sub">Mude qualquer valor e veja como a conta se ajusta em tempo real. Os números acima são o cenário padrão.</div>
+<!-- ============ CTA PRA CALCULADORA INDIVIDUAL ============ -->
+<section class="s" id="cta">
+  <div class="eyebrow">Cada vendedor: ferramenta própria</div>
+  <h2>Sua calculadora pessoal de meta</h2>
+  <div class="sub">Cada vendedor tem agora uma calculadora individual pra planejar a meta de R$ 250k e acompanhar o próprio rendimento dia a dia. Salva tudo no celular dele — abre, atualiza durante a feira, vê quanto falta.</div>
 
-  <div class="calc">
-    <div class="calc-grid">
-      <!-- INPUTS -->
-      <div class="calc-col">
-        <h3>⚙️ Parâmetros</h3>
-
-        <div class="calc-field">
-          <label>Meta do time (R$)</label>
-          <input type="number" id="metaTime" value="1500000" step="50000">
-        </div>
-        <div class="calc-field">
-          <label>Número de vendedores</label>
-          <input type="number" id="vendedores" value="6" min="1" step="1">
-        </div>
-        <div class="calc-field">
-          <label>Ticket médio mínimo (R$)</label>
-          <input type="number" id="ticket" value="15000" step="500">
-        </div>
-        <div class="calc-field">
-          <label>Horas de trabalho/dia</label>
-          <input type="number" id="horas" value="7" step="0.5" min="1">
-        </div>
-        <div class="calc-field">
-          <label>Atendimentos/dia (por vendedor)</label>
-          <input type="number" id="atendimentos" value="15" step="1" min="1">
-        </div>
-
-        <h3 style="margin-top:16px">📅 Vendas por dia (por vendedor)</h3>
-        <div class="calc-row-dia">
-          <div class="calc-mini"><label>D1 ter</label><input type="number" class="dia" id="d1" value="4" min="0"></div>
-          <div class="calc-mini"><label>D2 qua</label><input type="number" class="dia" id="d2" value="4" min="0"></div>
-          <div class="calc-mini"><label>D3 qui</label><input type="number" class="dia" id="d3" value="5" min="0"></div>
-          <div class="calc-mini"><label>D4 sex</label><input type="number" class="dia" id="d4" value="4" min="0"></div>
-        </div>
-
-        <div class="calc-reset">
-          <button onclick="resetCalc()">↺ Restaurar padrão</button>
-        </div>
-      </div>
-
-      <!-- OUTPUTS -->
-      <div class="calc-col">
-        <h3>📊 Resultado</h3>
-
-        <div class="calc-out hilite">
-          <span class="nm">Meta por vendedor</span>
-          <span class="vl" id="o-metaInd">R$ 250.000</span>
-        </div>
-        <div class="calc-out">
-          <span class="nm">Vendas projetadas (por vendedor)</span>
-          <span class="vl" id="o-vendasTotal">17</span>
-        </div>
-        <div class="calc-out">
-          <span class="nm">Valor projetado por vendedor</span>
-          <span class="vl" id="o-valorInd">R$ 255.000</span>
-        </div>
-        <div class="calc-out hilite">
-          <span class="nm">Valor projetado do TIME</span>
-          <span class="vl" id="o-valorTime">R$ 1.530.000</span>
-        </div>
-        <div class="calc-out status">
-          <span class="nm">Cobre a meta?</span>
-          <span class="vl" id="o-statusMeta">✓ +R$ 30.000</span>
-        </div>
-
-        <h3 style="margin-top:14px">⏱️ Operacional</h3>
-
-        <div class="calc-out">
-          <span class="nm">Tempo por atendimento</span>
-          <span class="vl" id="o-tempo">28 min</span>
-        </div>
-        <div class="calc-out">
-          <span class="nm">Atendimentos totais (por vendedor)</span>
-          <span class="vl" id="o-atTotal">60</span>
-        </div>
-        <div class="calc-out">
-          <span class="nm">Taxa de conversão necessária</span>
-          <span class="vl" id="o-conv">28,3 %</span>
-        </div>
-
-        <h3 style="margin-top:14px">💰 Valor por dia · time</h3>
-
-        <div class="calc-out">
-          <span class="nm">D1 · terça</span>
-          <span class="vl" id="o-d1">R$ 360.000</span>
-        </div>
-        <div class="calc-out">
-          <span class="nm">D2 · quarta</span>
-          <span class="vl" id="o-d2">R$ 360.000</span>
-        </div>
-        <div class="calc-out">
-          <span class="nm">D3 · quinta · pico</span>
-          <span class="vl" id="o-d3">R$ 450.000</span>
-        </div>
-        <div class="calc-out">
-          <span class="nm">D4 · sexta</span>
-          <span class="vl" id="o-d4">R$ 360.000</span>
-        </div>
-      </div>
+  <div style="margin-top:18px;padding:24px;background:linear-gradient(135deg,rgba(0,138,250,.14),rgba(255,199,44,.10));border:1px solid var(--amarelo);border-radius:14px;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap">
+    <div>
+      <div style="font-family:'Space Grotesk';font-weight:700;font-size:22px;margin-bottom:6px">🧮 Calculadora individual</div>
+      <div style="color:var(--muted);font-size:14px;max-width:520px">Planejamento da própria meta · acompanhamento de vendas e valor durante a feira · projeção em tempo real · salva no celular automaticamente.</div>
     </div>
+    <a href="calculadora/" style="padding:14px 24px;background:var(--amarelo);color:#000;border-radius:10px;text-decoration:none;font-family:'Space Grotesk';font-weight:700;font-size:14px;letter-spacing:.04em">ABRIR A MINHA →</a>
   </div>
 </section>
 
@@ -440,72 +346,5 @@ footer{padding:30px 0 50px;text-align:center;color:var(--muted);border-top:1px s
   <div style="margin-top:6px">Premissa de cálculo: 7h de trabalho/dia · 15 atendimentos/dia · ticket médio mín. R$ 15k · D3 é o dia de pico</div>
 </footer>
 
-<script>
-const fmtBRL = n => "R$ " + Math.round(n||0).toLocaleString("pt-BR");
-const fmtNum = n => Number(n||0).toLocaleString("pt-BR", {maximumFractionDigits:1});
-
-const ids = ["metaTime","vendedores","ticket","horas","atendimentos","d1","d2","d3","d4"];
-const defaults = {metaTime:1500000, vendedores:6, ticket:15000, horas:7, atendimentos:15, d1:4, d2:4, d3:5, d4:4};
-
-function getVals(){
-  const v = {};
-  ids.forEach(id => v[id] = Number(document.getElementById(id).value)||0);
-  return v;
-}
-
-function recalc(){
-  const v = getVals();
-  const metaInd = v.vendedores > 0 ? v.metaTime / v.vendedores : 0;
-  const vendasTotal = v.d1 + v.d2 + v.d3 + v.d4;
-  const valorInd = vendasTotal * v.ticket;
-  const valorTime = valorInd * v.vendedores;
-  const diff = valorTime - v.metaTime;
-  const atTotal = v.atendimentos * 4;
-  const tempo = v.atendimentos > 0 ? (v.horas * 60) / v.atendimentos : 0;
-  const conv = atTotal > 0 ? (vendasTotal / atTotal) * 100 : 0;
-
-  document.getElementById("o-metaInd").textContent = fmtBRL(metaInd);
-  document.getElementById("o-vendasTotal").textContent = vendasTotal;
-  document.getElementById("o-valorInd").textContent = fmtBRL(valorInd);
-  document.getElementById("o-valorTime").textContent = fmtBRL(valorTime);
-
-  const status = document.getElementById("o-statusMeta");
-  if(diff >= 0){
-    status.textContent = "✓ +" + fmtBRL(diff) + " de folga";
-    status.className = "vl ok";
-  }else{
-    status.textContent = "✗ Faltam " + fmtBRL(Math.abs(diff));
-    status.className = "vl err";
-  }
-
-  document.getElementById("o-tempo").textContent = fmtNum(tempo) + " min";
-  document.getElementById("o-atTotal").textContent = atTotal;
-  document.getElementById("o-conv").textContent = fmtNum(conv) + " %";
-
-  document.getElementById("o-d1").textContent = fmtBRL(v.d1 * v.ticket * v.vendedores);
-  document.getElementById("o-d2").textContent = fmtBRL(v.d2 * v.ticket * v.vendedores);
-  document.getElementById("o-d3").textContent = fmtBRL(v.d3 * v.ticket * v.vendedores);
-  document.getElementById("o-d4").textContent = fmtBRL(v.d4 * v.ticket * v.vendedores);
-
-  // persiste
-  ids.forEach(id => localStorage.setItem("fispal_metas_"+id, document.getElementById(id).value));
-}
-
-function loadSaved(){
-  ids.forEach(id => {
-    const saved = localStorage.getItem("fispal_metas_"+id);
-    if(saved !== null) document.getElementById(id).value = saved;
-  });
-}
-
-function resetCalc(){
-  ids.forEach(id => document.getElementById(id).value = defaults[id]);
-  recalc();
-}
-
-ids.forEach(id => document.getElementById(id).addEventListener("input", recalc));
-loadSaved();
-recalc();
-</script>
 </body>
 </html>
