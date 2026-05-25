@@ -118,6 +118,27 @@ footer{padding:24px 0 50px;text-align:center;color:var(--muted);border-top:1px s
 /* mini-tip */
 .tip{margin-top:8px;font-size:12px;color:var(--muted);font-style:italic}
 .tip b{color:var(--azul-neon);font-style:normal}
+
+/* BLOCO MOTIVACIONAL */
+.motiv-bx{margin-top:14px;padding:24px 22px;border:1px solid var(--glass-bd);border-radius:14px;text-align:center;transition:background .4s,border-color .4s,box-shadow .4s;position:relative;overflow:hidden;background:var(--glass)}
+.motiv-icon{font-size:46px;line-height:1;margin-bottom:8px}
+.motiv-frase{font-family:'Space Grotesk';font-weight:700;font-size:clamp(22px,3.5vw,32px);line-height:1.15;letter-spacing:-.02em;margin-bottom:6px}
+.motiv-sub{font-size:14px;color:var(--muted);max-width:520px;margin:0 auto;line-height:1.45}
+.motiv-bx.zero{background:linear-gradient(135deg,rgba(40,160,255,.08),rgba(40,160,255,.02));border-color:rgba(40,160,255,.4)}
+.motiv-bx.baixo{background:linear-gradient(135deg,rgba(40,160,255,.10),rgba(255,199,44,.04));border-color:var(--azul-neon)}
+.motiv-bx.baixo .motiv-frase{color:var(--azul-neon)}
+.motiv-bx.medio{background:linear-gradient(135deg,rgba(255,181,71,.10),rgba(255,199,44,.04));border-color:var(--warn)}
+.motiv-bx.medio .motiv-frase{color:var(--warn)}
+.motiv-bx.meio{background:linear-gradient(135deg,rgba(255,199,44,.12),rgba(255,199,44,.04));border-color:var(--amarelo)}
+.motiv-bx.meio .motiv-frase{color:var(--amarelo)}
+.motiv-bx.alto{background:linear-gradient(135deg,rgba(74,222,128,.10),rgba(255,199,44,.06));border-color:var(--ok)}
+.motiv-bx.alto .motiv-frase{color:var(--ok)}
+.motiv-bx.bateu{background:linear-gradient(135deg,rgba(74,222,128,.20),rgba(255,199,44,.10));border-color:var(--ok);animation:pulse-bateu 2.4s infinite}
+.motiv-bx.bateu .motiv-frase{color:var(--ok)}
+.motiv-bx.campeao{background:linear-gradient(135deg,rgba(255,199,44,.22),rgba(255,107,107,.10));border-color:var(--amarelo);animation:pulse-campeao 1.6s infinite}
+.motiv-bx.campeao .motiv-frase{background:linear-gradient(90deg,var(--amarelo),var(--err));-webkit-background-clip:text;background-clip:text;color:transparent}
+@keyframes pulse-bateu{0%,100%{box-shadow:0 0 0 0 rgba(74,222,128,.35)}50%{box-shadow:0 0 0 10px rgba(74,222,128,0)}}
+@keyframes pulse-campeao{0%,100%{box-shadow:0 0 0 0 rgba(255,199,44,.4)}50%{box-shadow:0 0 0 14px rgba(255,199,44,0)}}
 </style>
 </head>
 <body>
@@ -149,6 +170,13 @@ footer{padding:24px 0 50px;text-align:center;color:var(--muted);border-top:1px s
   <div class="big mono" id="s-big">R$ 0 / R$ 250.000</div>
   <div class="sub" id="s-sub">configure abaixo pra começar</div>
   <div class="prog"><div id="s-prog" style="width:0%"></div></div>
+</div>
+
+<!-- ============ BLOCO MOTIVACIONAL · muda conforme a meta avança ============ -->
+<div class="motiv-bx" id="motiv-bx">
+  <div class="motiv-icon" id="motiv-icon">🚀</div>
+  <div class="motiv-frase" id="motiv-frase">Bora pra cima!</div>
+  <div class="motiv-sub" id="motiv-sub">Configure abaixo e bora começar a feira</div>
 </div>
 
 <!-- ============ PLANO ============ -->
@@ -281,6 +309,46 @@ const ATENDIMENTOS = 15;
 const ids = ["vendedor-nome","p-d1","p-d2","p-d3","p-d4","r-d1","r-d2","r-d3","r-d4","rv-d1","rv-d2","rv-d3","rv-d4"];
 const defaults = {"vendedor-nome":"","p-d1":4,"p-d2":4,"p-d3":5,"p-d4":4,"r-d1":0,"r-d2":0,"r-d3":0,"r-d4":0,"rv-d1":0,"rv-d2":0,"rv-d3":0,"rv-d4":0};
 
+// ============ FRASES MOTIVACIONAIS POR FAIXA ============
+const MOTIV = {
+  zero: { icon:"🚀", frases:[
+    {h:"Bora pra cima!", s:"Primeira venda do dia abre o ritmo da feira inteira"},
+    {h:"Hora de começar", s:"Aborda 1 cliente agora · o primeiro puxa todos os outros"},
+    {h:"Tá tudo pronto", s:"Você sabe o que faz · só precisa começar"},
+  ]},
+  baixo: { icon:"💪", frases:[
+    {h:"Pegando o ritmo", s:"Lembra dos leads que ficaram de retornar? Manda mensagem AGORA"},
+    {h:"Primeiro passo dado", s:"As próximas vendas vão puxar mais fácil · não para"},
+    {h:"Tá começando", s:"Mantém o foco na qualificação · 5 min pra descobrir o segmento"},
+  ]},
+  medio: { icon:"🔥", frases:[
+    {h:"Tá indo bem!", s:"Não desacelera agora · esse é o ritmo certo"},
+    {h:"Um quarto da meta", s:"Três quartos ainda pra fazer · uma venda de cada vez"},
+    {h:"Engatou", s:"Esse momento separa quem chega de quem desiste · você tá chegando"},
+  ]},
+  meio: { icon:"⚡", frases:[
+    {h:"Metade já foi!", s:"Daqui pra frente é só descer ladeira"},
+    {h:"Você termina o que começa", s:"O segundo tempo é onde os bons brilham"},
+    {h:"50% feito", s:"Aquele cliente que pediu pra pensar · liga ele agora pra fechar"},
+  ]},
+  alto: { icon:"🎯", frases:[
+    {h:"Tá a um pulo da meta!", s:"Aquele cliente de ontem que falou que ia voltar · manda mensagem AGORA"},
+    {h:"Reta final · mantém", s:"Vendedor que chega aqui é o que vira top 1 da feira"},
+    {h:"Faltam centavos", s:"UMA venda fecha isso · não deixa pra amanhã"},
+  ]},
+  bateu: { icon:"🎉", frases:[
+    {h:"META BATIDA!", s:"Você já é um vencedor · agora corre pro top 1 individual"},
+    {h:"100% feito · e aí?", s:"Cada venda extra agora é folga + pontos pra premiação"},
+    {h:"Bateu primeiro?", s:"Não para · ajuda quem ainda tá indo · time bate junto"},
+  ]},
+  campeao: { icon:"👑", frases:[
+    {h:"Você é o cara da feira", s:"Henrique já tá olhando seu número · não para"},
+    {h:"Top 1 absoluto · é contigo", s:"Esse padrão não tem volta · continua"},
+    {h:"Superando", s:"Cada venda agora vira história · vai virar referência pro time"},
+  ]},
+};
+let _faixaAtual = null; // pra não trocar a frase a cada input dentro da mesma faixa
+
 function v(id){
   const el = document.getElementById(id);
   if(el.type === "text") return el.value.trim();
@@ -356,6 +424,28 @@ function recalc(){
     sBar.className = "status-bar";
     document.getElementById("s-label").textContent = "Meta individual";
     document.getElementById("s-sub").textContent = "preencha o real do dia pra ver o progresso";
+  }
+
+  // BLOCO MOTIVACIONAL · escolhe frase nova só quando muda de faixa
+  let faixa;
+  if(realPct === 0) faixa = "zero";
+  else if(realPct < 25) faixa = "baixo";
+  else if(realPct < 50) faixa = "medio";
+  else if(realPct < 75) faixa = "meio";
+  else if(realPct < 100) faixa = "alto";
+  else if(realPct < 120) faixa = "bateu";
+  else faixa = "campeao";
+
+  if(faixa !== _faixaAtual){
+    const m = MOTIV[faixa];
+    const f = m.frases[Math.floor(Math.random() * m.frases.length)];
+    const nome = v("vendedor-nome");
+    const prefixoNome = nome ? nome.split(" ")[0] + ", " : "";
+    document.getElementById("motiv-bx").className = "motiv-bx " + faixa;
+    document.getElementById("motiv-icon").textContent = m.icon;
+    document.getElementById("motiv-frase").textContent = (faixa === "bateu" || faixa === "campeao") ? f.h : prefixoNome + f.h.charAt(0).toLowerCase() + f.h.slice(1);
+    document.getElementById("motiv-sub").textContent = f.s;
+    _faixaAtual = faixa;
   }
 
   // PROJEÇÃO
