@@ -74,6 +74,7 @@ section.s .sub{font-size:13px;color:var(--muted);margin-bottom:14px}
 .field-row label{font-size:13px;color:var(--muted);flex:1}
 .field-row input{width:130px;padding:8px 12px;background:var(--bg2);border:1px solid var(--glass-bd);border-radius:8px;color:var(--txt);font-family:'Space Grotesk';font-weight:700;font-size:14px;text-align:right;font-variant-numeric:tabular-nums}
 .field-row input:focus{outline:none;border-color:var(--azul-neon);background:rgba(40,160,255,.06)}
+.field-row .info-value{width:130px;padding:8px 12px;background:rgba(40,160,255,.04);border:1px solid var(--glass-bd);border-radius:8px;color:var(--amarelo);font-family:'Space Grotesk';font-weight:700;font-size:14px;text-align:right}
 
 /* TABELA DE DIAS · planejado vs realizado */
 .dia-table{margin-top:12px;background:var(--glass);border:1px solid var(--glass-bd);border-radius:12px;overflow:hidden}
@@ -154,24 +155,24 @@ footer{padding:24px 0 50px;text-align:center;color:var(--muted);border-top:1px s
 <section class="s">
   <div class="eyebrow">Passo 1 · planejamento</div>
   <h2>Seu plano de feira</h2>
-  <div class="sub">Ajuste se precisar. O padrão segue a meta consolidada do time (R$ 250k por vendedor).</div>
+  <div class="sub">Valores consolidados do plano da feira · iguais pra todo o time. <b style="color:var(--azul-neon)">Não editável.</b></div>
 
   <div class="fields">
     <div class="field-row">
-      <label>Minha meta individual (R$)</label>
-      <input type="number" id="meta" value="250000" step="5000">
+      <label>Minha meta individual</label>
+      <div class="info-value mono">R$ 250.000</div>
     </div>
     <div class="field-row">
-      <label>Ticket médio mínimo (R$)</label>
-      <input type="number" id="ticket" value="15000" step="500">
+      <label>Ticket médio mínimo</label>
+      <div class="info-value mono">R$ 15.000</div>
     </div>
     <div class="field-row">
       <label>Horas de trabalho por dia</label>
-      <input type="number" id="horas" value="7" step="0.5" min="1">
+      <div class="info-value mono">7 h</div>
     </div>
     <div class="field-row">
       <label>Atendimentos planejados por dia</label>
-      <input type="number" id="atendimentos" value="15" step="1" min="1">
+      <div class="info-value mono">15</div>
     </div>
   </div>
 
@@ -271,8 +272,14 @@ footer{padding:24px 0 50px;text-align:center;color:var(--muted);border-top:1px s
 const fmtBRL = n => "R$ " + Math.round(n||0).toLocaleString("pt-BR");
 const fmtNum = n => Number(n||0).toLocaleString("pt-BR", {maximumFractionDigits:1});
 
-const ids = ["vendedor-nome","meta","ticket","horas","atendimentos","p-d1","p-d2","p-d3","p-d4","r-d1","r-d2","r-d3","r-d4","rv-d1","rv-d2","rv-d3","rv-d4"];
-const defaults = {"vendedor-nome":"","meta":250000,"ticket":15000,"horas":7,"atendimentos":15,"p-d1":4,"p-d2":4,"p-d3":5,"p-d4":4,"r-d1":0,"r-d2":0,"r-d3":0,"r-d4":0,"rv-d1":0,"rv-d2":0,"rv-d3":0,"rv-d4":0};
+// Valores fixos · iguais pra todo o time
+const META = 250000;
+const TICKET = 15000;
+const HORAS = 7;
+const ATENDIMENTOS = 15;
+
+const ids = ["vendedor-nome","p-d1","p-d2","p-d3","p-d4","r-d1","r-d2","r-d3","r-d4","rv-d1","rv-d2","rv-d3","rv-d4"];
+const defaults = {"vendedor-nome":"","p-d1":4,"p-d2":4,"p-d3":5,"p-d4":4,"r-d1":0,"r-d2":0,"r-d3":0,"r-d4":0,"rv-d1":0,"rv-d2":0,"rv-d3":0,"rv-d4":0};
 
 function v(id){
   const el = document.getElementById(id);
@@ -294,10 +301,10 @@ function recalc(){
   const nome = v("vendedor-nome");
   document.getElementById("greet").textContent = nome ? `bora, ${nome.split(" ")[0]}! 💪` : "👋";
 
-  const meta = v("meta");
-  const ticket = v("ticket");
-  const horas = v("horas");
-  const atendimentos = v("atendimentos");
+  const meta = META;
+  const ticket = TICKET;
+  const horas = HORAS;
+  const atendimentos = ATENDIMENTOS;
 
   // PLANO
   const vendasNec = ticket > 0 ? Math.ceil(meta / ticket) : 0;
