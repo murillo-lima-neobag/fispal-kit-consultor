@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Neobag · Kit Fechamento · Quebra de Objeções + Urgência</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Sora:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --azul:#008afa;--azul-neon:#28a0ff;--amarelo:#ffc72c;
+  --bg:#03070f;--bg2:#061328;--txt:#eaf2ff;--muted:#9fb6d4;
+  --glass:rgba(255,255,255,.06);--glass-bd:rgba(120,180,255,.18);
+  --ok:#4ade80;--warn:#ffb547;--err:#ff6b6b;--purple:#c084fc;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Sora',-apple-system,sans-serif;background:var(--bg);color:var(--txt);line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-.02em;line-height:1.05;font-weight:700}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.amar{color:var(--amarelo)}.azul{color:var(--azul-neon)}
+
+.bg-fx{position:fixed;inset:0;z-index:-2;background:
+  radial-gradient(900px 500px at 80% -10%,rgba(0,138,250,.22),transparent 60%),
+  radial-gradient(700px 400px at 0% 100%,rgba(0,90,200,.16),transparent 55%),var(--bg)}
+
+.head{padding:14px 0;border-bottom:1px solid var(--glass-bd);position:sticky;top:0;z-index:10;backdrop-filter:blur(14px);background:rgba(3,7,15,.9)}
+.head .top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.head .brand{font-family:'Space Grotesk';font-weight:700;font-size:16px;display:flex;align-items:center;gap:8px}
+.head .brand img{height:20px;filter:brightness(0) invert(1);vertical-align:middle}
+.head .brand .dt{width:8px;height:8px;border-radius:50%;background:var(--amarelo);box-shadow:0 0 8px var(--amarelo);animation:p 1.8s infinite}
+@keyframes p{0%,100%{opacity:1}50%{opacity:.4}}
+.head .nav{display:flex;gap:4px;margin-top:8px;flex-wrap:wrap}
+.head .nav a{font-family:'Space Grotesk';font-size:12px;color:var(--muted);text-decoration:none;padding:5px 10px;border-radius:6px;font-weight:500}
+.head .nav a:hover{color:var(--txt);background:var(--glass)}
+
+.hero{padding:24px 0 18px}
+.hero .kick{display:inline-flex;align-items:center;gap:8px;font-family:'Space Grotesk';font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--azul-neon);border:1px solid var(--glass-bd);background:var(--glass);padding:6px 12px;border-radius:999px;margin-bottom:14px}
+.hero h1{font-size:clamp(30px,4.5vw,46px);margin-bottom:8px}
+.hero h1 .big{display:block;font-size:clamp(46px,7vw,74px);background:linear-gradient(180deg,#fff,#7fc0ff);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:.95}
+.hero .lead{font-size:16px;color:var(--muted);max-width:680px;margin-top:8px}
+
+.principio{margin-top:18px;padding:20px 24px;background:linear-gradient(135deg,rgba(255,199,44,.14),rgba(0,138,250,.06));border:1px solid var(--amarelo);border-radius:14px}
+.principio h3{font-size:18px;margin-bottom:8px;color:var(--amarelo)}
+.principio p{font-size:15px;line-height:1.6;color:var(--txt)}
+.principio b{color:var(--amarelo)}
+
+section.s{padding:22px 0;border-top:1px solid var(--glass-bd);margin-top:20px;scroll-margin-top:90px}
+section.s .eyebrow{font-family:'Space Grotesk';font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--azul-neon);font-weight:600;margin-bottom:6px}
+section.s h2{font-size:24px;margin-bottom:6px}
+section.s .sub{font-size:14px;color:var(--muted);margin-bottom:14px}
+
+/* OBJEÇÕES — accordion + content rico */
+details.obj{margin-bottom:10px;background:var(--glass);border:1px solid var(--glass-bd);border-radius:12px;overflow:hidden}
+details.obj summary{padding:14px 18px;font-family:'Space Grotesk';font-weight:600;font-size:15px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;color:var(--txt);gap:12px}
+details.obj summary::-webkit-details-marker{display:none}
+details.obj summary::after{content:"▼";font-size:10px;color:var(--muted);transition:transform .2s;flex-shrink:0}
+details.obj[open] summary::after{transform:rotate(180deg)}
+details.obj summary:hover{background:rgba(120,180,255,.04)}
+details.obj .num{display:inline-flex;width:28px;height:28px;border-radius:50%;background:var(--azul);color:#fff;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;margin-right:10px}
+details.obj .quote{flex:1;font-style:italic;color:#ffd6d6}
+details.obj .body{padding:0 18px 16px;font-size:14px;line-height:1.6}
+details.obj .why{padding:10px 14px;background:rgba(0,138,250,.06);border-left:3px solid var(--azul-neon);border-radius:6px;margin:10px 0;font-size:13px}
+details.obj .why b{color:var(--azul-neon);font-family:'Space Grotesk';text-transform:uppercase;font-size:10px;letter-spacing:.14em;display:block;margin-bottom:2px}
+details.obj .resp{margin-top:10px;padding:12px 16px;background:rgba(255,199,44,.08);border-left:3px solid var(--amarelo);border-radius:6px}
+details.obj .resp b{color:var(--amarelo);font-family:'Space Grotesk';text-transform:uppercase;font-size:10px;letter-spacing:.14em;display:block;margin-bottom:6px}
+details.obj .resp .frase{font-family:'Space Grotesk';font-weight:600;font-style:italic;font-size:15px;color:#fff7d6;line-height:1.4;margin-bottom:8px}
+details.obj .resp .frase + .frase{margin-top:6px}
+details.obj .tatica{margin-top:10px;padding:10px 14px;background:rgba(74,222,128,.06);border-left:3px solid var(--ok);border-radius:6px;font-size:13px}
+details.obj .tatica b{color:var(--ok);font-family:'Space Grotesk';text-transform:uppercase;font-size:10px;letter-spacing:.14em;display:block;margin-bottom:2px}
+
+/* GATILHOS DE URGÊNCIA · cards */
+.gat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:8px}
+@media(max-width:760px){.gat-grid{grid-template-columns:1fr}}
+.gat{padding:16px 18px;background:var(--glass);border:1px solid var(--glass-bd);border-radius:12px;position:relative;overflow:hidden}
+.gat .h{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.gat .h .ic{font-size:22px}
+.gat .h .tt{font-family:'Space Grotesk';font-weight:700;font-size:15px}
+.gat .h .tg{font-family:'Space Grotesk';font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--amarelo);background:rgba(255,199,44,.1);padding:3px 8px;border-radius:6px;margin-left:auto}
+.gat .ds{font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:8px}
+.gat .frase{padding:10px 14px;background:rgba(3,7,15,.5);border-left:3px solid var(--amarelo);border-radius:6px;font-family:'Space Grotesk';font-style:italic;font-size:13px;line-height:1.4;color:#fff7d6}
+.gat.fispal{background:linear-gradient(135deg,rgba(0,138,250,.12),rgba(255,199,44,.04));border-color:var(--azul-neon)}
+.gat.copa{background:linear-gradient(135deg,rgba(192,132,252,.12),rgba(74,222,128,.04));border-color:var(--purple)}
+.gat.hora{background:linear-gradient(135deg,rgba(255,181,71,.14),rgba(255,107,107,.04));border-color:var(--warn);animation:pulse-warn 2.5s infinite}
+@keyframes pulse-warn{0%,100%{box-shadow:0 0 0 0 rgba(255,181,71,.3)}50%{box-shadow:0 0 0 4px rgba(255,181,71,.08)}}
+
+/* TÉCNICAS DE FECHAMENTO */
+.tec{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:8px}
+@media(max-width:760px){.tec{grid-template-columns:1fr}}
+.tec-card{padding:14px 16px;background:var(--glass);border:1px solid var(--glass-bd);border-radius:10px}
+.tec-card .nm{font-family:'Space Grotesk';font-weight:700;font-size:14px;color:var(--azul-neon);margin-bottom:6px}
+.tec-card .ds{font-size:13px;color:var(--muted);margin-bottom:8px}
+.tec-card .ex{padding:10px 12px;background:rgba(3,7,15,.5);border-radius:6px;font-family:'Space Grotesk';font-style:italic;font-size:13px;color:#fff7d6;line-height:1.4}
+
+/* PROVA SOCIAL · grid de clientes */
+.prova{margin-top:14px;padding:16px;background:var(--glass);border:1px solid var(--glass-bd);border-radius:12px}
+.prova .pt{font-family:'Space Grotesk';font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--azul-neon);font-weight:600;margin-bottom:10px;text-align:center}
+.prova-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+@media(max-width:760px){.prova-grid{grid-template-columns:repeat(2,1fr)}}
+.prova-logo{background:#fff;border-radius:8px;height:54px;display:flex;align-items:center;justify-content:center;padding:6px}
+.prova-logo img{max-width:100%;max-height:40px;object-fit:contain}
+
+/* VÍDEOS · cards externos */
+.vids{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+@media(max-width:760px){.vids{grid-template-columns:1fr}}
+.vid{padding:14px 16px;background:var(--glass);border:1px solid var(--glass-bd);border-radius:10px;display:flex;gap:12px;align-items:flex-start;text-decoration:none;color:var(--txt);transition:.15s}
+.vid:hover{background:rgba(255,107,107,.04);border-color:var(--err)}
+.vid .pl{font-size:28px;color:var(--err);flex-shrink:0}
+.vid .info .tt{font-family:'Space Grotesk';font-weight:600;font-size:14px;line-height:1.3;margin-bottom:4px}
+.vid .info .au{font-size:12px;color:var(--muted)}
+.vid .info .au b{color:var(--azul-neon)}
+
+/* CHECKLIST DE FECHAMENTO */
+.cheat{margin-top:18px;padding:20px 22px;background:#000;border:2px dashed var(--amarelo);border-radius:14px}
+.cheat h3{color:var(--amarelo);font-size:13px;letter-spacing:.16em;text-transform:uppercase;text-align:center;margin-bottom:14px;font-weight:700;font-family:'Space Grotesk'}
+.cheat-row{display:grid;grid-template-columns:1fr auto;gap:14px;padding:8px 0;border-bottom:1px dashed rgba(255,199,44,.15);font-size:13px}
+.cheat-row:last-of-type{border-bottom:none}
+.cheat-row b{color:var(--amarelo);font-weight:700;font-family:'Space Grotesk'}
+.cheat-row span{color:#ccc;font-family:'Sora'}
+.cheat .sp{border-top:1px dashed rgba(255,199,44,.3);margin:10px 0}
+
+footer{padding:30px 0 50px;text-align:center;color:var(--muted);border-top:1px solid var(--glass-bd);margin-top:30px;font-size:11px}
+footer .src{margin-top:8px;font-size:10px;color:var(--muted)}
+footer .src a{color:var(--azul-neon);text-decoration:none}
+
+@media print{
+  .bg-fx,.head .nav{display:none}
+  body{background:#fff;color:#000}
+  details.obj{background:#fff!important;border:1px solid #ccc!important;color:#000!important}
+  details.obj[open] .body,details.obj:not([open]) .body{display:block!important}
+  details.obj summary::after{display:none}
+  details.obj .quote,details.obj .resp .frase,.gat .frase,.tec-card .ex{color:#000!important;background:#f5f5f5!important}
+  .amar,.azul{color:#000!important}
+}
+</style>
+</head>
+<body>
+<div class="bg-fx"></div>
+
+<header class="head">
+  <div class="wrap top">
+    <div class="brand"><span class="dt"></span><img src="https://neobagstore.com.br/wp-content/uploads/logo-new-neobag.svg" alt="Neobag"> · KIT FECHAMENTO</div>
+    <div style="font-family:'Space Grotesk';font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">FISPAL · 26–29/05 · <b style="color:var(--amarelo)">K50</b></div>
+  </div>
+  <div class="wrap">
+    <div class="nav">
+      <a href="#principio">Princípio</a>
+      <a href="#obj">10 objeções</a>
+      <a href="#urg-fispal">Urgência FISPAL</a>
+      <a href="#urg-universal">Urgência universal</a>
+      <a href="#tecnicas">Técnicas</a>
+      <a href="#prova">Prova social</a>
+      <a href="#videos">Vídeos</a>
+      <a href="#cheat">Cheat sheet</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section class="hero">
+  <span class="kick">🎯 Pra consultores · não compartilhar com cliente</span>
+  <h1>Quebra de objeções<span class="big">+ senso de urgência.</span></h1>
+  <p class="lead">Frases prontas, técnicas de fechamento e gatilhos específicos da FISPAL pra você converter mais visitantes em pedido fechado. Foco: <b>food service</b> (hambúrguer, restô, padaria, mercado).</p>
+</section>
+
+<div class="principio" id="principio">
+  <h3>⚡ Princípio fundamental</h3>
+  <p><b>Objeção não é rejeição — é sinal de interesse.</b> Cliente que faz objeção está pensando em comprar. Cliente desinteressado vai embora calado. Receba toda objeção com calma, repete o que ele disse pra mostrar que entendeu, e vira a virada — não defenda o preço, defenda o valor.</p>
+</div>
+
+<!-- ============ 10 OBJEÇÕES ============ -->
+<section class="s" id="obj">
+  <div class="eyebrow">As 10 objeções mais comuns no estande</div>
+  <h2>Quebra de objeção · uma a uma</h2>
+  <div class="sub">Cada objeção tem o porquê (o que o cliente realmente está dizendo) + frase pronta de resposta + tática avançada.</div>
+
+  <!-- 1 -->
+  <details class="obj" open>
+    <summary><div style="display:flex;align-items:center;flex:1"><span class="num">1</span><span class="quote">"Tá caro."</span></div></summary>
+    <div class="body">
+      <div class="why"><b>Por que ele tá falando isso</b>Quase nunca é o preço de verdade. É reflexo automático ou ele ainda não viu o valor. Cuidado em defender o preço — defenda o valor.</div>
+      <div class="resp"><b>Frases prontas</b>
+        <div class="frase">"Entendo. Comparado a quê tá caro pra você?"</div>
+        <div class="frase">"Faz sentido você querer entender o investimento. Se eu te mostrar que essa bag rende em 100 entregas, ainda fica caro?"</div>
+        <div class="frase">"Pensa assim: você reaproveita a mesma bag até 100 vezes (supercola), ela aguenta 12kg, dura o ciclo todo do delivery. O custo por entrega é centavos."</div>
+      </div>
+      <div class="tatica"><b>Tática avançada · use o flat R$ 2</b>Quando o cliente é hamburgueria/restô médio, leve direto pro flat: "Sabe que aqui na feira a Burguer ou a Pequena Nova sai a R$ 2 a unidade? Você não vai achar isso em lugar nenhum. Esse preço é só dessa feira."</div>
+    </div>
+  </details>
+
+  <!-- 2 -->
+  <details class="obj">
+    <summary><div style="display:flex;align-items:center;flex:1"><span class="num">2</span><span class="quote">"Vou pensar e te aviso depois."</span></div></summary>
+    <div class="body">
+      <div class="why"><b>Por que ele tá falando isso</b>3 razões possíveis: (a) tem outra pessoa decidindo, (b) não viu razão pra urgência, (c) é uma forma educada de dizer "não tô convencido".</div>
+      <div class="resp"><b>Frases prontas</b>
+        <div class="frase">"Claro, é uma decisão importante. Sobre qual ponto especificamente você quer pensar mais? Preço, prazo, modelo?"</div>
+        <div class="frase">"Você tem quem decide com você nessa? Eu adoraria entrar em contato com ele/ela junto agora pra não atrasar."</div>
+        <div class="frase">"Posso te ajudar: a condição da feira fecha dia 29. Se você quiser garantir, a gente pré-fecha aqui e você confirma até sexta — assim você não perde."</div>
+      </div>
+      <div class="tatica"><b>Tática avançada · pré-fechamento</b>Crie um "contrato moral": "Vamos fazer o seguinte — eu deixo seu pedido pré-cadastrado com a condição da feira. Você tem até [data] pra confirmar. Se não confirmar, cai. Combinado?" Isso converte 30-40% dos "vou pensar".</div>
+    </div>
+  </details>
+
+  <!-- 3 -->
+  <details class="obj">
+    <summary><div style="display:flex;align-items:center;flex:1"><span class="num">3</span><span class="quote">"Já tenho fornecedor."</span></div></summary>
+    <div class="body">
+      <div class="why"><b>Por que ele tá falando isso</b>Conforto + medo de mudar. Mas ter fornecedor NÃO significa estar satisfeito. Quase sempre tem alguma dor.</div>
+      <div class="resp"><b>Frases prontas</b>
+        <div class="frase">"Que ótimo, e você está 100% satisfeito? Tem algo no fornecedor atual que poderia ser melhor?"</div>
+        <div class="frase">"Faz sentido. Posso te fazer uma comparação rápida só pra você ter a referência? Se a Neobag tiver vantagem, você decide; se não tiver, segue com o atual sem culpa."</div>
+        <div class="frase">"Posso entender o que mais te incomoda no fornecedor de hoje? Prazo, qualidade, atendimento?"</div>
+      </div>
+      <div class="tatica"><b>Tática avançada · backup fornecedor</b>"Tem cliente nosso que mantém 2 fornecedores: um principal e a Neobag como reserva pra demanda extra. Quer começar assim, com um pedido menor pra testar?"</div>
+    </div>
+  </details>
+
+  <!-- 4 -->
+  <details class="obj">
+    <summary><div style="display:flex;align-items:center;flex:1"><span class="num">4</span><span class="quote">"Preciso falar com meu sócio."</span></div></summary>
+    <div class="body">
+      <div class="why"><b>Por que ele tá falando isso</b>Real ou pretexto pra ganhar tempo. Real: ele realmente não decide sozinho. Pretexto: ele não tá convencido e quer fugir.</div>
+      <div class="resp"><b>Frases prontas</b>
+        <div class="frase">"Perfeito. Tem como você ligar pra ele agora? São 30 segundos — explico a condição da feira pra ele direto, ele decide melhor com a informação completa."</div>
+        <div class="frase">"E você, o que você acha? Se dependesse só de você, fecharia hoje?"</div>
+        <div class="frase">"Posso passar a condição em uma frase pro WhatsApp dele agora? Assim você já tem a info na mão pra defender quando chegar."</div>
+      </div>
+      <div class="tatica"><b>Tática avançada · separa o decisor real</b>Se ele responder "se dependesse de mim, fecharia" → você sabe que o sócio é o decisor. Aí pede pra ligar agora. Se ele evitar a ligação, a objeção é dele mesmo.</div>
+    </div>
+  </details>
+
+  <!-- 5 -->
+  <details class="obj">
+    <summary><div style="display:flex;align-items:center;flex:1"><span class="num">5</span><span class="quote">"Manda por email que eu vejo depois."</span></div></summary>
+    <div class="body">
+      <div class="why"><b>Por que ele tá falando isso</b>Quer fugir educadamente. Email vira lixo eletrônico em 70% dos casos.</div>
+      <div class="resp"><b>Frases prontas</b>
+        <div class="frase">"Mando sim, mas antes — me deixa só te mostrar 1 minuto a bag aqui. Você vê de perto e depois o email só serve pra documentar."</div>
+        <div class="frase">"Mando agora pelo WhatsApp já que você está aqui — assim você abre quando voltar pro escritório e a gente continua a conversa. Qual seu número?"</div>
+        <div class="frase">"A condição que tô te oferecendo só vale fechando na feira. Email não tem essa condição. Vale a pena a gente fechar aqui e depois eu documento por email."</div>
+      </div>
+      <div class="tatica"><b>Tática avançada · troca de canal</b>NUNCA prometa só email. SEMPRE peça WhatsApp + email. WhatsApp converte 5x mais. E mande mensagem AINDA com ele no estande pra ele ver que chegou.</div>
+    </div>
+  </details>
+
+  <!-- 6 -->
+  <details class="obj">
+    <summary><div style="display:flex;align-items:center;flex:1"><span class="num">6</span><span class="quote">"O cliente não nota a diferença da bag."</span></div></summary>
+    <div class="body">
+      <div class="why"><b>Por que ele tá falando isso</b>Subestima o impacto de branding no delivery. Não sabe que sua marca personalizada vira mídia móvel.</div>
+      <div class="resp"><b>Frases prontas</b>
+        <div class="frase">"Você sabia que a bag personalizada chega na casa do consumidor e fica visível por minutos? É mídia móvel — sua marca é vista por vizinhos, porteiro, gente passando. Nenhuma outra mídia entrega isso por R$ 2."</div>
+        <div class="frase">"Zé Delivery, iFood, Bacio di Latte usam personalização 360 porque sabem que branding faz diferença em recompra. Eles não fariam se não desse retorno."</div>
+        <div class="frase">"Pensa: cliente recebe seu pedido numa bag branca genérica vs. uma com sua marca em 360°. Qual gera mais lembrança? Qual ele tira foto?"</div>
+      </div>
+      <div class="tatica"><b>Tática avançada · prova social com marca conhecida</b>Mostre o grid de clientes (kit-promotoras tem). Marca que o cliente reconhece = autoridade transferida.</div>
+    </div>
+  </details>
+
+  <!-- 7 -->
+  <details class="obj">
+    <summary><div style="display:flex;align-items:center;flex:1"><span class="num">7</span><span class="quote">"Sou pequeno, não compensa o volume mínimo."</span></div></summary>
+    <div class="body">
+      <div class="why"><b>Por que ele tá falando isso</b>Real medo de imobilizar caixa ou ficar com estoque encalhado. Ou desconhece os mínimos reais.</div>
+      <div class="resp"><b>Frases prontas</b>
+        <div class="frase">"Entendo. Você faz quantos pedidos por dia hoje? Vou te mostrar uma conta — em quantos meses esse estoque se paga."</div>
+        <div class="frase">"Pra Silk e UV os mínimos são baixos — 500 e 1000 unidades. Cabe na sua operação pra começar."</div>
+        <div class="frase">"Tem cliente da Neobag que começou com 1000 bags e hoje pede 50 mil. Crescimento começou pela bag que personalizou ele. Vem comigo."</div>
+      </div>
+      <div class="tatica"><b>Tática avançada · ROI rápido</b>Faça a conta na hora: "X bags × R$ 0,Y centavos por entrega = se você faz N entregas/mês, paga em X meses." Visualize a conta no papel pro cliente.</div>
+    </div>
+  </details>
+
+  <!-- 8 -->
+  <details class="obj">
+    <summary><div style="display:flex;align-items:center;flex:1"><span class="num">8</span><span class="quote">"Não tenho orçamento agora."</span></div></summary>
+    <div class="body">
+      <div class="why"><b>Por que ele tá falando isso</b>Pode ser real (caixa apertado) ou pretexto. Se for real, parcelamento resolve. Se for pretexto, é "vou pensar" disfarçado.</div>
+      <div class="resp"><b>Frases prontas</b>
+        <div class="frase">"Posso te mostrar uma forma de fechar com sinal e o resto pra pré-produção? Você não compromete caixa agora."</div>
+        <div class="frase">"O cartão te ajuda? Posso parcelar — você recebe a bag e paga ao longo do ciclo de venda dela."</div>
+        <div class="frase">"Faz sentido. Qual valor caberia agora pra você começar? A gente desenha o pedido em cima disso."</div>
+      </div>
+      <div class="tatica"><b>Tática avançada · descer pra orçamento real</b>Pergunte: "Qual valor cabe agora?" Se ele responder um número, era objeção real e você desenha o pedido. Se ele evitar, era pretexto — volte pro fechamento direto.</div>
+    </div>
+  </details>
+
+  <!-- 9 -->
+  <details class="obj">
+    <summary><div style="display:flex;align-items:center;flex:1"><span class="num">9</span><span class="quote">"Vou esperar a feira acabar e decido depois."</span></div></summary>
+    <div class="body">
+      <div class="why"><b>Por que ele tá falando isso</b>Não percebe que feira tem condição EXCLUSIVA. Ele acha que vai conseguir o mesmo preço depois.</div>
+      <div class="resp"><b>Frases prontas</b>
+        <div class="frase">"Posso ser direto? A condição que tô te oferecendo é exclusiva da feira. Bag médio pra baixo a R$ 2 — depois da FISPAL, volta a tabela cheia (R$ 4 a R$ 6 dependendo do modelo). Você economiza muito fechando aqui."</div>
+        <div class="frase">"Tem também o brinde da Copa do Mundo — Silk grátis em pedidos 360. Esse programa termina junto com a feira."</div>
+        <div class="frase">"Quer fechar pré-pedido agora e travar a condição? Você confirma até [data] sem compromisso."</div>
+      </div>
+      <div class="tatica"><b>Tática avançada · ancorar perda</b>Aversão à perda é mais forte que ganho. "Se você fechar hoje, economiza X reais. Depois da feira você paga Y. A diferença é Z." Mostre o dinheiro que ele DEIXA na mesa, não o que ele ganha.</div>
+    </div>
+  </details>
+
+  <!-- 10 -->
+  <details class="obj">
+    <summary><div style="display:flex;align-items:center;flex:1"><span class="num">10</span><span class="quote">"O concorrente tá com preço mais baixo."</span></div></summary>
+    <div class="body">
+      <div class="why"><b>Por que ele tá falando isso</b>Pode ser blefe, ou pode ser real. Em ambos casos, foque em VALOR (não compita só por preço).</div>
+      <div class="resp"><b>Frases prontas</b>
+        <div class="frase">"Faz sentido você comparar. Qual o preço e a especificação que ele te ofereceu? Posso te mostrar o que está incluso aqui que talvez não esteja lá."</div>
+        <div class="frase">"Tem coisas que podem não estar no preço dele: na linha 360 a Neobag não cobra clichê, arte nem cores — todos esses extras são cortesia. Já viu se o concorrente cobra?"</div>
+        <div class="frase">"Bag mais barata que rasga em 30 entregas custa caro no fim. A nossa alça aguenta 12kg, supercola até 100 reusos, durabilidade testada por Zé Delivery, iFood. Compara valor por entrega, não preço da unidade."</div>
+      </div>
+      <div class="tatica"><b>Tática avançada · NUNCA fale mal do concorrente</b>Foque no que VOCÊ tem. Falar mal queima sua imagem e ainda valoriza ele. "A gente entrega X, Y, Z. Se o concorrente entrega o mesmo pelo mesmo preço, fica difícil ganhar — mas faça a checagem item por item antes de decidir."</div>
+    </div>
+  </details>
+</section>
+
+<!-- ============ URGÊNCIA ESPECÍFICA FISPAL ============ -->
+<section class="s" id="urg-fispal">
+  <div class="eyebrow">Gatilhos só dessa feira · use sem parar</div>
+  <h2>Senso de urgência · específico da FISPAL</h2>
+  <div class="sub">Esses gatilhos são ÚNICOS da nossa operação na feira. Use no fechamento de toda venda.</div>
+
+  <div class="gat-grid">
+    <div class="gat fispal">
+      <div class="h"><div class="ic">💸</div><div class="tt">Flat R$ 2,00</div><div class="tg">só da feira</div></div>
+      <div class="ds">As bags médio pra baixo (Pequena Nova · Vinho · Burguer · Médio) saem a R$ 2,00 na feira. Tabela normal vai de R$ 4 a R$ 6.</div>
+      <div class="frase">"Esse preço só vale fechando aqui. Depois da FISPAL volta a tabela cheia. Você economiza centavos por bag — em 10.000 unidades é muito."</div>
+    </div>
+
+    <div class="gat hora">
+      <div class="h"><div class="ic">⚡</div><div class="tt">Hora Neobag · 28/05 14h-17h</div><div class="tg">3h apenas</div></div>
+      <div class="ds">Janela curta de 3 horas no dia 28 com condição especial. Use pra clientes que estão "vou pensar" — convide pra voltar nesse horário.</div>
+      <div class="frase">"Sabe que dia 28 das 14h às 17h vai ter uma condição especial Neobag? Marca aí — você ganha a melhor janela da feira."</div>
+    </div>
+
+    <div class="gat copa">
+      <div class="h"><div class="ic">⚽</div><div class="tt">Bonificação Silk Copa</div><div class="tg">até 200un grátis</div></div>
+      <div class="ds">Pedido com linha 360 → até 200 un de Silk grátis (alçada do vendedor). Janela: até início da Copa (11/06). Entrega em 10 dias.</div>
+      <div class="frase">"Fecha o 360 agora e leva 200 Silks grátis pra usar na Copa. Entrega em 10 dias, dá tempo de ativar antes do Mundial começar."</div>
+    </div>
+
+    <div class="gat fispal">
+      <div class="h"><div class="ic">🤝</div><div class="tt">Combo Hambúrguer R$ 3</div><div class="tg">bag + PP</div></div>
+      <div class="ds">5k Burguer + 5k Pequena Nova no mesmo pedido = R$ 3 por bag. Cross-sell direto pra hamburgueria.</div>
+      <div class="frase">"Vou montar pra você o combo completo: bag pro hambúrguer e PP pra bebida. R$ 3 cada, no mesmo pedido. Sua operação fica completa."</div>
+    </div>
+
+    <div class="gat copa">
+      <div class="h"><div class="ic">🎁</div><div class="tt">Cortesia 360</div><div class="tg">sem cobrar</div></div>
+      <div class="ds">Linha 360 = clichê, arte e quantidade de cores são por nossa conta. Cliente não paga extra por arte personalizada.</div>
+      <div class="frase">"Na linha 360 a gente não cobra clichê nem arte. Cliente que pediu na concorrência paga R$ 800-1500 só de arte. Aqui é cortesia."</div>
+    </div>
+
+    <div class="gat fispal">
+      <div class="h"><div class="ic">📅</div><div class="tt">Janela de produção pré-Copa</div><div class="tg">~13 dias</div></div>
+      <div class="ds">FISPAL termina 29/05. Copa do Mundo começa 11/06. Quem fechar até dia 29 recebe antes da Copa — quem deixar pra depois pode não dar tempo.</div>
+      <div class="frase">"Se você quer estar com a bag pra ativar a Copa, precisa fechar nessa feira. Depois do dia 29 a produção fica apertada pra entregar antes do dia 11."</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ URGÊNCIA UNIVERSAL · GATILHOS CLÁSSICOS ============ -->
+<section class="s" id="urg-universal">
+  <div class="eyebrow">Gatilhos universais · base teórica</div>
+  <h2>Senso de urgência · gatilhos clássicos</h2>
+  <div class="sub">Princípios validados pela psicologia da persuasão (referência: Cialdini, "As Armas da Persuasão"). Use combinados com os gatilhos específicos da feira.</div>
+
+  <div class="gat-grid">
+    <div class="gat">
+      <div class="h"><div class="ic">⏳</div><div class="tt">Escassez</div><div class="tg">tempo limitado</div></div>
+      <div class="ds">Algo escasso parece mais valioso. A condição da feira já é escassa por definição (só 4 dias).</div>
+      <div class="frase">"Hoje é o último dia que essa condição roda. Amanhã a tabela vai pro normal."</div>
+    </div>
+
+    <div class="gat">
+      <div class="h"><div class="ic">⭐</div><div class="tt">Prova social</div><div class="tg">autoridade transferida</div></div>
+      <div class="ds">Pessoas confiam no que outros já validaram. Use marcas conhecidas (Zé Delivery, iFood, Bacio, Sadia, Bom Beef).</div>
+      <div class="frase">"Zé Delivery, iFood e Bacio di Latte já são clientes. Se eles confiam, você pode confiar também."</div>
+    </div>
+
+    <div class="gat">
+      <div class="h"><div class="ic">🎯</div><div class="tt">Aversão à perda</div><div class="tg">não perder X</div></div>
+      <div class="ds">Perder R$ X dói mais do que ganhar R$ X. Mostre o que ele PERDE não fechando, não o que ganha fechando.</div>
+      <div class="frase">"Se você fechar amanhã ao invés de hoje, perde R$ X na cortesia / brinde / desconto."</div>
+    </div>
+
+    <div class="gat">
+      <div class="h"><div class="ic">🤝</div><div class="tt">Reciprocidade</div><div class="tg">deu, recebe</div></div>
+      <div class="ds">Dar algo (mesmo simbólico) gera obrigação social de retribuir. Bonificação Silk Copa é reciprocidade.</div>
+      <div class="frase">"Vou te dar 200 Silks de cortesia pela Copa. É um valor que outros pagariam — a gente confia em você."</div>
+    </div>
+
+    <div class="gat">
+      <div class="h"><div class="ic">🏆</div><div class="tt">Autoridade</div><div class="tg">especialista</div></div>
+      <div class="ds">A Neobag tem 2 anos no segmento (festejados nessa feira). Use isso.</div>
+      <div class="frase">"A Neobag fabrica bag térmica é o que a gente faz. Não é revenda — é produção própria. Por isso temos a melhor relação preço-qualidade do mercado."</div>
+    </div>
+
+    <div class="gat">
+      <div class="h"><div class="ic">🔐</div><div class="tt">Compromisso e consistência</div><div class="tg">passos pequenos</div></div>
+      <div class="ds">Quem aceita um passo pequeno tende a aceitar o próximo. Comece com micro-acordos: "concorda que branding ajuda?" "faz sentido fechar com a feira?"</div>
+      <div class="frase">"Você concorda que personalizar a bag ajuda no seu marketing? [sim] · Concorda que R$ 2 é um bom preço? [sim] · Então vamos fechar?"</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TÉCNICAS DE FECHAMENTO ============ -->
+<section class="s" id="tecnicas">
+  <div class="eyebrow">Como pedir o fechamento · técnicas práticas</div>
+  <h2>Fechamento · 6 técnicas que funcionam</h2>
+  <div class="sub">Você JÁ ganhou a conversa? Então peça o pedido. A maioria das vendas se perde porque o vendedor não pediu.</div>
+
+  <div class="tec">
+    <div class="tec-card">
+      <div class="nm">Alternativa fechada</div>
+      <div class="ds">Pergunta com 2 opções de SIM. Tira o "não" da equação.</div>
+      <div class="ex">"Você prefere Burguer com cor preta ou vermelha?"</div>
+    </div>
+    <div class="tec-card">
+      <div class="nm">Suposição</div>
+      <div class="ds">Age como se ele já tivesse fechado. Pergunte sobre detalhes operacionais.</div>
+      <div class="ex">"Quando você quer receber? Posso colocar pra produção amanhã?"</div>
+    </div>
+    <div class="tec-card">
+      <div class="nm">Recap + pedido</div>
+      <div class="ds">Recapitule os SIMs que ele já deu e peça o fechamento.</div>
+      <div class="ex">"Beleza: bag Burguer, 10 mil, R$ 2, com sua arte 360. Fechamos?"</div>
+    </div>
+    <div class="tec-card">
+      <div class="nm">Próximo passo concreto</div>
+      <div class="ds">Não deixe a conversa aberta. Sempre defina o próximo passo com data.</div>
+      <div class="ex">"Posso te ligar amanhã 10h pra confirmar a arte?"</div>
+    </div>
+    <div class="tec-card">
+      <div class="nm">Ancoragem alta</div>
+      <div class="ds">Mostre primeiro o pedido grande (10k, 20k) pra depois oferecer o menor (5k) — parece pequeno em comparação.</div>
+      <div class="ex">"Tem cliente fechando 20 mil hoje. Pra começar contigo, fazemos 5 mil."</div>
+    </div>
+    <div class="tec-card">
+      <div class="nm">Silêncio · espera ele falar</div>
+      <div class="ds">Depois de propor preço, FIQUE QUIETO. Quem fala primeiro perde. Aguente o desconforto.</div>
+      <div class="ex">"O total fica R$ 30.000 com tudo incluso." (silêncio · espera)</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROVA SOCIAL ============ -->
+<section class="s" id="prova">
+  <div class="eyebrow">Munição visual pra quebrar objeção</div>
+  <h2>Use as marcas como prova</h2>
+  <div class="sub">Quando o cliente duvida, mostre as marcas conhecidas. Autoridade transferida.</div>
+
+  <div class="prova">
+    <div class="pt">Marcas que já confiam na Neobag</div>
+    <div class="prova-grid">
+      <div class="prova-logo"><img src="https://neobagstore.com.br/wp-content/uploads/logo-ze-delivery-new.webp" alt="Zé Delivery" loading="lazy"></div>
+      <div class="prova-logo"><img src="https://neobagstore.com.br/wp-content/uploads/logo-ifood-new.webp" alt="iFood" loading="lazy"></div>
+      <div class="prova-logo"><img src="https://neobagstore.com.br/wp-content/uploads/logo-bacio-di-latte-new.webp" alt="Bacio di Latte" loading="lazy"></div>
+      <div class="prova-logo"><img src="https://neobagstore.com.br/wp-content/uploads/logo-sadia-new.webp" alt="Sadia" loading="lazy"></div>
+      <div class="prova-logo"><img src="https://neobagstore.com.br/wp-content/uploads/logo-bom-beed-burgers-new.webp" alt="Bom Beef Burgers" loading="lazy"></div>
+      <div class="prova-logo"><img src="https://neobagstore.com.br/wp-content/uploads/logo-mambo-new.webp" alt="Mambo" loading="lazy"></div>
+      <div class="prova-logo"><img src="https://neobagstore.com.br/wp-content/uploads/logo-trilhas-do-acai-new.webp" alt="Trilhas do Açaí" loading="lazy"></div>
+      <div class="prova-logo"><img src="https://neobagstore.com.br/wp-content/uploads/logo-1008-new.webp" alt="1008" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VÍDEOS RECOMENDADOS ============ -->
+<section class="s" id="videos">
+  <div class="eyebrow">Aprofundamento · pra ver antes ou depois da feira</div>
+  <h2>Vídeos de quebra de objeção (PT-BR)</h2>
+  <div class="sub">Curadoria de vídeos de treinadores de vendas brasileiros referência no assunto. Recomendo assistir 1-2 antes do D1.</div>
+
+  <div class="vids">
+    <a class="vid" href="https://www.youtube.com/watch?v=X13bmpy18lU" target="_blank" rel="noopener">
+      <div class="pl">▶</div>
+      <div class="info">
+        <div class="tt">FAÇA ISSO PARA CONTORNAR QUALQUER OBJEÇÃO E NUNCA MAIS PERDER VENDAS</div>
+        <div class="au"><b>Thiago Concer</b> · técnicas pra antecipar objeções</div>
+      </div>
+    </a>
+    <a class="vid" href="https://www.youtube.com/watch?v=hr9UQXfVXEY" target="_blank" rel="noopener">
+      <div class="pl">▶</div>
+      <div class="info">
+        <div class="tt">CLIENTE DISSE 'TÁ CARO'? Use Essa Técnica e FECHE a Venda</div>
+        <div class="au"><b>Thiago Concer</b> · foco na objeção de preço</div>
+      </div>
+    </a>
+    <a class="vid" href="https://www.youtube.com/watch?v=4-igoUE_730" target="_blank" rel="noopener">
+      <div class="pl">▶</div>
+      <div class="info">
+        <div class="tt">9 ESTRATÉGIAS PARA CONTORNAR QUALQUER TIPO DE OBJEÇÃO</div>
+        <div class="au"><b>Thiago Concer</b> · framework completo</div>
+      </div>
+    </a>
+    <a class="vid" href="https://www.youtube.com/watch?v=vk2-QJDBSz8" target="_blank" rel="noopener">
+      <div class="pl">▶</div>
+      <div class="info">
+        <div class="tt">Feche mais vendas eliminando as 4 principais objeções</div>
+        <div class="au"><b>Thiago Concer</b> · top 4 objeções e respostas</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="dica" style="margin-top:14px;padding:14px;background:rgba(40,160,255,.06);border:1px solid rgba(40,160,255,.3);border-radius:10px;font-size:13px;font-style:italic">
+    💡 Quer mais? Canal completo do Thiago Concer: <a href="https://www.youtube.com/c/ThiagoConcer" target="_blank" rel="noopener" style="color:var(--azul-neon)">youtube.com/c/ThiagoConcer</a> · referência nº 1 em treinamento comercial no Brasil.
+  </div>
+</section>
+
+<!-- ============ CHEAT SHEET ============ -->
+<section class="s" id="cheat">
+  <div class="eyebrow">Pro celular · puxar quando travar</div>
+  <h2>Cheat sheet de fechamento</h2>
+  <div class="cheat">
+    <h3>Fechamento · respostas rápidas</h3>
+    <div class="cheat-row"><span>"Tá caro"</span><b>"Comparado a quê? Vou te mostrar o custo por entrega."</b></div>
+    <div class="cheat-row"><span>"Vou pensar"</span><b>"Sobre qual ponto? Posso te ajudar com pré-fechamento."</b></div>
+    <div class="cheat-row"><span>"Tenho fornecedor"</span><b>"100% satisfeito? Posso comparar?"</b></div>
+    <div class="cheat-row"><span>"Falar com sócio"</span><b>"Liga ele agora · 30 segundos."</b></div>
+    <div class="cheat-row"><span>"Manda email"</span><b>"WhatsApp já que você está aqui · qual número?"</b></div>
+    <div class="cheat-row"><span>"Cliente não nota"</span><b>"É mídia móvel · Zé Delivery faz por algo."</b></div>
+    <div class="cheat-row"><span>"Sou pequeno"</span><b>"Faz a conta de ROI · começou pequeno e cresceu."</b></div>
+    <div class="cheat-row"><span>"Sem orçamento"</span><b>"Qual valor cabe agora? Desenho o pedido."</b></div>
+    <div class="cheat-row"><span>"Espero feira acabar"</span><b>"Condição é só da feira · pré-fecha até [data]."</b></div>
+    <div class="cheat-row"><span>"Concorrente menor"</span><b>"Compara valor (cortesia 360, supercola, alça)."</b></div>
+    <div class="sp"></div>
+    <div class="cheat-row"><span>URGÊNCIA · flat R$ 2</span><b>"Só da feira · depois volta tabela cheia."</b></div>
+    <div class="cheat-row"><span>URGÊNCIA · Copa</span><b>"200 Silks grátis · entrega em 10d · pronto pro Mundial."</b></div>
+    <div class="cheat-row"><span>URGÊNCIA · Hora Neobag</span><b>"Dia 28 14h-17h · condição especial."</b></div>
+    <div class="cheat-row"><span>URGÊNCIA · janela</span><b>"Fecha até 29/05 pra ter bag antes da Copa."</b></div>
+    <div class="sp"></div>
+    <div class="cheat-row"><span>FECHAMENTO · alternativa</span><b>"Cor preta ou vermelha?"</b></div>
+    <div class="cheat-row"><span>FECHAMENTO · suposição</span><b>"Quando quer receber?"</b></div>
+    <div class="cheat-row"><span>FECHAMENTO · recap</span><b>"Beleza · fechamos?"</b></div>
+    <div class="cheat-row"><span>DEPOIS DE PROPOR</span><b>SILÊNCIO · quem fala primeiro perde.</b></div>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div>NEOBAG · Kit Fechamento · FISPAL D1-D4 · 26-29/05/2026 · K50</div>
+  <div class="src">
+    Referências e fontes:
+    <a href="https://www.youtube.com/c/ThiagoConcer" target="_blank">Thiago Concer (YouTube)</a> ·
+    <a href="https://dnadevendas.com.br/blog/quebra-de-objecoes-em-vendas-tecnicas-para-superar-resistencias-e-fechar-mais-negocios/" target="_blank">DNA de Vendas</a> ·
+    <a href="https://www.agendor.com.br/blog/objecoes-e-respostas/" target="_blank">Agendor</a> ·
+    <a href="https://exame.com/negocios/vou-pensar-e-te-aviso-essas-sao-as-objecoes-mais-comuns-dos-clientes-veja-como-responde-las/" target="_blank">Exame</a> ·
+    <a href="https://exactsales.com.br/gatilhos-mentais/" target="_blank">Exact Sales · gatilhos</a> ·
+    base teórica: Robert Cialdini, "As Armas da Persuasão"
+  </div>
+</footer>
+</body>
+</html>
